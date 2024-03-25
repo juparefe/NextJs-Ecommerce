@@ -1,6 +1,7 @@
-import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import 'semantic-ui-css/semantic.min.css'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App(props: AppProps) {
+  const { Component, pageProps } = props
   return <Component {...pageProps} />;
 }
