@@ -5,8 +5,8 @@ export const AuthContext = createContext({});
 
 // Creacion del componente proveedor del contexto
 export function AuthProvider(props: any) {
-        const {children} = props;
-        const [user, setUser] = useState(null);
+        const { children } = props;
+        const [ user, setUser  ] = useState(null);
 
 	const data = {
 		user

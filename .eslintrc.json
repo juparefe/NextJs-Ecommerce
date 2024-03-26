@@ -1,10 +1,19 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
+    "array-bracket-spacing": ["error", "always"], // Requiere espacios en arrays
+    "arrow-spacing": ["error", { "before": true, "after": true }], // Regla para espacios en flechas
+    "comma-dangle": ["error", "never"], // Regla para comas al final de las líneas
     "eol-last": "error", // Regla para asegurarse de que cada archivo termine con una línea en blanco
     "import/order": ["error", { "alphabetize": { "order": "asc" } }], // Regla para importes en orden alfabético
+    "key-spacing": ["error", { "afterColon": true }], // Requiere espacios después de los dos puntos en propiedades de objetos
+    "no-console": "warn", // Regla para evitar console.log
+    "no-multiple-empty-lines": ["error", { "max": 2 }], // Regla para limitar a máximo dos líneas en blanco seguidas
     "no-trailing-spaces": "error", // Regla para evitar espacios en blanco al final de las líneas
+    "no-unused-vars": "warn", // Regla para evitar variables no utilizadas
+    "object-curly-spacing": ["error", "always"], // Requiere espacios en objetos
     "semi": ["error", "always"], // Agregando regla para requerir punto y coma
-    "sort-keys": "error" // Regla para que las propiedades de los objetos estén en orden alfabético
+    "sort-keys": "error", // Regla para que las propiedades de los objetos estén en orden alfabético
+    "space-before-blocks": "error" // Regla para espacios antes de bloques
   }
 }
