@@ -1,3 +1,10 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "eol-last": "error", // Regla para asegurarse de que cada archivo termine con una línea en blanco
+    "import/order": ["error", { "alphabetize": { "order": "asc" } }], // Regla para importes en orden alfabético
+    "no-trailing-spaces": "error", // Regla para evitar espacios en blanco al final de las líneas
+    "semi": ["error", "always"], // Agregando regla para requerir punto y coma
+    "sort-keys": "error" // Regla para que las propiedades de los objetos estén en orden alfabético
+  }
 }
