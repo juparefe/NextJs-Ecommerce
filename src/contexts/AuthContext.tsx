@@ -12,9 +12,5 @@ export function AuthProvider(props: any) {
 		user
 	};
 
-	return (
-        <AuthContext.Provider value={data}>
-         {children}
-        </AuthContext.Provider>
-        );
+	return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 }
