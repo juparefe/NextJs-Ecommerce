@@ -30,10 +30,10 @@ export function ConfirmationForm() {
 	});
 
 	const onResendCode = async () => {
-		formik.setFieldError('email', false);
+		formik.setFieldError('email', 'false');
 
 		if (!formik.values.email) {
-			formik.setFieldError('email', true);
+			formik.setFieldError('email', 'true');
 			return;
 		}
 
