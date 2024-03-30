@@ -1,3 +1,4 @@
+// Contiene los valores iniciales del formulario y el esquema de validación. Se utiliza para el formulario de confirmación de usuario.
 import * as Yup from 'yup';
 
 export function initialValues() {

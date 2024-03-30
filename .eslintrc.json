@@ -2,7 +2,7 @@
   "extends": "next/core-web-vitals",
   "rules": {
     "arrow-spacing": ["error", { "before": true, "after": true }], // Regla para espacios en flechas
-    "camelcase": "error", // Regla para camelCase
+    "camelcase": "warn", // Regla para camelCase
     "comma-dangle": ["error", "never"], // Regla para comas al final de las líneas
     "eol-last": "error", // Regla para asegurarse de que cada archivo termine con una línea en blanco
     "import/order": ["error", { "alphabetize": { "order": "asc" } }], // Regla para importes en orden alfabético

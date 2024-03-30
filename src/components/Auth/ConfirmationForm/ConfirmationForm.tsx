@@ -8,13 +8,16 @@ import { Separator } from '@/components/Shared';
 
 export function ConfirmationForm() {
 	const router = useRouter();
+	// En la variable query se almacenan los parametros de la url, en este caso tomo el correo electronico
 	const { query } = router;
 	const [loading, setLoading] = useState(false);
 
+	// useEffect se ejecuta cuando el componente se monta y se actualiza y llena el campo email con el valor del query
 	useEffect(() => {
 		formik.setFieldValue('email', query.email);
 	}, [query]);
 
+	// Funcionalidad del formulario Activar Usuario que usa la api de amplify api/auth.ts para confirmar el usuario
 	const formik = useFormik({
 		initialValues: initialValues(),
 		onSubmit: async (formValue) => {
@@ -29,6 +32,7 @@ export function ConfirmationForm() {
 		validationSchema: validationSchema()
 	});
 
+	// Funcionalidad del formulario Reenviar codigo de verificación que usa la api de amplify api/auth.ts para reenviar el código de confirmación
 	const onResendCode = async () => {
 		formik.setFieldError('email', 'false');
 
@@ -42,6 +46,7 @@ export function ConfirmationForm() {
 		setLoading(false);
 	};
 
+	// Formulario de confirmación de usuario con (email y código de confirmación), linea de separacion y un botón para reenviar el código de confirmación
 	return (
 		<>
 			<Form onSubmit={formik.handleSubmit}>
@@ -67,7 +72,7 @@ export function ConfirmationForm() {
 			<Separator height={50} />
 
 			<Button fluid basic onClick={onResendCode} loading={loading}>
-				Reenviar codigo de verificaión
+				Reenviar codigo de verificación
 			</Button>
 		</>
 	);
