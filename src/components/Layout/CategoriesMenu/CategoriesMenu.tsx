@@ -11,7 +11,6 @@ export function CategoriesMenu() {
 		(async () => {
 			try {
 				const response = await categoryCtrl.getAll();
-				console.log('Response categories', response);
 				setCategories(response);
 			} catch (error) {
 				console.error(error);

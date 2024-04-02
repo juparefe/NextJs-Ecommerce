@@ -2,7 +2,6 @@ import { authCtrl } from '@/api';
 
 export async function authFetch(url: string, params?: any) {
 	const token = await authCtrl.retrieveSession();
-	console.log('token', token);
 
 	if (!token) {
 		console.log('No hay token');
@@ -16,7 +15,6 @@ export async function authFetch(url: string, params?: any) {
 		};
 
 		try {
-			console.log('paramsTemp', paramsTemp);
 			return await fetch(url, paramsTemp);
 		} catch (error) {
 			throw error;

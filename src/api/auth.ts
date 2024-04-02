@@ -19,7 +19,6 @@ async function login(email: string, password: string) {
 		const session = await Auth.currentAuthenticatedUser({
 			bypassCache: false
 		});
-		console.log('session', session);
 		return session;
 	} catch (error) {
 		throw error;
