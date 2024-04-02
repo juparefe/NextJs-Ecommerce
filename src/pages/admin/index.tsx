@@ -27,7 +27,7 @@ export default function AdminPage() {
 					<Tab.Pane>
 						<div className={styles.actions}>
 							<Search queryName="searchAdmin" />
-							<span>Add product</span>
+							<Product.AddProduct onReload={onReload} />
 						</div>
 						<Product.ListProducts />
 					</Tab.Pane>
