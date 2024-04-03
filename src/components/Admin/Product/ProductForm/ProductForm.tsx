@@ -22,7 +22,6 @@ export function ProductForm(props: any) {
 				}));
 				setCategories(result);
 			} catch (error) {
-				console.log('sss');
 				console.error(error);
 			}
 		})();
@@ -35,7 +34,6 @@ export function ProductForm(props: any) {
 				if (product) {
 					await productCtrl.update(formValue, product.prodID);
 				} else {
-					console.log('FormValue', formValue);
 					await productCtrl.create(formValue);
 				}
 				onReload();

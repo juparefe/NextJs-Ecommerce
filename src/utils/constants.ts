@@ -12,6 +12,6 @@ export const ENV = {
 		USER_ME: '/user/me'
 	},
 	IMG_URL: 'https://gambit-img-bucket.s3.amazonaws.com',
-	TINY_APIKEY: '',
+	TINY_APIKEY: 'agh3xktjurawll57abh1pj6lzpdtdihaffl8zeneyx609kjt',
 	TOKEN: 'token'
 };
