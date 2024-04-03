@@ -1,10 +1,11 @@
+import { Editor } from '@tinymce/tinymce-react';
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
 import { Form } from 'semantic-ui-react';
 import { initialValues, validationSchema } from './ProductForm.form';
 import { categoryCtrl, productCtrl } from '@/api';
 import { Separator } from '@/components/Shared';
-import { Category } from '@/utils';
+import { Category, ENV } from '@/utils';
 
 export function ProductForm(props: any) {
 	const { onClose, onReload, product } = props;
@@ -60,6 +61,41 @@ export function ProductForm(props: any) {
 				value={formik.values.ProdPath}
 				onChange={formik.handleChange}
 				error={formik.errors.ProdPath}
+			/>
+
+			<Editor
+				apiKey={ENV.TINY_APIKEY}
+				init={{
+					height: 400,
+					menubar: true,
+					plugins: [
+						'advlist',
+						'autolink',
+						'lists',
+						'link',
+						'image',
+						'charmap',
+						'preview',
+						'anchor',
+						'searchreplace',
+						'visualblocks',
+						'code',
+						'fullscreen',
+						'insertdatetime',
+						'media',
+						'table',
+						'code',
+						'help',
+						'wordcount'
+					],
+					toolbar:
+						'undo redo | blocks | ' +
+						'bold italic forecolor | alignleft aligncenter ' +
+						'alignright alignjustify | bullist numlist outdent indent | ' +
+						'removeformat | help'
+				}}
+				initialValue={formik.values.ProdDescription}
+				onBlur={(event) => formik.setFieldValue('ProdDescription', event.target.getContent())}
 			/>
 
 			<Separator height={20} />
