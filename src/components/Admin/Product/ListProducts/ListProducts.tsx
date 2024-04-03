@@ -29,6 +29,7 @@ export function ListProducts(props: any) {
 		})();
 	}, [reload, query.page, query.searchAdmin]);
 
+	console.log('This is a test');
 	if (!products) return <Loading text="Cargando productos" />;
 
 	return (
