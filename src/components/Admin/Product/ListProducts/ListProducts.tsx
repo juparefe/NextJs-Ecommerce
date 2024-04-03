@@ -29,7 +29,6 @@ export function ListProducts(props: any) {
 		})();
 	}, [reload, query.page, query.searchAdmin]);
 
-	console.log('This is a test');
 	if (!products) return <Loading text="Cargando productos" />;
 
 	return (
@@ -54,7 +53,7 @@ export function ListProducts(props: any) {
 
 					{products.map((product) => (
 						<Table.Row key={product.prodId}>
-							<Product product={product} />
+							<Product product={product} onReload={onReload} />
 						</Table.Row>
 					))}
 				</Table.Body>

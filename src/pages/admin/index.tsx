@@ -29,7 +29,7 @@ export default function AdminPage() {
 							<Search queryName="searchAdmin" />
 							<Product.AddProduct onReload={onReload} />
 						</div>
-						<Product.ListProducts />
+						<Product.ListProducts reload={reload} onReload={onReload} />
 					</Tab.Pane>
 				);
 			}

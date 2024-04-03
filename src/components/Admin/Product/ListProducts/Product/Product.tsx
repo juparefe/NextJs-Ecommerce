@@ -7,16 +7,16 @@ import { fn } from '@/utils/functions';
 
 const NOT_FOUND_IMAGE = '/images/not-found.jpg';
 
-export function Product(props: { product: ProductI }) {
-	const { product } = props;
-    const [image, setImage] = useState(NOT_FOUND_IMAGE);
+export function Product(props: { product: ProductI; onReload: any }) {
+	const { product, onReload } = props;
+	const [image, setImage] = useState(NOT_FOUND_IMAGE);
 
-    useEffect(() => {
-        const imageUrl = fn.getUrlImage(product.prodId);
-        fn.checkIfImageExists(imageUrl, (exists: boolean) => {
-          if (exists) setImage(imageUrl);
-        });
-      }, [product]);
+	useEffect(() => {
+		const imageUrl = fn.getUrlImage(product.prodId);
+		fn.checkIfImageExists(imageUrl, (exists: boolean) => {
+			if (exists) setImage(imageUrl);
+		});
+	}, [product]);
 
 	return (
 		<>
