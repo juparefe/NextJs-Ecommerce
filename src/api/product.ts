@@ -21,7 +21,7 @@ async function getAllProducts(page = 1, pageSize = 10, search: string | string[]
 
 async function createProduct(data: any) {
 	try {
-		const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}`;
+		const url = `${ENV.API_URL}${ENV.ENDPOINTS.PRODUCT}`;
 		const params = {
 			body: JSON.stringify(data),
 			headers: {

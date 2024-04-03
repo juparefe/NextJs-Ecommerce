@@ -16,9 +16,9 @@ export function ProductForm(props: any) {
 			try {
 				const response = await categoryCtrl.getAll();
 				const result = response.map((item: Category) => ({
-					key: item.categID,
+					key: item.categId,
 					text: item.categName,
-					value: item.categID
+					value: item.categId
 				}));
 				setCategories(result);
 			} catch (error) {
@@ -34,6 +34,7 @@ export function ProductForm(props: any) {
 				if (product) {
 					await productCtrl.update(formValue, product.prodID);
 				} else {
+					console.log('FormValue', formValue);
 					await productCtrl.create(formValue);
 				}
 				onReload();

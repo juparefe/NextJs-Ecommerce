@@ -1,5 +1,5 @@
 export interface Category {
-	categID: string;
+	categId: string;
 	categPath: string;
 	categName: string;
 }
