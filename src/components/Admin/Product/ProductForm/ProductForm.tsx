@@ -22,6 +22,7 @@ export function ProductForm(props: any) {
 				}));
 				setCategories(result);
 			} catch (error) {
+				console.log('sss');
 				console.error(error);
 			}
 		})();
