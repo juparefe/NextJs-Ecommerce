@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Icon, Image, Table } from 'semantic-ui-react';
 import { ProductForm } from '../../ProductForm';
+import { ProductImageForm } from '../../ProductImageForm';
 import styles from './Product.module.scss';
 import { productCtrl } from '@/api';
 import { Modal } from '@/components/Shared';
@@ -33,6 +34,11 @@ export function Product(props: { product: ProductI; onReload: any }) {
 		setOpenModal(true);
 	};
 
+	const openEditImageProduct = () => {
+		setModalContent(<ProductImageForm onClose={closeModal} onReload={onReload} productId={product.prodId} />);
+		setOpenModal(true);
+	};
+
 	return (
 		<>
 			<Table.Cell>{product.prodId}</Table.Cell>
@@ -44,7 +50,7 @@ export function Product(props: { product: ProductI; onReload: any }) {
 			<Table.Cell>{product.prodStock} Unidades</Table.Cell>
 			<Table.Cell className={styles.actions}>
 				<Icon name="pencil" onClick={openEditProduct} />
-				<Icon name="image" />
+				<Icon name="image" link onClick={openEditImageProduct} />
 				<Icon name="trash" />
 			</Table.Cell>
 

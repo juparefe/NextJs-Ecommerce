@@ -9,6 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@tinymce/tinymce-react": "^5.0.0",
 		"amazon-cognito-identity-js": "^6.3.12",
 		"aws-amplify": "~5.3.18",
 		"aws-sdk": "^2.1585.0",
@@ -16,13 +17,13 @@
 		"next": "14.1.4",
 		"react": "^18",
 		"react-dom": "^18",
+		"react-dropzone": "^14.2.3",
 		"sass": "^1.72.0",
 		"semantic-ui-css": "^2.5.0",
 		"semantic-ui-react": "^2.1.5",
 		"yup": "^1.4.0"
 	},
 	"devDependencies": {
-		"@tinymce/tinymce-react": "^5.0.0",
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
