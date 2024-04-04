@@ -10,7 +10,6 @@ export function BasicLayout(props: any) {
 
 	return (
 		<>
-			<h2>BasicLayout</h2>
 			<div className={styles.border}>
 				<Container className={styles.header}>
 					<div className={styles.left}>

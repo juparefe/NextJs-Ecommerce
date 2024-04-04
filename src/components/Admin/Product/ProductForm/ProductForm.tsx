@@ -32,7 +32,7 @@ export function ProductForm(props: any) {
 		onSubmit: async (formValue) => {
 			try {
 				if (product) {
-					await productCtrl.update(formValue, product.prodID);
+					await productCtrl.update(formValue, product.prodId);
 				} else {
 					await productCtrl.create(formValue);
 				}

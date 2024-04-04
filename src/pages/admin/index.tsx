@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Container, Tab } from 'semantic-ui-react';
 import styles from './admin.module.scss';
-import { Product } from '@/components/Admin/Product';
+import { Category, Product } from '@/components/Admin';
 import { Search } from '@/components/Shared';
 import { useAuth } from '@/hooks';
 import { BasicLayout } from '@/layouts';
@@ -14,7 +14,7 @@ export default function AdminPage() {
 
 	const onReload = () => setReload((prevState) => !prevState);
 
-	if (isAdmin) {
+	if (!isAdmin) {
 		router.push('/');
 		return null;
 	}
@@ -43,7 +43,7 @@ export default function AdminPage() {
 							<div />
 							<span>Add category</span>
 						</div>
-						<h2>Categorias</h2>
+						<Category.ListCategories reload={reload} onReload={onReload} />
 					</Tab.Pane>
 				);
 			}

@@ -40,7 +40,7 @@ async function createProduct(data: any) {
 	}
 }
 
-async function updateProduct(data: any, productId: number) {
+async function updateProduct(data: any, productId: string) {
 	try {
 		const url = `${ENV.API_URL}${ENV.ENDPOINTS.PRODUCT}/${productId}`;
 		const params = {
