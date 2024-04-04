@@ -61,7 +61,7 @@ async function updateProduct(data: any, productId: number) {
 	}
 }
 
-async function updateImage(productId: number, image: any) {
+async function updateImage(productId: string, image: any) {
 	try {
 		const url = `${ENV.API_IMG_URL}/${productId}.jpg`;
 		const params = {
@@ -82,9 +82,9 @@ async function updateImage(productId: number, image: any) {
 	}
 }
 
-async function deleteProduct(productId: number) {
+async function deleteProduct(productId: string) {
 	try {
-		const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}/${productId}`;
+		const url = `${ENV.API_URL}${ENV.ENDPOINTS.PRODUCT}/${productId}`;
 		const params = { method: 'DELETE' };
 
 		const response = await authFetch(url, params);

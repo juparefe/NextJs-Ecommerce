@@ -24,6 +24,18 @@ export function Product(props: { product: ProductI; onReload: any }) {
 		});
 	}, [product]);
 
+	const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
+
+	const onDelete = async () => {
+		try {
+			await productCtrl.delete(product.prodId);
+			onReload();
+			onOpenCloseConfirm();
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	const closeModal = () => {
 		setOpenModal(false);
 		setModalContent(<p></p>);
@@ -51,8 +63,15 @@ export function Product(props: { product: ProductI; onReload: any }) {
 			<Table.Cell className={styles.actions}>
 				<Icon name="pencil" onClick={openEditProduct} />
 				<Icon name="image" link onClick={openEditImageProduct} />
-				<Icon name="trash" />
+				<Icon name="trash" link onClick={onOpenCloseConfirm} />
 			</Table.Cell>
+
+			<Modal.Confirm
+				open={showConfirm}
+				onCancel={onOpenCloseConfirm}
+				onConfirm={onDelete}
+				content={`¿Estas seguro de eliminar el producto: (${product.prodTitle})?`}
+			/>
 
 			<Modal.Basic show={openModal} onClose={closeModal} title={`Editar (${product.prodTitle})`}>
 				{modalContent}
