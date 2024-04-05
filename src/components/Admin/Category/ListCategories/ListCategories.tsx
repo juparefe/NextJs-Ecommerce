@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Table } from 'semantic-ui-react';
 import { categoryCtrl } from '@/api';
-import { Loading } from '@/components/Shared';
+import { Loading, NoResult } from '@/components/Shared';
 import { Category } from '@/utils';
 
 export function ListCategories(props: any) {
@@ -35,7 +35,7 @@ export function ListCategories(props: any) {
 			<Table.Body>
 				{categories.length === 0 && (
 					<Table.Cell colSpan="5">
-						<span>No hay categorias</span>
+						<NoResult text="No hay categorias" />
 					</Table.Cell>
 				)}
 

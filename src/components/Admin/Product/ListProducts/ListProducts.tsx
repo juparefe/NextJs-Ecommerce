@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Table } from 'semantic-ui-react';
 import { Product } from './Product';
 import { productCtrl } from '@/api';
-import { Loading, Pagination } from '@/components/Shared';
+import { Loading, NoResult, Pagination } from '@/components/Shared';
 import { ProductI } from '@/utils';
 
 const ITEMS_PER_PAGE = 10;
@@ -47,7 +47,7 @@ export function ListProducts(props: any) {
 				<Table.Body>
 					{products.length === 0 && (
 						<Table.Cell colSpan="5">
-							<span>No hay productos</span>
+							<NoResult text="No hay productos" />
 						</Table.Cell>
 					)}
 
