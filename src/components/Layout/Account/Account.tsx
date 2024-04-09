@@ -9,7 +9,7 @@ export function Account() {
 	return (
 		<Link href={url} className={styles.account}>
 			<Icon name="user" />
-			{user ? `${user.userEmail.slice(0, 14)}...` : 'Entrar'}
+			{user && user.userEmail ? `${user.userEmail.slice(0, 14)}...` : 'Entrar'}
 		</Link>
 	);
 }

@@ -63,7 +63,7 @@ async function updateProduct(data: any, productId: string) {
 
 async function updateImage(productId: string, image: any) {
 	try {
-		const url = `${ENV.API_IMG_URL}/${productId}.jpg`;
+		const url = `${ENV.API_IMG_URL}/gambit-img-bucket/${productId}.jpg`;
 		const params = {
 			body: image,
 			headers: {
