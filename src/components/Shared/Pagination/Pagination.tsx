@@ -4,6 +4,7 @@ import styles from './Pagination.module.scss';
 
 export function Pagination(props: any) {
 	const { currentPage, totalPages } = props;
+	console.log("currentPage",currentPage,"totalPages",totalPages);
 	const router = useRouter();
 
 	const onPageChange = (_: any, data: any) => {

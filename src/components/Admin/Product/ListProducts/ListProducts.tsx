@@ -46,9 +46,11 @@ export function ListProducts(props: any) {
 
 				<Table.Body>
 					{products.length === 0 && (
-						<Table.Cell colSpan="5">
-							<NoResult text="No hay productos" />
-						</Table.Cell>
+						<Table.Row>
+							<Table.Cell colSpan="5">
+								<NoResult text="No hay productos" />
+							</Table.Cell>
+						</Table.Row>
 					)}
 
 					{products.map((product) => (
@@ -58,7 +60,7 @@ export function ListProducts(props: any) {
 					))}
 				</Table.Body>
 			</Table>
-			<Pagination currentPage={page} totalPages={totalPages} />
+			{totalPages !== null && <Pagination currentPage={page} totalPages={totalPages} />}
 		</div>
 	);
 }

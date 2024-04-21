@@ -25,6 +25,7 @@ export function AuthProvider(props: any) {
 		(async () => {
 			try {
 				await login();
+				console.log("Login user", user);
 				setLoading(false);
 			} catch (error) {
 				setLoading(false);

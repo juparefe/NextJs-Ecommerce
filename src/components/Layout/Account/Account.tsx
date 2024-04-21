@@ -5,7 +5,8 @@ import { useAuth } from '@/hooks';
 
 export function Account() {
 	const { user } = useAuth();
-	const url = user ? '/account' : '/join/login';
+	console.log('User', user);
+	const url = (user && user.userEmail) ? '/account' : '/join/login';
 	return (
 		<Link href={url} className={styles.account}>
 			<Icon name="user" />
