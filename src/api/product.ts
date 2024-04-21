@@ -63,6 +63,10 @@ async function updateProduct(data: any, productId: string) {
 
 async function updateImage(productId: string, image: any) {
 	try {
+		const maxSize = 10485760; // Tamaño máximo permitido en bytes (10 MB)
+		if (image.size > maxSize) {
+			throw new Error('El tamaño del archivo excede el máximo permitido.');
+		}
 		const url = `${ENV.API_IMG_URL}/gambit-img-bucket/${productId}.jpg`;
 		const params = {
 			body: image,

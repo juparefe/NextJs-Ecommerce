@@ -39,6 +39,8 @@ export function ProductImageForm(props: any) {
 
 	const { getRootProps, getInputProps } = useDropzone({
 		accept: { 'image/jpeg': ['.jpeg'] },
+		maxSize: 10485760, // Tamaño máximo permitido en bytes (10 MB)
+        multiple: false, // Permitir solo un archivo
 		onDrop
 	});
 
@@ -60,6 +62,10 @@ export function ProductImageForm(props: any) {
 					<div>
 						<span>Arrastra la nueva imagen</span>
 					</div>
+				)}
+
+				{formik.errors.file && formik.touched.file && (
+					<div className={styles.error}>{formik.errors.file.toString()}</div>
 				)}
 			</div>
 
