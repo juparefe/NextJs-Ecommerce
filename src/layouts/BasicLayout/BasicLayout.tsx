@@ -8,8 +8,6 @@ export function BasicLayout(props: any) {
 	const { children } = props;
 	const { isAdmin } = useAuth();
 
-	console.log("User is admin", useAuth());
-
 	return (
 		<>
 			<div className={styles.border}>
