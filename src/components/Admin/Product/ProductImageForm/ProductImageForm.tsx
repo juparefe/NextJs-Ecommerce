@@ -38,9 +38,6 @@ export function ProductImageForm(props: any) {
 	}, []);
 
 	const { getRootProps, getInputProps } = useDropzone({
-		accept: { 'image/jpeg': ['.jpeg'] },
-		maxSize: 10485760, // Tamaño máximo permitido en bytes (10 MB)
-        multiple: false, // Permitir solo un archivo
 		onDrop
 	});
 
@@ -52,26 +49,21 @@ export function ProductImageForm(props: any) {
 	};
 
 	return (
-		<form onSubmit={formik.handleSubmit}>
-			<div className={styles.imageContainer} {...getRootProps()}>
-				<input {...getInputProps()} />
+		<div>
+		<div className={styles.imageContainer} {...getRootProps()}>
+		  <input {...getInputProps()} />
 
-				{getMiniature() ? (
-					<Image size="small" src={getMiniature()} alt="Image to update" />
-				) : (
-					<div>
-						<span>Arrastra la nueva imagen</span>
-					</div>
-				)}
-
-				{formik.errors.file && formik.touched.file && (
-					<div className={styles.error}>{formik.errors.file.toString()}</div>
-				)}
+		  {getMiniature() ? (
+			<Image size="small" src={getMiniature()} alt="Image to update" />
+		  ) : (
+			<div>
+			  <span>Arrastra la nueva imagen</span>
 			</div>
-
-			<Button primary fluid type="submit" loading={loading}>
-				Enviar
-			</Button>
-		</form>
+		  )}
+		</div>
+		<Button primary fluid onClick={(event) => formik.handleSubmit(event as any)} loading={loading}>
+			Enviar
+		</Button>
+	  </div>
 	);
 }

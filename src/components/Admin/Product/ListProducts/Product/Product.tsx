@@ -61,7 +61,7 @@ export function Product(props: { product: ProductI; onReload: any }) {
 			<Table.Cell>{product.prodPrice}€</Table.Cell>
 			<Table.Cell>{product.prodStock} Unidades</Table.Cell>
 			<Table.Cell className={styles.actions}>
-				<Icon name="pencil" onClick={openEditProduct} />
+				<Icon name="pencil" link onClick={openEditProduct} />
 				<Icon name="image" link onClick={openEditImageProduct} />
 				<Icon name="trash" link onClick={onOpenCloseConfirm} />
 			</Table.Cell>

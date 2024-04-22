@@ -34,9 +34,11 @@ export function ListCategories(props: any) {
 
 			<Table.Body>
 				{categories.length === 0 && (
-					<Table.Cell colSpan="5">
-						<NoResult text="No hay categorias" />
-					</Table.Cell>
+					<Table.Row>
+						<Table.Cell colSpan="5">
+							<NoResult text="No hay categorias" />
+						</Table.Cell>
+					</Table.Row>
 				)}
 
 				<p>Lista de categorias</p>
