@@ -19,9 +19,7 @@ export function AvatarForm() {
       try {
         setLoading(true);
         const render = new FileReader();
-        if (formValue.file) {
-            render.readAsArrayBuffer(formValue.file);
-        }
+        render.readAsArrayBuffer(formValue.file);
         render.onload = async () => {
           const image = render.result;
           await userCtrl.updateAvatar(user.userUUID, image);
@@ -37,7 +35,8 @@ export function AvatarForm() {
 
   useEffect(() => {
     if (formik.values.file) {
-      setAvatar(formik.values.preview);
+        const imageUrl = fn.getUrlImage(user.userUUID);
+      setAvatar(imageUrl);
     } else {
       const imageUrl = fn.getUrlImage(user.userUUID);
       fn.checkIfImageExists(imageUrl, (exists: boolean) => {
@@ -45,12 +44,13 @@ export function AvatarForm() {
         else setAvatar(null);
       });
     }
-  }, [formik.values.file]);
+  }, [formik.values, user]);
 
   const onDrop = useCallback((acceptedFiles: any) => {
     const file = acceptedFiles[0];
-    console.log(file);
-  }, []);
+    formik.setFieldValue("file", file);
+    formik.setFieldValue("preview", URL.createObjectURL(file));
+  }, [formik]);
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop
@@ -68,7 +68,7 @@ export function AvatarForm() {
           </div>
         )}
       </div>
-      <Button primary loading={loading}>
+      <Button primary loading={loading} onClick={(event) => formik.handleSubmit(event as any)}>
         Enviar
       </Button>
     </div>

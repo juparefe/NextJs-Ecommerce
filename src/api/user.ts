@@ -38,7 +38,7 @@ async function getAll(page = 1) {
 
 async function updateAvatar(userId: string, image: any) {
 	try {
-	  const url = `${ENV.API_IMG_URL}/${userId}.jpg`;
+	  const url = `${ENV.API_IMG_URL}/gambit-img-bucket/${userId}.jpg`;
 	  const params = {
 		body: image,
 		headers: {

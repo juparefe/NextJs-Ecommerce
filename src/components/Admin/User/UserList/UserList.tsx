@@ -48,7 +48,7 @@ export function UserList() {
         </Table.Body>
       </Table>
 
-      <Pagination currentPage={page} totalPages={totalPages} />
+      {totalPages !== null && <Pagination currentPage={page} totalPages={totalPages} />}
     </>
   );
 }
