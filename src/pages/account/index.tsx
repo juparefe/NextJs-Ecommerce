@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container, Tab } from "semantic-ui-react";
 import styles from "./account.module.scss";
+import { Settings } from "@/components/Account";
 import { Separator } from "@/components/Shared";
 import { useAuth } from "@/hooks";
 import { BasicLayout } from "@/layouts";
@@ -16,7 +17,7 @@ export default function AccountPage() {
       menuItem: "Mis datos",
       render: () => (
         <Tab.Pane>
-          <p>Avatar</p>
+          <Settings.AvatarForm />
           <Separator height={50} />
         </Tab.Pane>
       )
@@ -25,7 +26,7 @@ export default function AccountPage() {
       menuItem: "Mis direcciones",
       render: () => (
         <Tab.Pane>
-          <p>addresses</p>
+          <h2>Direcciones del usuario</h2>
         </Tab.Pane>
       )
     },
@@ -33,7 +34,7 @@ export default function AccountPage() {
       menuItem: "Mis pedidos",
       render: () => (
         <Tab.Pane>
-          <p>orders</p>
+          <h2>Lista de pedidos</h2>
         </Tab.Pane>
       )
     },

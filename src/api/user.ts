@@ -36,7 +36,29 @@ async function getAll(page = 1) {
 	}
 }
 
+async function updateAvatar(userId: string, image: any) {
+	try {
+	  const url = `${ENV.API_IMG_URL}/${userId}.jpg`;
+	  const params = {
+		body: image,
+		headers: {
+			"Content-Type": "image/jpeg"
+		  },
+		method: "PUT"
+	  };
+
+	  const response = await authFetch(url, params);
+
+	  if (response && response.status !== 200) throw response;
+
+	  return true;
+	} catch (error) {
+	  throw error;
+	}
+  }
+
 export const userCtrl = {
 	getAll,
-	me
+	me,
+	updateAvatar
 };

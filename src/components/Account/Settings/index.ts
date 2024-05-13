@@ -1,1 +1,5 @@
-export const Settings = {};
+import { AvatarForm } from "./AvatarForm";
+
+export const Settings = {
+    AvatarForm
+};
