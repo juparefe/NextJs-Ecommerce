@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Table } from 'semantic-ui-react';
+import { Category } from './Category';
 import { categoryCtrl } from '@/api';
 import { Loading, NoResult } from '@/components/Shared';
-import { Category } from '@/utils';
+import { CategoryI } from '@/utils';
 
 export function ListCategories(props: any) {
 	const { reload, onReload } = props;
-	const [categories, setCategories] = useState<Category[]>([]);
+	const [categories, setCategories] = useState<CategoryI[]>([]);
 
 	useEffect(() => {
 		(async () => {
@@ -41,7 +42,11 @@ export function ListCategories(props: any) {
 					</Table.Row>
 				)}
 
-				<p>Lista de categorias</p>
+				{categories.map((category) => (
+					<Table.Row key={category.categId}>
+						<Category category={category} onReload={onReload} />
+					</Table.Row>
+				))}
 			</Table.Body>
 		</Table>
 	);

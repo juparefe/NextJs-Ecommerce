@@ -20,7 +20,7 @@ async function me() {
 async function getAll(page = 1) {
 	try {
 		const filters = `page=${page}`;
-		const url = `${ENV.API_URL}/${ENV.ENDPOINTS.USERS}?${filters}`;
+		const url = `${ENV.API_URL}${ENV.ENDPOINTS.USERS}?${filters}`;
 
 		const response = await authFetch(url);
 		if (!response) {

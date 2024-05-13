@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Container, Tab } from 'semantic-ui-react';
 import styles from './admin.module.scss';
-import { Category, Product } from '@/components/Admin';
+import { Category, Product, User } from '@/components/Admin';
 import { Search } from '@/components/Shared';
 import { useAuth } from '@/hooks';
 import { BasicLayout } from '@/layouts';
@@ -41,7 +41,7 @@ export default function AdminPage() {
 					<Tab.Pane>
 						<div className={styles.actions}>
 							<div />
-							<span>Add category</span>
+							<Category.AddCategory onReload={onReload} />
 						</div>
 						<Category.ListCategories reload={reload} onReload={onReload} />
 					</Tab.Pane>
@@ -53,7 +53,7 @@ export default function AdminPage() {
 			render: () => {
 				return (
 					<Tab.Pane>
-						<h2>Usuarios</h2>
+						<User.List />
 					</Tab.Pane>
 				);
 			}

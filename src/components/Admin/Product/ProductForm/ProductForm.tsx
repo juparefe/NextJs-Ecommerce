@@ -5,7 +5,7 @@ import { Form } from 'semantic-ui-react';
 import { initialValues, validationSchema } from './ProductForm.form';
 import { categoryCtrl, productCtrl } from '@/api';
 import { Separator } from '@/components/Shared';
-import { Category, ENV } from '@/utils';
+import { CategoryI, ENV } from '@/utils';
 
 export function ProductForm(props: any) {
 	const { onClose, onReload, product } = props;
@@ -15,7 +15,7 @@ export function ProductForm(props: any) {
 		(async () => {
 			try {
 				const response = await categoryCtrl.getAll();
-				const result = response.map((item: Category) => ({
+				const result = response.map((item: CategoryI) => ({
 					key: item.categId,
 					text: item.categName,
 					value: item.categId

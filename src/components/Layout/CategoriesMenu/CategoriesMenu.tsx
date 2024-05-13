@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import styles from './CategoriesMenu.module.scss';
 import { categoryCtrl } from '@/api/category';
-import { Category } from '@/utils/models';
+import { CategoryI } from '@/utils/models';
 
 export function CategoriesMenu() {
 	const [categories, setCategories] = useState([]);
@@ -21,7 +21,7 @@ export function CategoriesMenu() {
 	return (
 		<div className={styles.container}>
 			{categories &&
-				categories.map((category: Category) => (
+				categories.map((category: CategoryI) => (
 					<Link key={category.categId} href={`/categories/${category.categPath}`}>
 						{category.categName}
 					</Link>

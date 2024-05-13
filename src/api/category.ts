@@ -20,7 +20,7 @@ async function getAllCategories() {
 
 async function createCategory(data: any) {
 	try {
-		const url = `${ENV.API_URL}/${ENV.ENDPOINTS.CATEGORY}`;
+		const url = `${ENV.API_URL}${ENV.ENDPOINTS.CATEGORY}`;
 		const params = {
 			body: JSON.stringify(data),
 			headers: {
@@ -42,9 +42,9 @@ async function createCategory(data: any) {
 	}
 }
 
-async function updateCategory(data: any, categoryId: number) {
+async function updateCategory(data: any, categoryId: string) {
 	try {
-		const url = `${ENV.API_URL}/${ENV.ENDPOINTS.CATEGORY}/${categoryId}`;
+		const url = `${ENV.API_URL}${ENV.ENDPOINTS.CATEGORY}/${categoryId}`;
 		const params = {
 			body: JSON.stringify(data),
 			headers: {
@@ -66,9 +66,9 @@ async function updateCategory(data: any, categoryId: number) {
 	}
 }
 
-async function deleteCategory(categoryId: number) {
+async function deleteCategory(categoryId: string) {
 	try {
-		const url = `${ENV.API_URL}/${ENV.ENDPOINTS.CATEGORY}/${categoryId}`;
+		const url = `${ENV.API_URL}${ENV.ENDPOINTS.CATEGORY}/${categoryId}`;
 		const params = { method: 'DELETE' };
 
 		const response = await authFetch(url, params);
