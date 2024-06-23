@@ -2,10 +2,15 @@ import { useFormik } from "formik";
 import { Form } from "semantic-ui-react";
 import { initialValues, validationSchema } from "./AddressForm.form";
 import { addressCtrl } from "@/api";
+import { AddressI } from "@/utils";
 
-export function AddressForm(props: any) {
-  const { onClose, onReload, address } = props;
+interface AddressFormProps {
+  onClose: () => void;
+  onReload: () => void;
+  address?: AddressI;
+}
 
+export function AddressForm({ onClose, onReload, address }: AddressFormProps) {
   const formik = useFormik({
     initialValues: initialValues(address),
     onSubmit: async (formValue) => {

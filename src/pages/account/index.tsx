@@ -28,7 +28,7 @@ export default function AccountPage() {
       render: () => (
         <Tab.Pane>
           <Address.AddAddress onReload={onReload} />
-          <Address.ListAddresses reload={reload} />
+          <Address.ListAddresses reload={reload} onReload={onReload}/>
         </Tab.Pane>
       )
     },

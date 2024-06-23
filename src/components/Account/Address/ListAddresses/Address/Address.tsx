@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { Button, Icon } from "semantic-ui-react";
-// import { AddressForm } from "../../AddressForm";
+import { AddressForm } from "../../AddressForm";
 import styles from "./Address.module.scss";
 import { addressCtrl } from "@/api";
 import { Modal } from "@/components/Shared";
+import { AddressI } from "@/utils";
 
-export function Address(props: any) {
-  const { address, onReload } = props;
+interface AddressProps {
+  address: AddressI;
+  onReload: () => void;
+}
+
+export function Address({ address, onReload }: AddressProps) {
   const [showEdit, setShowEdit] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -48,7 +53,7 @@ export function Address(props: any) {
         open={showConfirm}
         onCancel={openCloseConfirm}
         onConfirm={onDelete}
-        content={`¿Estas seguro de que quieres eliminar al dirección?`}
+        content={`¿Estas seguro de que quieres eliminar esta dirección?`}
       />
 
       <Modal.Basic
@@ -56,11 +61,11 @@ export function Address(props: any) {
         onClose={openCloseEdit}
         title="Editar dirección"
       >
-        {/* <AddressForm
+        <AddressForm
           onClose={openCloseEdit}
           onReload={onReload}
           address={address}
-        /> */}
+        />
       </Modal.Basic>
     </>
   );
