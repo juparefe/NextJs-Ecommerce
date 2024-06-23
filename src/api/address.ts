@@ -21,7 +21,7 @@ async function getAllAddresses() {
 
 async function createAddress(data: any) {
   try {
-    const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}`;
+    const url = `${ENV.API_URL}${ENV.ENDPOINTS.ADDRESS}`;
     const params = {
       body: JSON.stringify(data),
       headers: {
@@ -42,7 +42,7 @@ async function createAddress(data: any) {
 
 async function updateAddress(data: any, addressId: string) {
   try {
-    const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}/${addressId}`;
+    const url = `${ENV.API_URL}${ENV.ENDPOINTS.ADDRESS}/${addressId}`;
     const params = {
       body: JSON.stringify(data),
       headers: {
@@ -63,7 +63,7 @@ async function updateAddress(data: any, addressId: string) {
 
 async function deleteAddress(addressId: string) {
   try {
-    const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}/${addressId}`;
+    const url = `${ENV.API_URL}${ENV.ENDPOINTS.ADDRESS}/${addressId}`;
     const params = { method: "DELETE" };
 
     const response = await authFetch(url, params);
@@ -79,7 +79,7 @@ async function deleteAddress(addressId: string) {
 async function getAddressById(addressId: string) {
   try {
     const filters = `addId=${addressId}`;
-    const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}?${filters}`;
+    const url = `${ENV.API_URL}${ENV.ENDPOINTS.ADDRESS}?${filters}`;
 
     const response = await authFetch(url);
     if (!response) {

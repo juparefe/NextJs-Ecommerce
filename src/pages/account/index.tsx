@@ -27,7 +27,8 @@ export default function AccountPage() {
       menuItem: "Mis direcciones",
       render: () => (
         <Tab.Pane>
-          <Address.ListAddresses />
+          <Address.AddAddress onReload={onReload} />
+          <Address.ListAddresses reload={reload} />
         </Tab.Pane>
       )
     },
