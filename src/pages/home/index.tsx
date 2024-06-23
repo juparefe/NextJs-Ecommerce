@@ -1,11 +1,37 @@
-// HomePage de la aplicacion
-import styles from './home.module.scss';
-import { BasicLayout } from '@/layouts';
+import { useState, useEffect } from "react";
+import { Container } from "semantic-ui-react";
+import styles from "./home.module.scss";
+import { productCtrl } from "@/api";
+import { Separator } from "@/components/Shared";
+import { BasicLayout } from "@/layouts";
 
 export default function HomePage() {
-	return (
-		<BasicLayout>
-			<h2>Estas en la HomePage</h2>
-		</BasicLayout>
-	);
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await productCtrl.getAll(1, 100);
+        setProducts(response.data || []);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
+
+  return (
+    <BasicLayout>
+      <Separator height={50} />
+
+      <Container>
+        <div>Categories</div>
+
+        <Separator height={50} />
+
+        <h2>Últimos productos</h2>
+        <Separator height={10} />
+        <div>Products</div>
+      </Container>
+    </BasicLayout>
+  );
 }
