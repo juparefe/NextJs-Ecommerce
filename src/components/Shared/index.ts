@@ -1,3 +1,4 @@
+export * from './GridCategories';
 export * from './Loader';
 export * from './Modal';
 export * from './NoResult';
