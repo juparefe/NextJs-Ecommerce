@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Tab } from "semantic-ui-react";
 import styles from "./account.module.scss";
-import { Settings } from "@/components/Account";
+import { Address, Settings } from "@/components/Account";
 import { Separator } from "@/components/Shared";
 import { useAuth } from "@/hooks";
 import { BasicLayout } from "@/layouts";
@@ -27,7 +27,7 @@ export default function AccountPage() {
       menuItem: "Mis direcciones",
       render: () => (
         <Tab.Pane>
-          <h2>Direcciones del usuario</h2>
+          <Address.ListAddresses />
         </Tab.Pane>
       )
     },

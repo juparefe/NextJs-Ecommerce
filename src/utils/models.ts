@@ -1,3 +1,14 @@
+export interface AddressI {
+	addAddress: string;
+	addCity: string;
+	addId: string;
+	addName: string;
+	addPhone: string;
+	addPostalCode: string;
+	addState: string;
+	addTitle: string;
+}
+
 export interface CategoryI {
 	categId: string;
 	categPath: string;
