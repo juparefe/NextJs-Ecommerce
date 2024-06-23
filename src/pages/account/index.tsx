@@ -19,6 +19,7 @@ export default function AccountPage() {
         <Tab.Pane>
           <Settings.AvatarForm />
           <Separator height={50} />
+          <Settings.ChangeNameForm />
         </Tab.Pane>
       )
     },

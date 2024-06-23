@@ -34,22 +34,19 @@ export function AvatarForm() {
   });
 
   useEffect(() => {
-    if (formik.values.file) {
-        const imageUrl = fn.getUrlImage(user.userUUID);
-      setAvatar(imageUrl);
-    } else {
-      const imageUrl = fn.getUrlImage(user.userUUID);
-      fn.checkIfImageExists(imageUrl, (exists: boolean) => {
-        if (exists) setAvatar(imageUrl);
-        else setAvatar(null);
-      });
-    }
-  }, [formik.values, user]);
+    const imageUrl = fn.getUrlImage(user.userUUID);
+    fn.checkIfImageExists(imageUrl, (exists: boolean) => {
+      if (exists) setAvatar(imageUrl);
+      else setAvatar(null);
+    });
+  }, [user]);
 
   const onDrop = useCallback((acceptedFiles: any) => {
     const file = acceptedFiles[0];
     formik.setFieldValue("file", file);
-    formik.setFieldValue("preview", URL.createObjectURL(file));
+    const previewUrl = URL.createObjectURL(file);
+    setAvatar(previewUrl);
+    formik.setFieldValue("preview", previewUrl);
   }, [formik]);
 
   const { getRootProps, getInputProps } = useDropzone({

@@ -47,6 +47,7 @@ export function AuthProvider(props: any) {
 	const logout = () => {
 		setUser({});
 		authCtrl.logout();
+		setIsAdmin(false);
 		router.push('/');
 	};
 

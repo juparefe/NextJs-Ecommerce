@@ -4,7 +4,7 @@ export async function authFetch(url: string, params?: any) {
 	const token = await authCtrl.retrieveSession();
 
 	if (!token) {
-		console.log('No hay token');
+		console.error('No hay token');
 	} else {
 		const paramsTemp = {
 			...params,

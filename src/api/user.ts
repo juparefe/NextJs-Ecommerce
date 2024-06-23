@@ -55,10 +55,32 @@ async function updateAvatar(userId: string, image: any) {
 	} catch (error) {
 	  throw error;
 	}
-  }
+}
+
+async function updateMe(data: any) {
+	try {
+	  const url = `${ENV.API_URL}/${ENV.ENDPOINTS.USER_ME}`;
+	  const params = {
+		body: JSON.stringify(data),
+		headers: {
+			"Content-Type": "application/json"
+		},
+		method: "PUT"
+	  };
+
+	  const response = await authFetch(url, params);
+
+	  if (response && response.status !== 200) throw response;
+
+	  return true;
+	} catch (error) {
+	  throw error;
+	}
+}
 
 export const userCtrl = {
 	getAll,
 	me,
-	updateAvatar
+	updateAvatar,
+	updateMe
 };
