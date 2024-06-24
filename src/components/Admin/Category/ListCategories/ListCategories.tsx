@@ -27,9 +27,10 @@ export function ListCategories(props: any) {
 			<Table.Header>
 				<Table.Row>
 					<Table.HeaderCell>ID</Table.HeaderCell>
-					<Table.HeaderCell>Title</Table.HeaderCell>
+					<Table.HeaderCell>Imagen</Table.HeaderCell>
+					<Table.HeaderCell>Titulo</Table.HeaderCell>
 					<Table.HeaderCell>Slug</Table.HeaderCell>
-					<Table.HeaderCell></Table.HeaderCell>
+					<Table.HeaderCell>Acciones</Table.HeaderCell>
 				</Table.Row>
 			</Table.Header>
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Container } from "semantic-ui-react";
 import styles from "./home.module.scss";
 import { productCtrl } from "@/api";
-import { GridCategories, Separator } from "@/components/Shared";
+import { GridCategories, GridProducts, Separator } from "@/components/Shared";
 import { BasicLayout } from "@/layouts";
 
 export default function HomePage() {
@@ -30,7 +30,11 @@ export default function HomePage() {
 
         <h2>Últimos productos</h2>
         <Separator height={10} />
-        <div>Products</div>
+        <GridProducts
+          products={products}
+          columns={4}
+          classProduct={styles.product}
+        />
       </Container>
     </BasicLayout>
   );

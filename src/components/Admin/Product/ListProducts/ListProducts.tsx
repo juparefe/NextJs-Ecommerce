@@ -37,10 +37,11 @@ export function ListProducts(props: any) {
 				<Table.Header>
 					<Table.Row>
 						<Table.HeaderCell>ID</Table.HeaderCell>
-						<Table.HeaderCell>Image</Table.HeaderCell>
+						<Table.HeaderCell>Imagen</Table.HeaderCell>
 						<Table.HeaderCell>Nombre</Table.HeaderCell>
 						<Table.HeaderCell>Precio</Table.HeaderCell>
 						<Table.HeaderCell>Stock</Table.HeaderCell>
+						<Table.HeaderCell>Acciones</Table.HeaderCell>
 					</Table.Row>
 				</Table.Header>
 
