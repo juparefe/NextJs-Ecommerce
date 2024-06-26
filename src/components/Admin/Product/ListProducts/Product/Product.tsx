@@ -5,14 +5,12 @@ import { ProductImageForm } from '../../ProductImageForm';
 import styles from './Product.module.scss';
 import { productCtrl } from '@/api';
 import { Modal } from '@/components/Shared';
-import { ProductI } from '@/utils';
+import { Constants, ProductI } from '@/utils';
 import { fn } from '@/utils/functions';
-
-const NOT_FOUND_IMAGE = '/images/not-found.jpg';
 
 export function Product(props: { product: ProductI; onReload: any }) {
 	const { product, onReload } = props;
-	const [image, setImage] = useState(NOT_FOUND_IMAGE);
+	const [image, setImage] = useState(Constants.NOT_FOUND_IMAGE);
 	const [showConfirm, setShowConfirm] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
 	const [modalContent, setModalContent] = useState(<p></p>);

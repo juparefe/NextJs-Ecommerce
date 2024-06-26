@@ -1,15 +1,26 @@
-import { useState } from "react";
-import { Table, Icon } from "semantic-ui-react";
+import { useEffect, useState } from "react";
+import { Icon, Image, Table } from "semantic-ui-react";
 import { CategoryForm } from "../../CategoryForm";
+import { CategoryImageForm } from "../../CategoryImageForm";
 import styles from "./Category.module.scss";
 import { categoryCtrl } from "@/api";
 import { Modal } from "@/components/Shared";
-import { CategoryI } from "@/utils";
+import { CategoryI, Constants } from "@/utils";
+import { fn } from '@/utils/functions';
 
 export function Category(props: { category: CategoryI; onReload: any }) {
   const { category, onReload } = props;
+  const [image, setImage] = useState(Constants.NOT_FOUND_IMAGE);
   const [openModal, setOpenModal] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [modalContent, setModalContent] = useState(<p></p>);
+
+  useEffect(() => {
+		const imageUrl = fn.getUrlImage(category.categPath);
+		fn.checkIfImageExists(imageUrl, (exists: boolean) => {
+			if (exists) setImage(imageUrl);
+		});
+	}, [category]);
 
   const onOpenCloseModal = () => setOpenModal((prevState) => !prevState);
   const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
@@ -24,13 +35,32 @@ export function Category(props: { category: CategoryI; onReload: any }) {
     }
   };
 
+  const closeModal = () => {
+		setOpenModal(false);
+		setModalContent(<p></p>);
+	};
+
+  const openEditCategory = () => {
+		setModalContent(<CategoryForm onClose={closeModal} onReload={onReload} category={category} />);
+		setOpenModal(true);
+	};
+
+  const openEditImageCategory = () => {
+		setModalContent(<CategoryImageForm onClose={closeModal} onReload={onReload} categPath={category.categPath} />);
+		setOpenModal(true);
+	};
+
   return (
     <>
       <Table.Cell>{category.categId}</Table.Cell>
+      <Table.Cell>
+				<Image className={styles.image} src={image} alt={category.categName} />
+			</Table.Cell>
       <Table.Cell>{category.categName}</Table.Cell>
       <Table.Cell>{category.categPath}</Table.Cell>
       <Table.Cell className={styles.actions} textAlign="right">
-        <Icon name="pencil" link onClick={onOpenCloseModal} />
+        <Icon name="pencil" link onClick={openEditCategory} />
+        <Icon name="image" link onClick={openEditImageCategory} />
         <Icon name="trash" link onClick={onOpenCloseConfirm} />
       </Table.Cell>
 
@@ -41,17 +71,9 @@ export function Category(props: { category: CategoryI; onReload: any }) {
         content={`¿Estas seguro de eliminar la categoría (${category.categName})?`}
       />
 
-      <Modal.Basic
-        show={openModal}
-        onClose={onOpenCloseModal}
-        title={`Editar (${category.categName})`}
-      >
-        <CategoryForm
-          onClose={onOpenCloseModal}
-          onReload={onReload}
-          category={category}
-        />
-      </Modal.Basic>
+      <Modal.Basic show={openModal} onClose={closeModal} title={`Editar (${category.categName})`}>
+				{modalContent}
+			</Modal.Basic>
     </>
   );
 }

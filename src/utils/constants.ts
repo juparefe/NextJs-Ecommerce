@@ -15,3 +15,7 @@ export const ENV = {
 	TINY_APIKEY: 'agh3xktjurawll57abh1pj6lzpdtdihaffl8zeneyx609kjt',
 	TOKEN: 'token'
 };
+
+export const Constants = {
+	NOT_FOUND_IMAGE: '/images/not-found.jpg'
+};

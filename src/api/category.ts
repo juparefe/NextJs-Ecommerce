@@ -66,6 +66,26 @@ async function updateCategory(data: any, categoryId: string) {
 	}
 }
 
+async function updateImage(categPath: string, image: any) {
+	try {
+		const url = `${ENV.API_IMG_URL}/gambit-img-bucket/${categPath}.jpg`;
+		const params = {
+			body: image,
+			headers: {
+				'Content-Type': 'image/jpeg'
+			},
+			method: 'PUT'
+		};
+
+		const response = await authFetch(url, params);
+		if (response && response.status !== 200) throw response;
+
+		return true;
+	} catch (error) {
+		throw error;
+	}
+}
+
 async function deleteCategory(categoryId: string) {
 	try {
 		const url = `${ENV.API_URL}${ENV.ENDPOINTS.CATEGORY}/${categoryId}`;
@@ -88,5 +108,6 @@ export const categoryCtrl = {
 	create: createCategory,
 	delete: deleteCategory,
 	getAll: getAllCategories,
-	update: updateCategory
+	update: updateCategory,
+	updateImage
 };
