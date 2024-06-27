@@ -13,6 +13,8 @@ export interface CategoryI {
 	categId: string;
 	categPath: string;
 	categName: string;
+	categTotalSold: number;
+	categImage: string;
 }
 
 export interface ProductI {

@@ -8,6 +8,7 @@ export const ENV = {
 		ORDER: '/order',
 		ORDERS: '/orders',
 		PRODUCT: '/product',
+		TOP_CATEGORIES: '/topcategories',
 		USERS: '/users',
 		USER_ME: '/user/me'
 	},

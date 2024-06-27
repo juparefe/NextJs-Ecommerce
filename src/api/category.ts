@@ -18,6 +18,24 @@ async function getAllCategories() {
 	}
 }
 
+async function getTopCategories() {
+	try {
+		const url = `${ENV.API_URL}${ENV.ENDPOINTS.TOP_CATEGORIES}`;
+
+		const response = await fetch(url);
+		if (!response) {
+			throw new Error('No response received');
+		}
+		const result = await response.json();
+
+		if (response.status !== 200) throw result;
+
+		return result;
+	} catch (error) {
+		throw error;
+	}
+}
+
 async function createCategory(data: any) {
 	try {
 		const url = `${ENV.API_URL}${ENV.ENDPOINTS.CATEGORY}`;
@@ -108,6 +126,7 @@ export const categoryCtrl = {
 	create: createCategory,
 	delete: deleteCategory,
 	getAll: getAllCategories,
+	getTop: getTopCategories,
 	update: updateCategory,
 	updateImage
 };
