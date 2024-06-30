@@ -9,23 +9,24 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px;
+    padding: 5px;
     margin: 5px;
     text-align: center;
     flex: 1 1 calc(20% - 20px); // Ajusta el tamaño del contenedor para que sean más responsivos.
     box-sizing: border-box;
-    min-width: 140px;
+    min-width: 177px;
     height: 100%;
-    background-color: $primary;
-  
+    background: radial-gradient(circle closest-corner at bottom, #49CCC4 200%, transparent 51%) no-repeat,
+              #01858A;
+    background-size: 100% 135%, cover;
     &:hover {
       opacity: 0.6;
     }
   
-    > h3 {
-      color: $text-primary;
+    > .header {
       margin-top: 10px;
-      font-size: 14px;
+      font-size: 18px;
+      color: white;
     }
   }
   

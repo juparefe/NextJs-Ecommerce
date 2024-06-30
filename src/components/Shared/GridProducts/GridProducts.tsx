@@ -1,8 +1,10 @@
 
+import classNames from "classnames";
 import { Loading } from "../Loader";
 import { NoResult } from "../NoResult";
 import { Separator } from "../Separator";
 import styles from "./GridProducts.module.scss";
+import { Product } from "./Product";
 
 export function GridProducts(props: any) {
   const { products, columns = 4, classProduct } = props;
@@ -26,9 +28,16 @@ export function GridProducts(props: any) {
       {products.map((product: any) => (
         <div
           key={product.prodID}
-          className='<p></p>'
+          className={classNames({
+            [styles.oneColumn]: columns === 1,
+            [styles.twoColumns]: columns === 2,
+            [styles.threeColumns]: columns === 3,
+            [styles.fourColumns]: columns === 4,
+            [styles.fiveColumns]: columns === 5,
+            [styles.sixColumns]: columns === 6
+          })}
         >
-          <h2>Products</h2>
+          <Product product={product} classProduct={classProduct} />
         </div>
       ))}
     </div>

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Image } from "semantic-ui-react";
+import { Header, Image } from "semantic-ui-react";
 import styles from "./GridCategories.module.scss";
 import { categoryCtrl } from "@/api";
-import { Loading } from '@/components/Shared';
+import { Loading, Separator } from '@/components/Shared';
 import { CategoryI, Constants } from "@/utils";
 import { fn } from "@/utils/functions";
 
@@ -49,8 +49,9 @@ export function GridCategories() {
     {categories.map((category: CategoryI) => (
       <Link key={category.categId} href={category.categPath}>
         <div className={styles.category}>
-          <Image src={category.categImage} alt={category.categName} />
-          <h3>{category.categName}</h3>
+          <h3 className={styles.header}>{category.categName.toUpperCase()}</h3>
+          <Image src={category.categImage} alt={category.categName} circular />
+          <Separator height={10} />
         </div>
       </Link>
     ))}
