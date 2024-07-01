@@ -47,7 +47,7 @@ export function GridCategories() {
   return (
     <div className={styles.container}>
     {categories.map((category: CategoryI) => (
-      <Link key={category.categId} href={category.categPath}>
+      <Link key={category.categId} href={`/categories/${category.categPath}`}>
         <div className={styles.category}>
           <h3 className={styles.header}>{category.categName.toUpperCase()}</h3>
           <Image src={category.categImage} alt={category.categName} circular />
