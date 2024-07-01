@@ -1,12 +1,18 @@
-import type { AppProps } from "next/app";
-import 'semantic-ui-css/semantic.min.css';
-import "@/scss/global.scss";
-import { AuthProvider } from "@/contexts";
+import { AuthProvider, SearchProvider } from "@/contexts";
 import { initAmplify } from "@/utils";
+import "semantic-ui-css/semantic.min.css";
+import "@/scss/global.scss";
 
 initAmplify();
 
-export default function App(props: AppProps) {
+export default function App(props: any) {
   const { Component, pageProps } = props;
-  return <AuthProvider><Component {...props}/></AuthProvider>;
+
+  return (
+    <AuthProvider>
+        <SearchProvider>
+          <Component {...pageProps} />
+        </SearchProvider>
+    </AuthProvider>
+  );
 }

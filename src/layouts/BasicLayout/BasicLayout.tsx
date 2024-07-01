@@ -14,7 +14,10 @@ export function BasicLayout(props: any) {
 				<Container className={styles.header}>
 					<div className={styles.left}>
 						<Layout.Logo />
-						<Search className={styles.search} placeholder="Busca lo que necesitas..." />
+						<Search
+							className={styles.search}
+							placeholder="Busca lo que necesitas..."
+						/>
 					</div>
 
 					<div>
