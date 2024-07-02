@@ -6,7 +6,7 @@ async function getAllProducts(page = 1, pageSize = 10, search: string | string[]
 		const searchFilter = `search=${search}`;
 		const filters = `${paginationFilter}&${searchFilter}`;
 
-		const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}?${filters}`;
+		const url = `${ENV.API_URL}${ENV.ENDPOINTS.PRODUCT}?${filters}`;
 
 		const response = await fetch(url);
 		const result = await response.json();

@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { Icon, Label } from 'semantic-ui-react';
 import styles from './Basket.module.scss';
-
-// TODO: Implement the total items in the basket
-const total = 6;
+import { useBasket } from "@/hooks";
 
 export function Basket() {
+	const { total } = useBasket();
+
 	return (
 		<Link href={'/basket'} className={styles.basket}>
 			<Icon name="cart" />

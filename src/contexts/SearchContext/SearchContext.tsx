@@ -5,6 +5,7 @@ import { productCtrl } from "@/api";
 import { Separator, GridProducts } from "@/components/Shared";
 import { ProductI } from "@/utils";
 
+// Creacion del componente proveedor del contexto para la barra de busqueda
 export function SearchProvider(props: any) {
   const { children } = props;
   const [products, setProducts] = useState<ProductI[] | null>(null);

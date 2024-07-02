@@ -13,7 +13,7 @@ interface AuthContextType {
 	user: any;
 }
 
-// Creacion del componente proveedor del contexto
+// Creacion del componente proveedor del contexto para autenticacion
 export function AuthProvider(props: any) {
 	const { children } = props;
 	const [user, setUser] = useState({});
