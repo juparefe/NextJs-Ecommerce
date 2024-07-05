@@ -1,11 +1,12 @@
 import { useState, useEffect, createContext } from "react";
 import { basketCtrl } from "@/api";
+import { LSBasketI } from "@/utils";
 
 export const BasketContext = createContext({} as BasketContextType);
 
 interface BasketContextType {
 	addBasket: (productId: string) => void;
-    basket: null;
+    basket: LSBasketI | null;
     changeQuantityItem: (productId: string, quantity: string) => void;
     deleteAllItems: () => void;
     deleteItem: (productId: string) => void;
@@ -23,6 +24,7 @@ export function BasketProvider(props: any) {
     setBasket(response);
   }, []);
 
+  // Se ejecuta cada que hay una actualizacion en los productos del carrito de compra
   const refreshBasket = () => {
     setTotal(basketCtrl.count());
     setBasket(basketCtrl.getAll());

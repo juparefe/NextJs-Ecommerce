@@ -17,6 +17,11 @@ export interface CategoryI {
 	categImage: string;
 }
 
+export interface LSBasketI {
+	id: string,
+	quantity: number
+}
+
 export interface ProductI {
 	prodId: string;
 	prodTitle: string;

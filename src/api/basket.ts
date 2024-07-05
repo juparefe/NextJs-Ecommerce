@@ -1,5 +1,7 @@
-import { ENV } from "@/utils";
+import { ENV, LSBasketI } from "@/utils";
 
+// Esta api tiene diferente que se comunica es con localStorage y no con el backend de la aplicacion
+// Esta funcion recupera todo lo que hay guardado en localStorage del carrito de compra
 function getAll() {
   const response = localStorage.getItem(ENV.BASKET);
 
@@ -10,9 +12,10 @@ function getAll() {
   }
 }
 
+// Esta funcion añade un producto al carrito de compra y lo guarda en localStorage
 function add(productId: string) {
   const products = getAll();
-  const objIndex = products.findIndex((product: any) => product.id === productId);
+  const objIndex = products.findIndex((product: LSBasketI) => product.id === productId);
 
   if (objIndex < 0) {
     products.push({ id: productId, quantity: 1 });

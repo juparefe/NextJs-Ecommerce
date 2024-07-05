@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Button } from "semantic-ui-react";
 import styles from "./Info.module.scss";
+import { useBasket } from "@/hooks";
 
 export function Info(props: any) {
   const { product } = props;
   const [loading, setLoading] = useState(false);
+  const { addBasket } = useBasket();
 
   const addBasketWrapper = () => {
     setLoading(true);
+    addBasket(product.prodId);
 
     setTimeout(() => {
       setLoading(false);
