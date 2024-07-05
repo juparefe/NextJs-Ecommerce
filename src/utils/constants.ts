@@ -18,5 +18,11 @@ export const ENV = {
 };
 
 export const Constants = {
-	NOT_FOUND_IMAGE: '/images/not-found.jpg'
+	NOT_FOUND_IMAGE: '/images/not-found.jpg',
+	STEPS: [
+		{ number: 1, title: "Cesta" },
+		{ number: 2, title: "Dirección de envío" },
+		{ number: 3, title: "Método de pago" },
+		{ number: 4, title: "Confirmación" }
+	]
 };
