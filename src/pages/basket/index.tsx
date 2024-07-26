@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { productCtrl } from "@/api";
+import { Basket } from "@/components/Basket";
 import { Loading, NoResult } from "@/components/Shared";
 import { useBasket } from "@/hooks";
 import { BasketLayout } from "@/layouts";
@@ -42,9 +43,7 @@ export default function BasketPage() {
         <NoResult text="Carrito vacio" />
       )}
       {products.length > 0 && currentStep === 1 && (
-        <div>
-          <p>Step 1</p>
-        </div>
+        <Basket.StepOne products={products} />
       )}
       {products.length > 0 && currentStep === 2 && (
         <div>
@@ -61,7 +60,6 @@ export default function BasketPage() {
           <p>Step 4</p>
         </div>
       )}
-      <h2>Basket Page</h2>
     </BasketLayout>
   );
 }
