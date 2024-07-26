@@ -27,6 +27,7 @@ export interface ProductI {
 	prodTitle: string;
 	prodPrice: string;
 	prodStock: string;
+	quantity?: number;
 }
 
 export interface UserI {

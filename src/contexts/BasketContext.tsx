@@ -5,8 +5,8 @@ import { LSBasketI } from "@/utils";
 export const BasketContext = createContext({} as BasketContextType);
 
 interface BasketContextType {
-	addBasket: (productId: string) => void;
-    basket: LSBasketI | null;
+	  addBasket: (productId: string) => void;
+    basket: LSBasketI[];
     changeQuantityItem: (productId: string, quantity: string) => void;
     deleteAllItems: () => void;
     deleteItem: (productId: string) => void;
@@ -16,7 +16,7 @@ interface BasketContextType {
 // Creacion del componente proveedor del contexto para el carrito de compra
 export function BasketProvider(props: any) {
   const { children } = props;
-  const [basket, setBasket] = useState(null);
+  const [basket, setBasket] = useState([{ id: '0', quantity: 0 }]);
   const [total, setTotal] = useState(basketCtrl.count());
 
   useEffect(() => {

@@ -131,10 +131,10 @@ async function getProductBySlug(slug: string) {
 	}
 }
 
-async function getProductById(productId: number) {
+async function getProductById(productId: string) {
 	try {
 		const filters = `prodId=${productId}`;
-		const url = `${ENV.API_URL}/${ENV.ENDPOINTS.PRODUCT}?${filters}`;
+		const url = `${ENV.API_URL}${ENV.ENDPOINTS.PRODUCT}?${filters}`;
 
 		const response = await fetch(url);
 		const result = await response.json();
