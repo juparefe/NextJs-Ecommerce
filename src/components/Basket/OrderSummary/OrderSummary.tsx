@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Button } from "semantic-ui-react";
 import styles from "./OrderSummary.module.scss";
+import { basketCtrl } from "@/api/basket";
 import { useAuth } from "@/hooks";
 import { ProductI } from "@/utils";
 
@@ -36,7 +37,7 @@ export function OrderSummary(props: any) {
 
       <div className={styles.prices}>
         <div>
-          <span>Total</span>
+          <span>Total ({basketCtrl.count()} productos)</span>
           <span>{total.toFixed(2)}€</span>
         </div>
       </div>

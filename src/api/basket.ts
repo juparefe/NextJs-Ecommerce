@@ -42,7 +42,7 @@ function changeQuantity(productId: string, quantity: string) {
   const products = getAll();
   const objIndex = products.findIndex((product: any) => product.id === productId);
 
-  products[objIndex].quantity = quantity;
+  products[objIndex].quantity = Number(quantity);
 
   localStorage.setItem(ENV.BASKET, JSON.stringify(products));
 }

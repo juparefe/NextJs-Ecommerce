@@ -25,7 +25,7 @@ export default function BasketPage() {
       try {
         const data = [];
         for await (const item of basket) {
-          if (Number(item.id) && Number(item.id) > 0) {
+          if (Number(item.id)) {
             const response = await productCtrl.getById(item.id);
             data.push({ ...response, quantity: item.quantity });
           }

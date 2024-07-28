@@ -18,4 +18,5 @@ bun dev
 Diseño responsive 3 desktop tablet y mobile
 Crear rol superAdmin
 Crear servicio en api para que solo super admin asigne admin
-Revisar el carrito de compras al modificar la cantidad del producto desaparece el numero del dropdown, aunque si hace la actualizacion
+Añadir diferentes divisas
+Añadir validacion para que el maximo de productos a añadir no sea mayor al maximo  de productos disponibles en cada producto

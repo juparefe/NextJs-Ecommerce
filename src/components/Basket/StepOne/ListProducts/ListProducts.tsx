@@ -8,7 +8,7 @@ export function ListProducts(props: any) {
   const { products } = props;
   const { changeQuantityItem, deleteItem } = useBasket();
 
-  const options = Array.from({ length: 50 }, (_, index) => {
+  const options = Array.from({ length: 20 }, (_, index) => {
     const number = index + 1;
     return { key: number, text: String(number), value: number };
   });
