@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Button } from "semantic-ui-react";
-import styles from "./Resume.module.scss";
+import styles from "./OrderSummary.module.scss";
 import { useAuth } from "@/hooks";
 import { ProductI } from "@/utils";
 
-export function Resume(props: any) {
+export function OrderSummary(props: any) {
   const { products, nextStep, btnText, nextDisabled = false } = props;
   const [total, setTotal] = useState(0);
   const { user } = useAuth();
@@ -19,6 +19,7 @@ export function Resume(props: any) {
     setTotal(totalTemp);
   }, [products]);
 
+  // Si el usuario esta logeado va al siguiente paso del carrito de compras y sino va al login
   const goToNextStep = () => {
     if (user) {
       router.replace({ query: { ...router.query, step: nextStep } });

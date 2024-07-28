@@ -12,7 +12,6 @@ export default function BasketPage() {
   const { basket } = useBasket();
   const [products, setProducts] = useState<ProductI[]>([]);
   const [address, setAddress] = useState(null);
-  console.log(products);
 
   // Para recuperar el step en el query y asignarlo a una variable
   const {
@@ -26,8 +25,10 @@ export default function BasketPage() {
       try {
         const data = [];
         for await (const item of basket) {
-          const response = await productCtrl.getById(item.id);
-          data.push({ ...response, quantity: item.quantity });
+          if (Number(item.id) && Number(item.id) > 0) {
+            const response = await productCtrl.getById(item.id);
+            data.push({ ...response, quantity: item.quantity });
+          }
         }
         setProducts(data);
       } catch (error) {

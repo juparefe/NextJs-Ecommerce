@@ -1,5 +1,5 @@
 import { Container } from "semantic-ui-react";
-import { Resume } from "../Resume";
+import { OrderSummary } from "../OrderSummary";
 import { ListProducts } from "./ListProducts";
 import styles from "./StepOne.module.scss";
 
@@ -12,7 +12,7 @@ export function StepOne(props: any) {
         <ListProducts products={products} />
       </div>
       <div className={styles.right}>
-        <Resume
+        <OrderSummary
           products={products}
           nextStep={2}
           btnText="Proceder con la dirección"
