@@ -47,9 +47,12 @@ export default function BasketPage() {
         <Basket.StepOne products={products} />
       )}
       {products.length > 0 && currentStep === 2 && (
-        <div>
-          <p>Step 2</p>
-        </div>
+        <Basket.StepTwo
+          products={products}
+          address={address}
+          setAddress={setAddress}
+          nextDisabled={!address}
+        />
       )}
        {products.length > 0 && currentStep === 3 && (
         <div>
