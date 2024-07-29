@@ -20,3 +20,4 @@ Crear rol superAdmin
 Crear servicio en api para que solo super admin asigne admin
 Añadir diferentes divisas
 Añadir validacion para que el maximo de productos a añadir no sea mayor al maximo  de productos disponibles en cada producto
+Integrar Stripe y Paypal para pagos

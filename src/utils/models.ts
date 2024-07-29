@@ -22,6 +22,12 @@ export interface LSBasketI {
 	quantity: number
 }
 
+export interface OrderDetail {
+	odPrice: string;
+	odProdId: string;
+	odQuantity: number;
+}
+
 export interface ProductI {
 	prodId: string;
 	prodTitle: string;

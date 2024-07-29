@@ -54,12 +54,10 @@ export default function BasketPage() {
           nextDisabled={!address}
         />
       )}
-       {products.length > 0 && currentStep === 3 && (
-        <div>
-          <p>Step 3</p>
-        </div>
+      {products.length > 0 && currentStep === 3 && (
+        <Basket.StepThree products={products} address={address} />
       )}
-       {products.length > 0 && currentStep === 4 && (
+      {products.length > 0 && currentStep === 4 && (
         <div>
           <p>Step 4</p>
         </div>
