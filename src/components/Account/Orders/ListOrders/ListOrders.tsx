@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-// import { Order } from "./Order";
+import { Order } from "./Order";
 import { orderCtrl } from "@/api";
 import { Loading, NoResult } from "@/components/Shared";
-import { OrderDetailI } from "@/utils";
+import { OrderI } from "@/utils";
 
 export function ListOrders() {
   const [orders, setOrders] = useState([]);
@@ -26,8 +26,8 @@ export function ListOrders() {
     <div>
       {orders.length === 0 && <NoResult text="No tienes pedidos realizados" />}
 
-      {orders.map((order: OrderDetailI) => (
-        order.odPrice
+      {orders.map((order: OrderI) => (
+        <Order key={order.orderId} order={order} />
       ))}
     </div>
   );

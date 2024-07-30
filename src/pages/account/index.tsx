@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Container, Tab } from "semantic-ui-react";
 import styles from "./account.module.scss";
-import { Address, Settings } from "@/components/Account";
+import { Address, Orders, Settings } from "@/components/Account";
 import { Separator } from "@/components/Shared";
 import { useAuth } from "@/hooks";
 import { BasicLayout } from "@/layouts";
@@ -51,7 +51,7 @@ export default function AccountPage() {
       menuItem: "Mis pedidos",
       render: () => (
         <Tab.Pane>
-          <h2>Lista de pedidos</h2>
+          <Orders.List />
         </Tab.Pane>
       )
     },
