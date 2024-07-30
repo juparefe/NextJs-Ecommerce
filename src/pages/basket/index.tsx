@@ -57,11 +57,7 @@ export default function BasketPage() {
       {products.length > 0 && currentStep === 3 && (
         <Basket.StepThree products={products} address={address} />
       )}
-      {products.length > 0 && currentStep === 4 && (
-        <div>
-          <p>Step 4</p>
-        </div>
-      )}
+      {currentStep === 4 && <Basket.StepFour />}
     </BasketLayout>
   );
 }

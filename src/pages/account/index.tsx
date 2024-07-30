@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { Container, Tab } from "semantic-ui-react";
 import styles from "./account.module.scss";
 import { Address, Settings } from "@/components/Account";
@@ -9,6 +10,20 @@ import { BasicLayout } from "@/layouts";
 export default function AccountPage() {
   const [reload, setReload] = useState(false);
   const { logout } = useAuth();
+  const { query } = useRouter();
+  let defaultTabIndex = 0;
+  switch (query.tab) {
+    case "address":
+      defaultTabIndex = 1;
+      break;
+    case "order":
+      defaultTabIndex = 2;
+      break;
+    default:
+      defaultTabIndex = 0;
+      break;
+  }
+  query.order === "true" ? 2 : 0;
 
   const onReload = () => setReload((prevState) => !prevState);
 
@@ -56,6 +71,7 @@ export default function AccountPage() {
         <Tab
           menu={{ fluid: true, tabular: true, vertical: true }}
           panes={panes}
+          defaultActiveIndex={defaultTabIndex}
           className={styles.tabs}
         />
       </Container>

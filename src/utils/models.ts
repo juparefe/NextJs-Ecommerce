@@ -22,7 +22,8 @@ export interface LSBasketI {
 	quantity: number
 }
 
-export interface OrderDetail {
+export interface OrderDetailI {
+	orderId?: number;
 	odPrice: string;
 	odProdId: string;
 	odQuantity: number;

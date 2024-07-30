@@ -33,7 +33,7 @@ export function Addresses(props: any) {
       {addresses && addresses.length === 0 && (
         <div className={styles.noAddresses}>
           <NoResult text="No tienes ninguna dirección creada" />
-          <Button as={Link} href="/account" primary>
+          <Button as={Link} href="/account?tab=address" primary>
             Crear dirección
           </Button>
         </div>

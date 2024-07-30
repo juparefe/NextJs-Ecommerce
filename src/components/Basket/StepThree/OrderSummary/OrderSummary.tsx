@@ -4,19 +4,19 @@ import { Button } from "semantic-ui-react";
 import styles from "./OrderSummary.module.scss";
 import { orderCtrl } from "@/api";
 import { useBasket } from "@/hooks";
-import { OrderDetail, ProductI } from "@/utils";
+import { OrderDetailI, ProductI } from "@/utils";
 
 export function OrderSummary(props: any) {
   const { products, address, nextDisabled = false } = props;
   const [total, setTotal] = useState(0);
-  const [orderDetails, setOrderDetails] = useState<OrderDetail[]>([]);
+  const [orderDetails, setOrderDetails] = useState<OrderDetailI[]>([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { deleteAllItems } = useBasket();
 
   useEffect(() => {
     let totalTemp = 0;
-    let orderDetailsTemp: OrderDetail[] = [];
+    let orderDetailsTemp: OrderDetailI[] = [];
 
     products.forEach((product: ProductI) => {
       totalTemp += Number(product.prodPrice) * Number(product.quantity);
