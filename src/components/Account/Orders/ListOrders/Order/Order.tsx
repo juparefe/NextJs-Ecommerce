@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { useState } from "react";
 import { Button, Icon } from "semantic-ui-react";
-// import { AddressDetails } from "../AddressDetails";
+import { AddressDetails } from "../AddressDetails";
 import { ProductsDetails } from "../ProductDetails";
 import styles from "./Order.module.scss";
 import { Modal } from "@/components/Shared";
@@ -37,7 +37,7 @@ export function Order(props: any) {
         title="Detalles del pedido"
       >
         <ProductsDetails productsOrder={order.OrderDetails} />
-        <p>Adrres details</p>
+        <AddressDetails addressId={order.orderAddId} />
 
         <p className={styles.totalOrder}>{order.orderTotal}€</p>
       </Modal.Basic>
