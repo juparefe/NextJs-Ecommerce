@@ -2,7 +2,7 @@ import { DateTime } from "luxon";
 import { useState } from "react";
 import { Button, Icon } from "semantic-ui-react";
 // import { AddressDetails } from "../AddressDetails";
-// import { ProductsDetails } from "../ProductsDetails";
+import { ProductsDetails } from "../ProductDetails";
 import styles from "./Order.module.scss";
 import { Modal } from "@/components/Shared";
 
@@ -36,7 +36,7 @@ export function Order(props: any) {
         onClose={onOpenCloseModal}
         title="Detalles del pedido"
       >
-        <p>Product details</p>
+        <ProductsDetails productsOrder={order.OrderDetails} />
         <p>Adrres details</p>
 
         <p className={styles.totalOrder}>{order.orderTotal}€</p>
