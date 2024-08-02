@@ -1,32 +1,74 @@
 @import "~/src/scss/index.scss";
 
+.wrapper {
+  position: relative;
+}
+
+.scrollButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.scrollButton:first-of-type {
+  left: 0;
+}
+
+.scrollButton:last-of-type {
+  right: 0;
+}
+
 .container {
-    display: flex;
-    margin: 0 -10px;
+  display: flex;
+  margin: 0 -10px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  &::-webkit-scrollbar {
+    display: none;
   }
-  
-  .category {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 5px;
-    margin: 5px;
-    text-align: center;
-    flex: 1 1 calc(20% - 20px); // Ajusta el tamaño del contenedor para que sean más responsivos.
-    box-sizing: border-box;
-    min-width: 177px;
-    height: 100%;
-    background: radial-gradient(circle closest-corner at bottom, #49CCC4 200%, transparent 51%) no-repeat,
+}
+
+.link {
+  text-decoration: none;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+  box-sizing: border-box;
+  min-width: 140px;
+  min-height: 140px;
+  height: 100%;
+  background: radial-gradient(circle closest-corner at bottom, #49CCC4 200%, transparent 51%) no-repeat,
               #01858A;
-    background-size: 100% 135%, cover;
-    &:hover {
-      opacity: 0.6;
-    }
-  
-    > .header {
-      margin-top: 10px;
-      font-size: 18px;
-      color: white;
-    }
+  background-size: 100% 135%, cover;
+  &:hover {
+    opacity: 0.6;
   }
   
+  .image {
+    height: 100%;
+  }
+
+  > .header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: $background-primary;
+  }
+}
+
+@media (min-width: 780px) {
+  .category {
+    min-width: 200px;
+    min-height: 210px;
+  }
+}

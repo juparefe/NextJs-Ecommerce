@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Header, Image } from "semantic-ui-react";
+import { useEffect, useRef, useState } from "react";
+import { Button, Icon, Image } from "semantic-ui-react";
 import styles from "./GridCategories.module.scss";
 import { categoryCtrl } from "@/api";
 import { Loading, Separator } from '@/components/Shared';
@@ -9,28 +9,26 @@ import { fn } from "@/utils/functions";
 
 export function GridCategories() {
   const [categories, setCategories] = useState<CategoryI[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
 		(async () => {
 			try {
 				const response = await categoryCtrl.getTop();
-				setCategories(response);
-         // Iterar por cada categoría y añadir la propiedad 'image'
-         response.forEach(async (category: CategoryI) => {
-          const imageUrl = fn.getUrlImage(category.categPath);
-          fn.checkIfImageExists(imageUrl, (exists: boolean) => {
-            if (exists) {
-              const updatedCategory = { ...category, categImage: imageUrl };
-              setCategories((prevCategories) =>
-                prevCategories.map((prevCategory) =>
-                  prevCategory.categId === category.categId ? updatedCategory : prevCategory
-                )
-              );
-            } else {
-              const updatedCategory = { ...category, categImage: Constants.NOT_FOUND_IMAGE };
-              setCategories((prevCategories) =>
-                prevCategories.map((prevCategory) =>
-                  prevCategory.categId === category.categId ? updatedCategory : prevCategory
+        // Asignar imagen por defecto inicialmente
+        const categoriesWithDefaultImages = response.map((category: CategoryI) => ({
+          ...category,
+          categImage: Constants.NOT_FOUND_IMAGE // Imagen por defecto
+        }));
+        setCategories(categoriesWithDefaultImages);
+        // Iterar por cada categoría y modificar la propiedad 'image' cuando exista
+        response.forEach(async (category: CategoryI) => {
+        const imageUrl = fn.getUrlImage(category.categPath);
+        fn.checkIfImageExists(imageUrl, (exists: boolean) => {
+          if (exists) {
+            setCategories(prevCategories =>
+              prevCategories.map(prevCategory =>
+                prevCategory.categId === category.categId ? { ...prevCategory, categImage: imageUrl } : prevCategory
                 )
               );
             }
@@ -42,19 +40,39 @@ export function GridCategories() {
 		})();
 	}, []);
 
-	if (!categories) return <Loading text="Cargando categorias" />;
+  const scrollLeft = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ behavior: 'smooth', left: -200 });
+    }
+  };
+
+  const scrollRight = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ behavior: 'smooth', left: 200 });
+    }
+  };
+
+	if (!categories || categories.length === 0) return <Loading text="Cargando categorias" />;
 
   return (
-    <div className={styles.container}>
-    {categories.map((category: CategoryI) => (
-      <Link key={category.categId} href={`/categories/${category.categPath}`}>
-        <div className={styles.category}>
-          <h3 className={styles.header}>{category.categName.toUpperCase()}</h3>
-          <Image src={category.categImage} alt={category.categName} circular />
-          <Separator height={10} />
-        </div>
-      </Link>
-    ))}
-  </div>
+    <div className={styles.wrapper}>
+      <Button className={styles.scrollButton} onClick={scrollLeft} basic compact icon color="teal">
+        <Icon name='angle left' />
+      </Button>
+      <div className={styles.container} ref={containerRef}>
+        {categories.map((category: CategoryI) => (
+          <Link className={styles.link} key={category.categId} href={`/categories/${category.categPath}`}>
+            <div className={styles.category}>
+              <h3 className={styles.header}>{category.categName.toUpperCase()}</h3>
+              <Image className={styles.image} src={category.categImage} alt={category.categName} circular />
+              <Separator height={10} />
+            </div>
+          </Link>
+        ))}
+      </div>
+      <Button className={styles.scrollButton} onClick={scrollRight} basic compact icon color="teal">
+        <Icon name='angle right' />
+      </Button>
+    </div>
   );
 }

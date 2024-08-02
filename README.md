@@ -23,3 +23,4 @@ Añadir validacion para que el maximo de productos a añadir no sea mayor al max
 Integrar Stripe y Paypal para pagos
 En el step one del carro de compras la imagen cuando no esta guardada no se ve bien
 Cuando se hace clic en comprar producto el carrito de compra se actualiza pero no redirige a la pagina principal
+Revisar porque cuando no hay pedidos se queda en cargando pedidos

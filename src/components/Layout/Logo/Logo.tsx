@@ -1,11 +1,8 @@
 // Devuelve el logo de la aplicación con un enlace a la página principal
-import Link from 'next/link';
-import { Image } from 'semantic-ui-react';
+import { Image } from 'react-bootstrap';
 
 export function Logo() {
 	return (
-		<Link href={'/'}>
-			<Image src="/images/logo-texto.png" alt="Gambit" />
-		</Link>
+		<Image src="/images/logo-texto.png" alt="Gambit" fluid/>
 	);
 }

@@ -1,3 +1,5 @@
+@import "~/src/scss/index.scss";
+
 .container {
   overflow-x: scroll;
   white-space: nowrap;
@@ -5,7 +7,6 @@
   justify-content: space-between;
   align-items: center;
   height: 30px;
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -13,5 +14,12 @@
   > a {
     font-weight: bold;
     padding-right: 15px;
+    color: $primary;
+    text-decoration: none;
+  }
+
+  > a:hover {
+    color: $primary-hover;
+    text-decoration: underline;
   }
 }

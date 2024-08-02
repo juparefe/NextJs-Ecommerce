@@ -4,30 +4,21 @@
   border-bottom: 1px solid $border-primary;
 }
 
-.header {
-  display: flex !important;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-
-  > div {
-    display: flex;
-    align-items: center;
+.navbar {
+  background-color: $background-primary;
+  .logo {
+    max-width: 190px;
   }
 }
 
-.left {
-  > a {
-    display: block;
-    width: fit-content;
-    margin-right: 20px;
-
-    > img {
-      height: 50px;
+@media (min-width: 780px) {
+  .navbar {
+    .logo {
+      max-width: 200px; // Ejemplo de cambio de tamaño de logo
     }
-  }
-
-  .search {
-    width: 400px;
+    .search {
+      margin: 0 50px;
+      width: 350px;
+    }
   }
 }

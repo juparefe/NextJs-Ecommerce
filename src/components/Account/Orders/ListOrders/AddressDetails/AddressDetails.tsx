@@ -28,7 +28,7 @@ export function AddressDetails(props: any) {
     })();
   }, [addressId]);
 
-  if (!address) return <Loading text="Cargando dirección" />;
+  if (!address || address.addId === "") return <Loading text="Cargando dirección" />;
 
   return (
     <div className={styles.container}>

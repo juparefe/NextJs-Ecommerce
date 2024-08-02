@@ -24,7 +24,8 @@ export default function HomePage() {
       <Separator height={50} />
 
       <Container>
-	  	<GridCategories />
+        <h2>Categorías más populares</h2>
+	  	  <GridCategories />
 
         <Separator height={50} />
 

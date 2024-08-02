@@ -1,4 +1,6 @@
-import { Container } from 'semantic-ui-react';
+import { useEffect, useState } from 'react';
+import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
+import { Container as ContainerSemantic } from 'semantic-ui-react';
 import styles from './BasicLayout.module.scss';
 import { Layout } from '@/components/Layout';
 import { Search } from '@/components/Shared/Search';
@@ -7,33 +9,62 @@ import { useAuth } from '@/hooks';
 export function BasicLayout(props: any) {
 	const { children } = props;
 	const { isAdmin } = useAuth();
+	const [showCategories, setShowCategories] = useState(false);
+
+	const handleResize = () => {
+		setShowCategories(window.innerWidth > 768);
+	};
+
+	useEffect(() => {
+		handleResize(); // Set initial value
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
 
 	return (
 		<>
 			<div className={styles.border}>
-				<Container className={styles.header}>
-					<div className={styles.left}>
-						<Layout.Logo />
-						<Search
-							className={styles.search}
-							placeholder="Busca lo que necesitas..."
-						/>
-					</div>
-
-					<div>
-						{isAdmin && <Layout.AdminButton />}
-						<Layout.Account />
-						<Layout.Basket />
-					</div>
-				</Container>
+				{['sm'].map((expand) => (
+					<Navbar key={String(expand)} expand="lg" className={styles.navbar}>
+						<Container>
+							<Navbar.Brand href="/" className={styles.logo}>
+								<Layout.Logo />
+							</Navbar.Brand>
+							<Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto" />
+							<Navbar.Offcanvas
+								id={`offcanvasNavbar-expand-${expand}`}
+								aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+								placement="end"
+							>
+								<Offcanvas.Header closeButton>
+									<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+										Gambit
+									</Offcanvas.Title>
+								</Offcanvas.Header>
+								<Offcanvas.Body>
+									<Nav className="justify-content-end flex-grow-1 pe-3">
+										<Search
+											className={styles.search}
+											placeholder="Busca lo que necesitas..."
+										/>
+										{isAdmin && <Layout.AdminButton />}
+										<Nav.Link href="#"><Layout.Account /></Nav.Link>
+										<Nav.Link href="#"><Layout.Basket /></Nav.Link>
+									</Nav>
+								</Offcanvas.Body>
+							</Navbar.Offcanvas>
+						</Container>
+					</Navbar>
+				))
+				}
 			</div>
-
-			<div className={styles.border}>
-				<Container>
-					<Layout.CategoriesMenu />
-				</Container>
-			</div>
-
+			{showCategories && (
+				<div className={styles.border}>
+					<ContainerSemantic>
+						<Layout.CategoriesMenu />
+					</ContainerSemantic>
+				</div>
+			)}
 			{children}
 		</>
 	);
