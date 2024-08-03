@@ -28,7 +28,6 @@ export default function HomePage() {
         const response = await productCtrl.getAll(page, itemsPerPage);
         setProducts(response.data || []);
         setTotalPages(Math.ceil(response.totalItems / itemsPerPage));
-        console.log("useEffect", query.page, page, forcePageChange);
       } catch (error) {
         console.error(error);
       }
@@ -41,14 +40,12 @@ export default function HomePage() {
     setForcePageChange(true);
     router.replace({ query: { ...query, page: 1 } }, undefined, { shallow: true });
     setPage(1);
-    console.log("handleItemsPerPageChange", query.page, page, forcePageChange);
   };
 
   const handlePageChange = (newPage: number) => {
     router.replace({ query: { ...query, page: newPage } }, undefined, { shallow: true });
     setForcePageChange(false);
     setPage(newPage);
-    console.log("handlePageChange", query.page, page, forcePageChange);
   };
 
   return (
@@ -78,7 +75,7 @@ export default function HomePage() {
           columns={4}
           classProduct={styles.product}
         />
-        {totalPages !== null && products !== null && <Pagination currentPage={page}  onPageChange={handlePageChange} forcePageChange={forcePageChange} totalPages={totalPages} />}
+        {totalPages !== null && products !== null && <Pagination currentPage={page} onPageChange={handlePageChange} forcePageChange={forcePageChange} totalPages={totalPages} />}
         <Separator height={20} />
       </Container>
     </BasicLayout>

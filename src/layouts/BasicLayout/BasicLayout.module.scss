@@ -9,6 +9,9 @@
   .logo {
     max-width: 190px;
   }
+  .search {
+    padding: 7px;
+  }
 }
 
 @media (min-width: 780px) {
@@ -17,7 +20,6 @@
       max-width: 200px; // Ejemplo de cambio de tamaño de logo
     }
     .search {
-      margin: 0 50px;
       width: 350px;
     }
   }

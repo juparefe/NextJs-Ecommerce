@@ -1,15 +1,26 @@
-import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { Icon } from 'semantic-ui-react';
 import styles from './Account.module.scss';
 import { useAuth } from '@/hooks';
 
 export function Account() {
 	const { user } = useAuth();
-	const url = (user && user.userEmail) ? '/account' : '/join/login';
+	const [accountText, setAccountText] = useState('');
+
+	const handleResize = () => {
+		setAccountText((window.innerWidth > 768 && (user && user.userEmail)) ? `${user.userEmail.slice(0, 14)}...` : user.userEmail);
+	};
+
+	useEffect(() => {
+		handleResize();
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
 	return (
-		<Link href={url} className={styles.account}>
+		<div className={styles.account}>
 			<Icon name="user" />
-			{(user && user.userEmail) ? `${user.userEmail.slice(0, 14)}...` : 'Entrar'}
-		</Link>
+			{(user && user.userEmail) ? accountText : 'Entrar'}
+		</div>
 	);
 }

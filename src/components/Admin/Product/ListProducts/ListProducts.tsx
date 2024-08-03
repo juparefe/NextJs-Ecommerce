@@ -9,10 +9,11 @@ import { ProductI } from '@/utils';
 const ITEMS_PER_PAGE = 10;
 
 export function ListProducts(props: any) {
+	const router = useRouter();
+  	const { query } = router;
 	const { reload, onReload } = props;
 	const [products, setProducts] = useState<ProductI[]>([]);
 	const [totalPages, setTotalPages] = useState<number | null>(null);
-	const { query } = useRouter();
 	const page = Number(query.page || 1);
 
 	useEffect(() => {
@@ -29,7 +30,11 @@ export function ListProducts(props: any) {
 		})();
 	}, [reload, query.page, query.searchAdmin]);
 
-	if (!products) return <Loading text="Cargando productos" />;
+	const handlePageChange = (newPage: number) => {
+		router.replace({ query: { ...query, page: newPage } }, undefined, { shallow: true });
+	};
+
+	if (!products || products.length === 0) return <Loading text="Cargando productos" />;
 
 	return (
 		<div>
@@ -61,7 +66,7 @@ export function ListProducts(props: any) {
 					))}
 				</Table.Body>
 			</Table>
-			{totalPages !== null && <Pagination currentPage={page} totalPages={totalPages} />}
+			{totalPages !== null && <Pagination currentPage={page} onPageChange={handlePageChange} totalPages={totalPages} />}
 		</div>
 	);
 }

@@ -8,15 +8,16 @@ import { useAuth } from '@/hooks';
 
 export function BasicLayout(props: any) {
 	const { children } = props;
-	const { isAdmin } = useAuth();
+	const { isAdmin, user } = useAuth();
 	const [showCategories, setShowCategories] = useState(false);
+	const urlAccount = (user && user.userEmail) ? '/account' : '/join/login';
 
 	const handleResize = () => {
 		setShowCategories(window.innerWidth > 768);
 	};
 
 	useEffect(() => {
-		handleResize(); // Set initial value
+		handleResize();
 		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize);
 	}, []);
@@ -47,9 +48,9 @@ export function BasicLayout(props: any) {
 											className={styles.search}
 											placeholder="Busca lo que necesitas..."
 										/>
-										{isAdmin && <Layout.AdminButton />}
-										<Nav.Link href="#"><Layout.Account /></Nav.Link>
-										<Nav.Link href="#"><Layout.Basket /></Nav.Link>
+										{isAdmin && <Nav.Link href={"/admin"}><Layout.AdminButton /></Nav.Link>}
+										<Nav.Link href={urlAccount}><Layout.Account /></Nav.Link>
+										<Nav.Link href="/basket"><Layout.Basket /></Nav.Link>
 									</Nav>
 								</Offcanvas.Body>
 							</Navbar.Offcanvas>

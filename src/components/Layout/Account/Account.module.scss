@@ -1,9 +1,6 @@
 @import "~/src/scss/index.scss";
 
 .account {
-    display: flex;
-    align-items: center;
-    margin-right: 30px;
     color: $text-primary;
     > i {
         font-size: 18px;
