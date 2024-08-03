@@ -15,7 +15,7 @@ bun dev
 ```
 
 # Pendientes:
-Diseño responsive 3 desktop tablet y mobile
+Diseño responsive 3 desktop tablet y mobile // Añadir que revise tamaño en el useEfect y envie el numero de columnas
 Crear rol superAdmin
 Crear servicio en api para que solo super admin asigne admin
 Añadir diferentes divisas
@@ -24,3 +24,4 @@ Integrar Stripe y Paypal para pagos
 En el step one del carro de compras la imagen cuando no esta guardada no se ve bien
 Cuando se hace clic en comprar producto el carrito de compra se actualiza pero no redirige a la pagina principal
 Revisar porque cuando no hay pedidos se queda en cargando pedidos
+Revisar porque esta imprimiendo un log en cloud watch cada que añade un objeto al array
