@@ -4,23 +4,6 @@
   position: relative;
 }
 
-.scrollButton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  cursor: pointer;
-  z-index: 1;
-}
-
-.scrollButton:first-of-type {
-  left: 0;
-}
-
-.scrollButton:last-of-type {
-  right: 0;
-}
-
 .container {
   display: flex;
   margin: 0 -10px;
@@ -70,5 +53,22 @@
   .category {
     min-width: 200px;
     min-height: 210px;
+  }
+
+  .scrollButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .scrollButton:first-of-type {
+    left: 0;
+  }
+  
+  .scrollButton:last-of-type {
+    right: 0;
   }
 }

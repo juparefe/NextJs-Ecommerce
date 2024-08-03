@@ -9,6 +9,7 @@ import { fn } from "@/utils/functions";
 
 export function GridCategories() {
   const [categories, setCategories] = useState<CategoryI[]>([]);
+  const [showButtons, setShowButtons] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,6 +41,16 @@ export function GridCategories() {
 		})();
 	}, []);
 
+  const handleResize = () => {
+		setShowButtons(window.innerWidth > 999);
+	};
+
+	useEffect(() => {
+		handleResize();
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
   const scrollLeft = () => {
     if (containerRef.current) {
       containerRef.current.scrollBy({ behavior: 'smooth', left: -200 });
@@ -56,9 +67,9 @@ export function GridCategories() {
 
   return (
     <div className={styles.wrapper}>
-      <Button className={styles.scrollButton} onClick={scrollLeft} basic compact icon color="teal">
+      {showButtons && (<Button className={styles.scrollButton} onClick={scrollLeft} basic compact icon color="teal">
         <Icon name='angle left' />
-      </Button>
+      </Button>)}
       <div className={styles.container} ref={containerRef}>
         {categories.map((category: CategoryI) => (
           <Link className={styles.link} key={category.categId} href={`/categories/${category.categPath}`}>
@@ -70,9 +81,9 @@ export function GridCategories() {
           </Link>
         ))}
       </div>
-      <Button className={styles.scrollButton} onClick={scrollRight} basic compact icon color="teal">
+      {showButtons && (<Button className={styles.scrollButton} onClick={scrollRight} basic compact icon color="teal">
         <Icon name='angle right' />
-      </Button>
+      </Button>)}
     </div>
   );
 }
