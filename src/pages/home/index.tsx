@@ -9,7 +9,8 @@ import { BasicLayout } from "@/layouts";
 export default function HomePage() {
   const router = useRouter();
   const { query } = router;
-  let page = Number(query.page || 1);
+  const [page, setPage] = useState(Number(query.page) || 1);
+  const [forcePageChange, setForcePageChange] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(16);
   const [products, setProducts] = useState(null);
   const [totalPages, setTotalPages] = useState<number | null>(null);
@@ -27,6 +28,7 @@ export default function HomePage() {
         const response = await productCtrl.getAll(page, itemsPerPage);
         setProducts(response.data || []);
         setTotalPages(Math.ceil(response.totalItems / itemsPerPage));
+        console.log("useEffect", query.page, page, forcePageChange);
       } catch (error) {
         console.error(error);
       }
@@ -36,9 +38,17 @@ export default function HomePage() {
   const handleItemsPerPageChange = (_: any, data: DropdownProps) => {
     const value = data.value as number;
     setItemsPerPage(value);
-    const newQuery = { ...query };
-    delete newQuery.page;
-    router.replace({ query: newQuery }, undefined, { shallow: true });
+    setForcePageChange(true);
+    router.replace({ query: { ...query, page: 1 } }, undefined, { shallow: true });
+    setPage(1);
+    console.log("handleItemsPerPageChange", query.page, page, forcePageChange);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    router.replace({ query: { ...query, page: newPage } }, undefined, { shallow: true });
+    setForcePageChange(false);
+    setPage(newPage);
+    console.log("handlePageChange", query.page, page, forcePageChange);
   };
 
   return (
@@ -58,7 +68,7 @@ export default function HomePage() {
           <Dropdown
             inline
             options={itemsPerPageOptions}
-            defaultValue={itemsPerPage}
+            value={itemsPerPage}
             onChange={handleItemsPerPageChange}
           />
           <span> productos por página</span>
@@ -68,7 +78,7 @@ export default function HomePage() {
           columns={4}
           classProduct={styles.product}
         />
-        {totalPages !== null && products !== null && <Pagination currentPage={page} totalPages={totalPages} />}
+        {totalPages !== null && products !== null && <Pagination currentPage={page}  onPageChange={handlePageChange} forcePageChange={forcePageChange} totalPages={totalPages} />}
         <Separator height={20} />
       </Container>
     </BasicLayout>
