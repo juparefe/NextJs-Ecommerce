@@ -27,3 +27,5 @@ Revisar porque cuando no hay pedidos se queda en cargando pedidos
 Revisar porque esta imprimiendo un log en cloud watch cada que añade un objeto al array
 Revisar Porque al pasar a otra pagina las imagenes se asignan en el mismo orden a los objetos pagina 1 en la pagina 2
 Revisar el Paginationb en la pagina slug categorias
+Añadir categorias al menu hamburguesa en mobile
+Cuando se busca algo en la barra de busqueda se debe cerrar el nav

@@ -4,23 +4,57 @@ import { Container, Dropdown, DropdownProps } from "semantic-ui-react";
 import styles from "./home.module.scss";
 import { productCtrl } from "@/api";
 import { GridCategories, GridProducts, Pagination, Separator } from "@/components/Shared";
+import { useWindowSize } from "@/hooks";
 import { BasicLayout } from "@/layouts";
 
 export default function HomePage() {
   const router = useRouter();
   const { query } = router;
+  const { windowSize } = useWindowSize();
   const [page, setPage] = useState(Number(query.page) || 1);
   const [forcePageChange, setForcePageChange] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(16);
+  const [columns, setColumns] = useState(4);
   const [products, setProducts] = useState(null);
   const [totalPages, setTotalPages] = useState<number | null>(null);
-  const itemsPerPageOptions = [
-    { key: 1, text: '4', value: 4 },
-    { key: 2, text: '8', value: 8 },
-    { key: 3, text: '12', value: 12 },
-    { key: 4, text: '16', value: 16 },
-    { key: 5, text: '20', value: 20 }
-  ];
+
+  const getItemsPerPageOptions = () => {
+    const maxItems = columns * 5;
+    let options = [];
+    for (let i = columns; i <= maxItems; i += columns) {
+      options.push({ key: i, text: `${i}`, value: i });
+    }
+    if(itemsPerPage !== options[1].value) {setItemsPerPage(options[1].value);};
+    return options;
+  };
+
+  const getColumnsOptions = () => {
+    if (windowSize && windowSize.width < 600) {
+      if(columns !== 2) {setColumns(2);}
+      return [
+        { key: 1, text: '1', value: 1 },
+        { key: 2, text: '2', value: 2 }
+      ];
+    } else if (windowSize && windowSize.width < 900) {
+      if(columns !== 3) {setColumns(3);}
+      return [
+        { key: 1, text: '1', value: 1 },
+        { key: 2, text: '2', value: 2 },
+        { key: 3, text: '3', value: 3 },
+        { key: 4, text: '4', value: 4 }
+      ];
+    } else {
+      if(columns !== 4) {setColumns(4);}
+      return [
+        { key: 1, text: '1', value: 1 },
+        { key: 2, text: '2', value: 2 },
+        { key: 3, text: '3', value: 3 },
+        { key: 4, text: '4', value: 4 },
+        { key: 5, text: '5', value: 5 },
+        { key: 6, text: '6', value: 6 }
+      ];
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -42,6 +76,18 @@ export default function HomePage() {
     setPage(1);
   };
 
+  const handleColumnsChange = (_: any, data: DropdownProps) => {
+    const value = data.value as number;
+    setColumns(value);
+    const options = getItemsPerPageOptions();
+    if (!options.find(option => option.value === itemsPerPage)) {
+      setItemsPerPage(value);
+      setForcePageChange(true);
+      router.replace({ query: { ...query, page: 1 } }, undefined, { shallow: true });
+      setPage(1);
+    }
+  };
+
   const handlePageChange = (newPage: number) => {
     router.replace({ query: { ...query, page: newPage } }, undefined, { shallow: true });
     setForcePageChange(false);
@@ -61,18 +107,25 @@ export default function HomePage() {
         <h2>Últimos productos</h2>
         <Separator height={10} />
         <div className={styles.controls}>
-          <span>Mostrar </span>
+          <span className={styles.span}>Mostrar </span>
           <Dropdown
             inline
-            options={itemsPerPageOptions}
+            options={getItemsPerPageOptions()}
             value={itemsPerPage}
             onChange={handleItemsPerPageChange}
           />
-          <span> productos por página</span>
+          <span className={styles.span}> productos por página organizados en </span>
+          <Dropdown
+            inline
+            options={getColumnsOptions()}
+            value={columns}
+            onChange={handleColumnsChange}
+          />
+          <span className={styles.span}> columnas</span>
         </div>
         <GridProducts
           products={products}
-          columns={4}
+          columns={columns}
           classProduct={styles.product}
         />
         {totalPages !== null && products !== null && <Pagination currentPage={page} onPageChange={handlePageChange} forcePageChange={forcePageChange} totalPages={totalPages} />}

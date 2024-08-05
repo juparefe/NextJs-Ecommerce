@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
-import { Container } from "semantic-ui-react";
+import { useState } from 'react';
+import { Container, Dropdown } from "semantic-ui-react";
 import styles from "./category.module.scss";
 import { productCtrl } from "@/api";
 import { Separator, GridProducts, Pagination } from "@/components/Shared";
@@ -14,6 +15,8 @@ interface CategoryPageProps {
 }
 
 export default function CategoryPage(props: CategoryPageProps) {
+  const [itemsPerPage, setItemsPerPage] = useState(16);
+  const [columns, setColumns] = useState(4);
   const { products, pagination } = props;
   const { page, totalPages } = pagination;
 
@@ -21,8 +24,27 @@ export default function CategoryPage(props: CategoryPageProps) {
     <BasicLayout>
       <Container>
         <Separator height={20} />
-
-        <GridProducts products={products} classProduct={styles.product} />
+        <div className={styles.controls}>
+          <span className={styles.span}>Mostrar </span>
+          <Dropdown
+            inline
+            options={getItemsPerPageOptions()}
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+          />
+          <span className={styles.span}> productos por página organizados en </span>
+          <Dropdown
+            inline
+            options={getColumnsOptions()}
+            value={columns}
+            onChange={handleColumnsChange}
+          />
+          <span className={styles.span}> columnas</span>
+        </div>
+        <GridProducts
+          products={products}
+          columns={columns}
+          classProduct={styles.product} />
         { products.length > 0 && (
           <Pagination currentPage={page} totalPages={totalPages} />
         )}

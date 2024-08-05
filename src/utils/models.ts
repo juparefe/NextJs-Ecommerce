@@ -47,3 +47,8 @@ export interface UserI {
 	categPath: string;
 	categName: string;
 }
+
+export interface WindowI {
+	width: number;
+  	height: number;
+}
