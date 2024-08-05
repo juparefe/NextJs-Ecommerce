@@ -31,7 +31,7 @@ export function Info(props: any) {
         onClick={addBasketWrapper}
         loading={loading}
       >
-        Comprar
+        Añadir al carrito de compra
       </Button>
     </div>
   );
