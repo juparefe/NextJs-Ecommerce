@@ -34,3 +34,4 @@ Revisar porque deja comprar cuando dice entrar sin login
 Revisar los controles del formulario de crear cuenta
 Añadir forma de salirse de la pagina de confirmacion
 Añadir mensaje producto top
+Añadir icono cuando no hay elementos

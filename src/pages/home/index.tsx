@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Container, Dropdown, DropdownProps } from "semantic-ui-react";
 import styles from "./home.module.scss";
 import { productCtrl } from "@/api";
@@ -18,25 +18,36 @@ export default function HomePage() {
   const [products, setProducts] = useState(null);
   const [totalPages, setTotalPages] = useState<number | null>(null);
 
+  const updateColumns = useCallback(() => {
+    if (windowSize.width < 600) {
+      setColumns(2);
+    } else if (windowSize.width < 900) {
+      setColumns(3);
+    } else {
+      setColumns(4);
+    }
+  }, [windowSize.width]);
+
+  useEffect(() => {
+    updateColumns();
+  }, [updateColumns]);
+
   const getItemsPerPageOptions = () => {
     const maxItems = columns * 5;
     let options = [];
     for (let i = columns; i <= maxItems; i += columns) {
       options.push({ key: i, text: `${i}`, value: i });
     }
-    if(itemsPerPage !== options[1].value) {setItemsPerPage(options[1].value);};
     return options;
   };
 
   const getColumnsOptions = () => {
     if (windowSize && windowSize.width < 600) {
-      if(columns !== 2) {setColumns(2);}
       return [
         { key: 1, text: '1', value: 1 },
         { key: 2, text: '2', value: 2 }
       ];
     } else if (windowSize && windowSize.width < 900) {
-      if(columns !== 3) {setColumns(3);}
       return [
         { key: 1, text: '1', value: 1 },
         { key: 2, text: '2', value: 2 },
@@ -44,7 +55,6 @@ export default function HomePage() {
         { key: 4, text: '4', value: 4 }
       ];
     } else {
-      if(columns !== 4) {setColumns(4);}
       return [
         { key: 1, text: '1', value: 1 },
         { key: 2, text: '2', value: 2 },
@@ -79,6 +89,7 @@ export default function HomePage() {
   const handleColumnsChange = (_: any, data: DropdownProps) => {
     const value = data.value as number;
     setColumns(value);
+    setItemsPerPage(value * 2);
     const options = getItemsPerPageOptions();
     if (!options.find(option => option.value === itemsPerPage)) {
       setItemsPerPage(value);
