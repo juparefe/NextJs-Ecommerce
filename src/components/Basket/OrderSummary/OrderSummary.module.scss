@@ -5,7 +5,7 @@
   flex-direction: column;
   width: 100%;
   padding: 20px;
-  margin-top: 38px;
+  margin-top: 8px;
   border: 1px solid $border-primary;
   border-radius: 6px;
 
@@ -21,6 +21,7 @@
   > div {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 10px;
 
     &:last-of-type > span:last-of-type {
@@ -31,5 +32,15 @@
     > span {
       color: $text-primary;
     }
+  }
+}
+
+.btn {
+  font-size: small !important;
+}
+
+@media (min-width: 780px) {
+  .container {
+    margin-top: 38px;
   }
 }

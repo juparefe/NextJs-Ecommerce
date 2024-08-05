@@ -30,7 +30,7 @@ export function HeaderBasket() {
               <Icon name="check" />
               {item.number}
             </span>
-            <span>{item.title}</span>
+            <span className={styles.title}>{item.title}</span>
             <span className={styles.space} />
           </div>
         ))}

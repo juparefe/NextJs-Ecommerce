@@ -33,16 +33,16 @@ export function OrderSummary(props: any) {
 
   return (
     <div className={styles.container}>
-      <h2>Resumen</h2>
+      <h2>Resumen:</h2>
 
       <div className={styles.prices}>
         <div>
-          <span>Total ({basketCtrl.count()} productos)</span>
+          <span>Total ({basketCtrl.count()} productos):</span>
           <span>{total.toFixed(2)}€</span>
         </div>
       </div>
 
-      <Button primary fluid disabled={nextDisabled} onClick={goToNextStep}>
+      <Button primary fluid className={styles.btn} disabled={nextDisabled} onClick={goToNextStep}>
         {btnText}
       </Button>
     </div>

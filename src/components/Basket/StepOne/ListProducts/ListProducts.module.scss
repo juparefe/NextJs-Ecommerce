@@ -7,6 +7,7 @@
 
 .product {
   display: flex;
+  flex-flow: column nowrap;
   margin-bottom: 20px;
   border: 1px solid $border-primary;
   border-radius: 5px;
@@ -14,17 +15,21 @@
 
   > img {
     width: 120px;
-    margin-right: 20px;
+    margin: 0 auto;
   }
 
   > div {
     display: flex;
+    flex-direction: column;
     width: 100%;
 
     .info {
       width: 100%;
+      text-align: center;
+      padding: 10px 0;
 
       p {
+        font-size: small;
         font-weight: bold;
       }
     }
@@ -48,6 +53,23 @@
 
         &:hover {
           color: $danger;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .product {
+    flex-direction: row;
+    > div {
+      flex-direction: row;
+      align-items: center;
+      .info {
+        text-align: start;
+        padding: 0 15px;
+        p {
+          font-size: medium;
         }
       }
     }

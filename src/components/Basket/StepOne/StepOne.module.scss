@@ -1,14 +1,48 @@
 .container {
     display: flex !important;
+    flex-flow: column nowrap;
   
     .left {
-      width: 65%;
+      width: 100%;
       padding-left: 20px;
     }
   
     .right {
-      width: 35%;
+      width: 100%;
       padding-left: 20px;
     }
   }
   
+  @media (min-width: 600px) {
+    .container {    
+      .right {
+        margin: 0 auto;
+        width: 60%;
+      }
+    }
+  }
+
+  @media (min-width: 900px) {
+    .container {
+      flex-flow: row nowrap;
+      .left {
+        width: 60%;
+      }
+    
+      .right {
+        width: 40%;
+      }
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .container {
+      .left {
+        width: 65%;
+      }
+    
+      .right {
+        width: 35%;
+      }
+    }
+  }

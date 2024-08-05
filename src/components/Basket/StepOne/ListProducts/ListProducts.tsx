@@ -15,7 +15,7 @@ export function ListProducts(props: any) {
 
   return (
     <div className={styles.basket}>
-      <h2>Cesta</h2>
+      <h2>Carrito de compra</h2>
 
       {products.map((product: ProductI) => (
         <div key={product.prodId} className={styles.product}>
