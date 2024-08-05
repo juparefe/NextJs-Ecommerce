@@ -1,30 +1,41 @@
 @import "~/src/scss/index.scss";
 
+.link {
+  text-decoration: none;
+}
+
 .container {
   padding: 10px;
   max-height: 350px;
 }
 
 .content {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 300px;
   padding: 10px;
   &:hover {
     opacity: 0.6;
   }
 
-  > h3 {
-    font-size: 16px;
-    padding-top: 20px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  > .image {
+  .image {
     height: 150px;
     margin: 0 auto;
     width: 150px;
   }
+}
+
+.title {
+  font-size: 16px;
+  height: 60px;
+  padding-top: 20px;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
 }
 
 .lowStock {
@@ -35,12 +46,20 @@
 
 .footer {
   display: flex;
-  justify-content: space-between;
-  padding-top: 10px;
+  justify-content: flex-start;
+  align-items: center;
 
-  > span {
+  .price {
     font-weight: bold;
     font-size: 20px;
     color: $primary;
+  }
+}
+
+@media (min-width: 780px) {
+  .footer {
+    .price {
+      font-size: 24px;
+    }
   }
 }

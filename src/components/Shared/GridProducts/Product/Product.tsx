@@ -24,13 +24,13 @@ export function Product(props: any) {
         [classProduct]: classProduct
       })}
     >
-      <Link href={`/product/${product.prodPath}`}>
+      <Link className={styles.link} href={`/product/${product.prodPath}`}>
         <div className={styles.content}>
           <Image src={image} alt={product.prodTitle} className={styles.image}/>
-          <h3>{product.prodTitle}</h3>
+          <h3 className={styles.title}>{product.prodTitle}</h3>
 
           <div className={styles.footer}>
-            <span>$ {product.prodPrice}</span>
+            <span className={styles.price}>$ {product.prodPrice}</span>
           </div>
 
           {lowStock && (

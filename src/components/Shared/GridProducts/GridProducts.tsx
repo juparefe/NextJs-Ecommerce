@@ -19,7 +19,6 @@ export function GridProducts(props: any) {
   if (products.length === 0) {
     return <NoResult text="No se han encontrado resultados" />;
   }
-
   return (
     <>
       <div className={styles.container}>

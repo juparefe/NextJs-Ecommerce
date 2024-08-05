@@ -16,6 +16,8 @@ bun dev
 
 # Pendientes:
 Diseño responsive 3 desktop tablet y mobile // Añadir que revise tamaño en el useEfect y envie el numero de columnas
+Arreglar grid products se desacomodan las tarjetas
+Arreglar login
 Crear rol superAdmin
 Crear servicio en api para que solo super admin asigne admin
 Añadir diferentes divisas
@@ -29,3 +31,5 @@ Revisar Porque al pasar a otra pagina las imagenes se asignan en el mismo orden 
 Revisar el Paginationb en la pagina slug categorias
 Añadir categorias al menu hamburguesa en mobile
 Cuando se busca algo en la barra de busqueda se debe cerrar el nav
+Añadir descuentos a los productos para el admin
+Revisar porque deja comprar cuando dice entrar sin login

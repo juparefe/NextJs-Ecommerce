@@ -79,3 +79,10 @@
     right: 0;
   }
 }
+
+@media (min-width: 780px) {
+  .category {
+    width: 180px;
+    height: 220px;
+  }
+}

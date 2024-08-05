@@ -1,9 +1,10 @@
 import { GetServerSidePropsContext } from 'next';
-import { useState } from 'react';
-import { Container, Dropdown } from "semantic-ui-react";
+import { useEffect, useState } from 'react';
+import { Container } from "semantic-ui-react";
 import styles from "./category.module.scss";
 import { productCtrl } from "@/api";
 import { Separator, GridProducts, Pagination } from "@/components/Shared";
+import { useWindowSize } from '@/hooks';
 import { BasicLayout } from "@/layouts";
 
 interface CategoryPageProps {
@@ -15,38 +16,39 @@ interface CategoryPageProps {
 }
 
 export default function CategoryPage(props: CategoryPageProps) {
-  const [itemsPerPage, setItemsPerPage] = useState(16);
-  const [columns, setColumns] = useState(4);
   const { products, pagination } = props;
-  const { page, totalPages } = pagination;
+  let { page, totalPages } = pagination;
+  const { windowSize } = useWindowSize();
+  const [columns, setColumns] = useState(4);
+
+  useEffect(() => {
+    if (windowSize && windowSize.width < 600) {
+      if(columns !== 2) {setColumns(2);}
+    } else if (windowSize && windowSize.width < 900) {
+      if(columns !== 3) {setColumns(3);}
+    } else {
+      if(columns !== 4) {setColumns(4);}
+    }
+  }, [windowSize]);
+
+  const handlePageChange = (newPage: number) => {
+    console.log("NewPage [slug]", newPage);
+  };
 
   return (
     <BasicLayout>
       <Container>
         <Separator height={20} />
-        <div className={styles.controls}>
-          <span className={styles.span}>Mostrar </span>
-          <Dropdown
-            inline
-            options={getItemsPerPageOptions()}
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-          />
-          <span className={styles.span}> productos por página organizados en </span>
-          <Dropdown
-            inline
-            options={getColumnsOptions()}
-            value={columns}
-            onChange={handleColumnsChange}
-          />
-          <span className={styles.span}> columnas</span>
-        </div>
         <GridProducts
           products={products}
           columns={columns}
           classProduct={styles.product} />
         { products.length > 0 && (
-          <Pagination currentPage={page} totalPages={totalPages} />
+          <Pagination
+            currentPage={page}
+            onPageChange={handlePageChange}
+            totalPages={totalPages}
+          />
         )}
       </Container>
     </BasicLayout>
@@ -58,7 +60,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { params, query } = context;
   const { slug } = params as { slug: string };
   const { page = 1, search } = query;
-  const ITEMS_PER_PAGE = 10;
+  const ITEMS_PER_PAGE = 8;
 
   if (search) {
     return { props: { pagination: "", products: "" } };
