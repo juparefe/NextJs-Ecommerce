@@ -4,10 +4,12 @@ import { Container, Icon, SemanticICONS } from 'semantic-ui-react';
 import styles from './JoinLayout.module.scss';
 import { data } from './JoinLayoutData';
 import { Layout } from '@/components/Layout';
-import { useAuth } from '@/hooks';
+import { useAuth, useWindowSize } from '@/hooks';
+import { WindowScreenE } from '@/utils';
 
 export function JoinLayout(props: any) {
 	const { children } = props;
+	const { windowScreen } = useWindowSize();
 	const user = useAuth();
 	const router = useRouter();
 
@@ -23,7 +25,7 @@ export function JoinLayout(props: any) {
 		<Container className={styles.container}>
 			<Layout.Logo />
 			<div>
-				<div className={styles.left}>
+				{([WindowScreenE.LargeDesktop, WindowScreenE.Desktop, WindowScreenE.Tablet].includes(windowScreen)) && <div className={styles.left}>
 					{data.map((item, index) => (
 						<div key={index}>
 							<Icon name={item.icon as SemanticICONS} />
@@ -33,7 +35,7 @@ export function JoinLayout(props: any) {
 							</div>
 						</div>
 					))}
-				</div>
+				</div>}
 				<div className={styles.right}>{children}</div>
 			</div>
 		</Container>
