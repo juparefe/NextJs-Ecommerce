@@ -15,7 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-Diseño responsive 3 desktop tablet y mobile
 Crear rol superAdmin
 Crear servicio en api para que solo super admin asigne admin
 Añadir diferentes divisas
@@ -30,8 +29,8 @@ Revisar el Paginationb en la pagina slug categorias
 Añadir categorias al menu hamburguesa en mobile
 Cuando se busca algo en la barra de busqueda se debe cerrar el nav
 Añadir descuentos a los productos para el admin
-Revisar porque deja comprar cuando dice entrar sin login
 Revisar los controles del formulario de crear cuenta
 Añadir forma de salirse de la pagina de confirmacion
 Añadir mensaje producto top
 Añadir icono cuando no hay elementos
+Revisar modales se crean a un lado

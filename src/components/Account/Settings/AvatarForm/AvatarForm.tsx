@@ -54,7 +54,7 @@ export function AvatarForm() {
   });
 
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.imageContainer} {...getRootProps()}>
         <input {...getInputProps()} />
         {avatar ? (
@@ -65,7 +65,7 @@ export function AvatarForm() {
           </div>
         )}
       </div>
-      <Button primary loading={loading} onClick={(event) => formik.handleSubmit(event as any)}>
+      <Button primary className={styles.btnA} loading={loading} onClick={(event) => formik.handleSubmit(event as any)}>
         Enviar
       </Button>
     </div>

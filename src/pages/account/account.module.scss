@@ -5,7 +5,9 @@
   margin-top: 50px;
 
   > div > div {
-    padding: 0 20px !important;
+    padding-right: 5px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:first-of-type {
       border-right: 1px solid $border-primary;
@@ -15,7 +17,25 @@
       border: 0 !important;
 
       > a {
+        padding: 1em 0 !important;
         border: 0 !important;
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .container {
+    padding: 20px !important;
+  }
+
+  .tabs {
+    > div > div {
+      padding: 0 20px !important;
+      > div {
+        > a {
+          padding: 1em !important;
+        }
       }
     }
   }

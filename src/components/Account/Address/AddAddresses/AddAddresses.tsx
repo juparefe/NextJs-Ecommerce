@@ -16,6 +16,7 @@ export function AddAddress(props: any) {
       </Button>
 
       <Modal.Basic
+        closeIcon={true}
         show={showModal}
         onClose={onCloseOpenModal}
         title="Nueva dirección"

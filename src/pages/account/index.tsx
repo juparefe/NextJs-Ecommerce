@@ -67,7 +67,7 @@ export default function AccountPage() {
 
   return (
     <BasicLayout>
-      <Container>
+      <Container className={styles.container}>
         <Tab
           menu={{ fluid: true, tabular: true, vertical: true }}
           panes={panes}
