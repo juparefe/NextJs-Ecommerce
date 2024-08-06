@@ -24,6 +24,7 @@ export function AuthProvider(props: any) {
 	useEffect(() => {
 		(async () => {
 			try {
+				console.log("Se ejecuta useEffect");
 				await login();
 				setLoading(false);
 			} catch (error) {
@@ -35,6 +36,7 @@ export function AuthProvider(props: any) {
 	const login = async () => {
 		try {
 			const response = await userCtrl.me();
+			console.log("Login",response);
 			setUser(response);
 			setIsAdmin(response.userStatus === 0);
 			setLoading(false);

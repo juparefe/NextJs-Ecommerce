@@ -28,7 +28,7 @@ export function Payments(props: any) {
           })}
           onClick={() => setPaymentSelected(item)}
         >
-          <div>
+          <div className={styles.card}>
             <p className={styles.name}>{item.name}:</p>
             <p className={styles.description}>{item.description}</p>
           </div>

@@ -7,7 +7,7 @@
 
 .payment {
   border: 1px solid $border-primary;
-  padding: 20px;
+  padding: 15px;
   margin-bottom: 20px;
   border-radius: 10px;
   display: flex;
@@ -24,15 +24,20 @@
   }
 }
 
-.name {
-  margin-right: 5px;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.description {
-  color: $text-secondary;
-  font-size: 16px;
+.card {
+  display: flex;
+  align-items: center;
+  .name {
+    margin-right: 5px;
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: small;
+  }
+  
+  .description {
+    color: $text-secondary;
+    font-size: smaller;
+  }
 }
 
 .selected {
@@ -41,5 +46,21 @@
 
   .title {
     color: $primary;
+  }
+}
+
+@media (min-width: 780px) {
+  .payment {
+    padding: 20px;
+  }
+
+  .card {
+    .name {
+      font-size: medium;
+    }
+  
+    .description {
+      font-size: small
+    }
   }
 }

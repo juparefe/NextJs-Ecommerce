@@ -22,7 +22,7 @@ export function OrderSummary(props: any) {
 
   // Si el usuario esta logeado va al siguiente paso del carrito de compras y sino va al login
   const goToNextStep = () => {
-    if (user) {
+    if (user && Object.keys(user).length > 0) {
       router.replace({ query: { ...router.query, step: nextStep } });
     } else {
       router.push("/join/login");
