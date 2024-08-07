@@ -18,6 +18,11 @@ export const ENV = {
 };
 
 export const Constants = {
+	CURRENCIES: [
+		{ key: 1, symbol: "USD", text: "Dolar (USD)", value: "USD" },
+		{ key: 2, symbol: "€", text: "Euro (EUR)", value: "EUR" },
+		{ key: 3, symbol: "$", text: "Peso Colombiano (COP)", value: "COP" }
+	],
 	NOT_FOUND_IMAGE: '/images/not-found.jpg',
 	STEPS: [
 		{ number: 1, title: "Cesta" },

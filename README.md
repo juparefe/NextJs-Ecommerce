@@ -15,8 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-Crear rol superAdmin
-Crear servicio en api para que solo super admin asigne admin
 Añadir diferentes divisas
 Añadir validacion para que el maximo de productos a añadir no sea mayor al maximo  de productos disponibles en cada producto
 Integrar Stripe y Paypal para pagos
@@ -30,7 +28,10 @@ Añadir categorias al menu hamburguesa en mobile
 Cuando se busca algo en la barra de busqueda se debe cerrar el nav
 Añadir descuentos a los productos para el admin
 Revisar los controles del formulario de crear cuenta
-Añadir forma de salirse de la pagina de confirmacion
+Añadir forma de salirse de la pagina de confirmacion, toca añadir un link al logo
 Añadir mensaje producto top
 Añadir icono cuando no hay elementos
 Revisar modales se crean a un lado
+Revisar BD  
+Crear rol superAdmin
+Crear servicio en api para que solo super admin asigne admin

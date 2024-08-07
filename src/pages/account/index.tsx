@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { Container, Tab } from "semantic-ui-react";
 import styles from "./account.module.scss";
-import { Address, Orders, Settings } from "@/components/Account";
+import { Address, Currencies, Orders, Settings } from "@/components/Account";
 import { Separator } from "@/components/Shared";
 import { useAuth } from "@/hooks";
 import { BasicLayout } from "@/layouts";
@@ -35,6 +35,14 @@ export default function AccountPage() {
           <Settings.AvatarForm />
           <Separator height={50} />
           <Settings.ChangeNameForm />
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: "Mi divisa",
+      render: () => (
+        <Tab.Pane>
+          <Currencies/>
         </Tab.Pane>
       )
     },

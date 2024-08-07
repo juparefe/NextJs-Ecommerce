@@ -1,0 +1,74 @@
+@import "~/src/scss/index.scss";
+
+.controls {
+  border-radius: 5px;
+  border: solid 1px $border-primary;
+  padding: 40px 20px 50px 20px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  background-color: $background-secondary;
+  text-align: center;
+
+  .span {
+    font-size: medium;
+    font-weight: bold;
+    color: $text-primary;
+  }
+
+  .currencyLabel {
+    width: 100%;
+    font-size: small;
+    color: $primary;
+    text-align: center;
+  }
+
+  .changeLabel {
+    background-color: $primary;
+    color: $text-light;
+    cursor: pointer;
+    font-size: small;
+    i {
+      color: $text-light;
+    }
+  }
+
+  .icon {
+    color: $primary;
+  }
+
+  .ui.dropdown {
+    color: $primary;
+    margin-left: 10px;
+
+    .menu {
+      background-color: $background-primary;
+      border: solid 1px $border-primary;
+      color: $primary;
+
+      .item {
+        color: $primary;
+
+        &:hover {
+          background-color: $background-secondary;
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 600px) {
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 60px;
+    .span {
+        font-size: large;
+      }
+    .currencyLabel {
+        width: 50%;
+        font-size: medium;
+    }
+  }
+}

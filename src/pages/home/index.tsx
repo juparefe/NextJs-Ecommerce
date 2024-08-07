@@ -13,7 +13,7 @@ export default function HomePage() {
   const { windowSize } = useWindowSize();
   const [page, setPage] = useState(Number(query.page) || 1);
   const [forcePageChange, setForcePageChange] = useState(false);
-  const [itemsPerPage, setItemsPerPage] = useState(16);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
   const [columns, setColumns] = useState(4);
   const [products, setProducts] = useState(null);
   const [totalPages, setTotalPages] = useState<number | null>(null);
