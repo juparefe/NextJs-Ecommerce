@@ -27,7 +27,7 @@ Revisar el Paginationb en la pagina slug categorias
 Añadir categorias al menu hamburguesa en mobile
 Cuando se busca algo en la barra de busqueda se debe cerrar el nav
 Añadir descuentos a los productos para el admin
-Revisar los controles del formulario de crear cuenta
+Revisar los controles del formulario de crear cuenta ya que no muestra los errores
 Añadir forma de salirse de la pagina de confirmacion, toca añadir un link al logo
 Añadir mensaje producto top
 Añadir icono cuando no hay elementos

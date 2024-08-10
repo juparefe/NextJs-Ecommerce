@@ -5,6 +5,7 @@ export const ENV = {
 	ENDPOINTS: {
 		ADDRESS: '/address',
 		CATEGORY: '/category',
+		CURRENCY: '/currency',
 		ORDER: '/order',
 		ORDERS: '/orders',
 		PRODUCT: '/product',
@@ -13,7 +14,6 @@ export const ENV = {
 		USER_ME: '/user/me'
 	},
 	IMG_URL: 'https://gambit-img-bucket.s3.amazonaws.com',
-	TINY_APIKEY: 'agh3xktjurawll57abh1pj6lzpdtdihaffl8zeneyx609kjt',
 	TOKEN: 'token'
 };
 
