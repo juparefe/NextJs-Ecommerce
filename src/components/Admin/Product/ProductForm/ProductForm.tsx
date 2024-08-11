@@ -64,7 +64,7 @@ export function ProductForm(props: any) {
 			/>
 
 			<Editor
-				apiKey={process.env.ApiKeyTiny}
+				apiKey={process.env.NEXT_PUBLIC_ApiKeyTiny}
 				init={{
 					height: 400,
 					menubar: true,

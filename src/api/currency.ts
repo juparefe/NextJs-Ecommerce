@@ -11,7 +11,7 @@ async function getCurrencyRate(baseCurrency: string, targetCurrency: string) {
 		}
 
 		if (response.status !== 200) {
-			const apiKey = process.env.ApiKeyExchangeRate;
+			const apiKey = process.env.NEXT_PUBLIC_ApiKeyExchangeRate;
 			const apiUrl = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/" + baseCurrency;
 			const response = await fetch(apiUrl);
 			console.log("Response ExchangeRateApi", response);
