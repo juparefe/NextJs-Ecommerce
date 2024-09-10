@@ -5,7 +5,7 @@ import { Form } from 'semantic-ui-react';
 import { initialValues, validationSchema } from './ProductForm.form';
 import { categoryCtrl, productCtrl } from '@/api';
 import { Separator } from '@/components/Shared';
-import { CategoryI, ENV } from '@/utils';
+import { CategoryI } from '@/utils';
 
 export function ProductForm(props: any) {
 	const { onClose, onReload, product } = props;

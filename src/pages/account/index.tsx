@@ -42,7 +42,7 @@ export default function AccountPage() {
       menuItem: "Mi divisa",
       render: () => (
         <Tab.Pane>
-          <Currencies/>
+          <Currencies />
         </Tab.Pane>
       )
     },

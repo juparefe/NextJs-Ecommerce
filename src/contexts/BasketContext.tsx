@@ -1,6 +1,7 @@
+import { DateTime } from "luxon";
 import { useState, useEffect, createContext } from "react";
-import { basketCtrl } from "@/api";
-import { LSBasketI } from "@/utils";
+import { basketCtrl, currencyCtrl } from "@/api";
+import { LSBasketI, RatesI } from "@/utils";
 
 export const BasketContext = createContext({} as BasketContextType);
 
@@ -10,6 +11,7 @@ interface BasketContextType {
     changeQuantityItem: (productId: string, quantity: string) => void;
     deleteAllItems: () => void;
     deleteItem: (productId: string) => void;
+    getCurrencies: any;
     total: number;
 }
 
@@ -17,6 +19,7 @@ interface BasketContextType {
 export function BasketProvider(props: any) {
   const { children } = props;
   const [basket, setBasket] = useState([{ id: '0', quantity: 0 }]);
+  const [currency, setCurrency] = useState({ currencyRates: {} });
   const [total, setTotal] = useState(basketCtrl.count());
 
   useEffect(() => {
@@ -50,12 +53,39 @@ export function BasketProvider(props: any) {
     refreshBasket();
   };
 
+  const getCurrencies = async () => {
+    const newCurrency: string = localStorage.getItem('selectedCurrency') || "COP";
+    const newCurrencyRatesString: string | null = localStorage.getItem('ratesCOP');
+    if (newCurrencyRatesString) {
+      const newCurrencyRatesJson: RatesI = JSON.parse(newCurrencyRatesString);
+      // Convertir timeLastUpdate a un objeto DateTime de Luxon
+      const timeLastUpdateDate = DateTime.fromSeconds(Number(newCurrencyRatesJson.timeLastUpdate));
+      // Obtener la fecha actual con Luxon
+      const currentDate = DateTime.now();
+      // Verificar si timeLastUpdate es hoy y si no llamar a ExchangeRate API
+      if(timeLastUpdateDate.hasSame(currentDate, 'day')) {
+        const currenciesFromLocalStorage: any = { currencyRates: newCurrencyRatesJson };
+        setCurrency(currenciesFromLocalStorage);
+        return currenciesFromLocalStorage[newCurrency.toLowerCase()];
+      } else {
+        const currenciesFromService = await currencyCtrl.get(newCurrency);
+        setCurrency(currenciesFromService);
+        return currenciesFromService[newCurrency.toLowerCase()];
+      };
+    } else {
+      const currenciesFromService = await currencyCtrl.get(newCurrency);
+      setCurrency(currenciesFromService);
+      return currenciesFromService[newCurrency.toLowerCase()];
+    }
+  };
+
   const data: BasketContextType = {
     addBasket,
     basket,
     changeQuantityItem,
     deleteAllItems,
     deleteItem,
+    getCurrencies,
     total
   };
 

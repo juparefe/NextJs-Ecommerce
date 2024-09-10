@@ -34,6 +34,8 @@
   background: radial-gradient(circle closest-corner at bottom, #49CCC4 200%, transparent 51%) no-repeat,
               #01858A;
   background-size: 100% 135%, cover;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     opacity: 0.6;
   }
