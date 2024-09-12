@@ -19,7 +19,6 @@ interface BasketContextType {
 export function BasketProvider(props: any) {
   const { children } = props;
   const [basket, setBasket] = useState([{ id: '0', quantity: 0 }]);
-  const [currency, setCurrency] = useState({ currencyRates: {} });
   const [total, setTotal] = useState(basketCtrl.count());
 
   useEffect(() => {
@@ -59,22 +58,19 @@ export function BasketProvider(props: any) {
     if (newCurrencyRatesString) {
       const newCurrencyRatesJson: RatesI = JSON.parse(newCurrencyRatesString);
       // Convertir timeLastUpdate a un objeto DateTime de Luxon
-      const timeLastUpdateDate = DateTime.fromSeconds(Number(newCurrencyRatesJson.timeLastUpdate));
+      let timeLastUpdateDate = DateTime.fromRFC2822(newCurrencyRatesJson.timeLastUpdate).toUTC();
       // Obtener la fecha actual con Luxon
       const currentDate = DateTime.now();
       // Verificar si timeLastUpdate es hoy y si no llamar a ExchangeRate API
       if(timeLastUpdateDate.hasSame(currentDate, 'day')) {
-        const currenciesFromLocalStorage: any = { currencyRates: newCurrencyRatesJson };
-        setCurrency(currenciesFromLocalStorage);
+        const currenciesFromLocalStorage: any = newCurrencyRatesJson;
         return currenciesFromLocalStorage[newCurrency.toLowerCase()];
       } else {
-        const currenciesFromService = await currencyCtrl.get(newCurrency);
-        setCurrency(currenciesFromService);
+        const currenciesFromService = await currencyCtrl.getAll();
         return currenciesFromService[newCurrency.toLowerCase()];
       };
     } else {
-      const currenciesFromService = await currencyCtrl.get(newCurrency);
-      setCurrency(currenciesFromService);
+      const currenciesFromService = await currencyCtrl.getAll();
       return currenciesFromService[newCurrency.toLowerCase()];
     }
   };
