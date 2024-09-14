@@ -1,12 +1,30 @@
+import { useEffect, useState } from "react";
 import { Icon, Image, Dropdown } from "semantic-ui-react";
 import styles from "./ListProducts.module.scss";
 import { useBasket } from "@/hooks";
-import { ProductI } from "@/utils";
+import { CurrencyRateI, ProductI } from "@/utils";
 import { fn } from "@/utils/functions";
 
 export function ListProducts(props: any) {
   const { products } = props;
-  const { changeQuantityItem, deleteItem } = useBasket();
+  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>({
+		currencyLastSymbol: '',
+		currencyRate: 1,
+		currencySymbol: ''
+	});
+  const { changeQuantityItem, deleteItem, getCurrencies } = useBasket();
+
+  useEffect(() => {
+		// Obtener las tasas de cambio de las monedas al montar el componente
+		(async () => {
+		  try {
+			const currency = await getCurrencies(); // Espera a obtener las tasas de cambio
+			setCurrencyRate(currency); // Almacena las tasas en el estado
+		  } catch (error) {
+			console.error("Error obteniendo las tasas de cambio", error);
+		  }
+		})();
+	}, []);
 
   const options = Array.from({ length: 20 }, (_, index) => {
     const number = index + 1;
@@ -37,7 +55,7 @@ export function ListProducts(props: any) {
                   changeQuantityItem(product.prodId, String(data.value))
                 }
               />
-              <span>{product.prodPrice}€</span>
+              <span>{currencyRate.currencySymbol}{(Number(product.prodPrice) * currencyRate.currencyRate).toFixed(2)}{currencyRate.currencyLastSymbol}</span>
               <Icon
                 name="trash alternate outline"
                 link

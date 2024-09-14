@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { useState, useEffect, createContext } from "react";
 import { basketCtrl, currencyCtrl } from "@/api";
-import { LSBasketI, RatesI } from "@/utils";
+import { Constants, CurrencyCode, CurrencyI, CurrencyRateI, LSBasketI, RatesI } from "@/utils";
 
 export const BasketContext = createContext({} as BasketContextType);
 
@@ -53,8 +53,15 @@ export function BasketProvider(props: any) {
   };
 
   const getCurrencies = async () => {
-    const newCurrency: string = localStorage.getItem('selectedCurrency') || "COP";
+    const newCurrencyString = localStorage.getItem('currency');
+    const newCurrencyJson: CurrencyI = newCurrencyString ? JSON.parse(newCurrencyString) : Constants.DEFAULT_CURRENCY;
+    const { currencyLastSymbol, currencySymbol, selectedCurrency } = newCurrencyJson;
     const newCurrencyRatesString: string | null = localStorage.getItem('ratesCOP');
+    let currency: CurrencyRateI = {
+      currencyLastSymbol,
+      currencyRate: 1,
+      currencySymbol
+    };
     if (newCurrencyRatesString) {
       const newCurrencyRatesJson: RatesI = JSON.parse(newCurrencyRatesString);
       // Convertir timeLastUpdate a un objeto DateTime de Luxon
@@ -63,15 +70,23 @@ export function BasketProvider(props: any) {
       const currentDate = DateTime.now();
       // Verificar si timeLastUpdate es hoy y si no llamar a ExchangeRate API
       if(timeLastUpdateDate.hasSame(currentDate, 'day')) {
-        const currenciesFromLocalStorage: any = newCurrencyRatesJson;
-        return currenciesFromLocalStorage[newCurrency.toLowerCase()];
+        return {
+          ...currency,
+          currencyRate: newCurrencyRatesJson[selectedCurrency.toLowerCase() as CurrencyCode]
+        };
       } else {
         const currenciesFromService = await currencyCtrl.getAll();
-        return currenciesFromService[newCurrency.toLowerCase()];
+        return {
+          ...currency,
+          currencyRate: currenciesFromService[selectedCurrency.toLowerCase() as CurrencyCode]
+        };
       };
     } else {
       const currenciesFromService = await currencyCtrl.getAll();
-      return currenciesFromService[newCurrency.toLowerCase()];
+      return {
+        ...currency,
+        currencyRate: currenciesFromService[selectedCurrency.toLowerCase() as CurrencyCode]
+      };
     }
   };
 

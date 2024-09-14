@@ -4,14 +4,18 @@ import styles from "./ProductDetails.module.scss";
 import { productCtrl } from "@/api";
 import { Loading } from "@/components/Shared";
 import { useBasket } from "@/hooks";
-import { ProductI } from "@/utils";
+import { CurrencyRateI, ProductI } from "@/utils";
 import { fn } from "@/utils/functions";
 
 export function ProductsDetails(props: any) {
   const { productsOrder } = props;
   const [products, setProducts] = useState<ProductI[]>([]);
   const [loading, setLoading] = useState(false);
-  const [currencyRate, setCurrencyRate] = useState<any>(1);
+  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>({
+    currencyLastSymbol: '',
+    currencyRate: 1,
+    currencySymbol: ''
+  });
   const { getCurrencies } = useBasket();
 
   useEffect(() => {
@@ -49,26 +53,7 @@ export function ProductsDetails(props: any) {
   return (
     <div>
       {products.map((product) => {
-        const selectedCurrency = localStorage.getItem('selectedCurrency');
-        let currencySymbol;
-        let currencyLastSymbol;
-        let productPrice = Number(product.prodPrice);
-
-        switch (selectedCurrency) {
-          case 'EUR':
-            currencySymbol = '';
-            currencyLastSymbol = '€';
-            productPrice *= currencyRate;
-            break;
-          case 'USD':
-            currencySymbol = 'US$';
-            currencyLastSymbol = '';
-            productPrice *= currencyRate;
-            break;
-          default:
-            currencySymbol = '$';
-            currencyLastSymbol = '';
-        }
+        const productPrice = Number(product.prodPrice) * currencyRate.currencyRate;
         product.prodPrice = productPrice.toFixed(2);
 
         return (
@@ -84,7 +69,7 @@ export function ProductsDetails(props: any) {
             </div>
 
             <p className={styles.price}>
-              {product.quantity} x {currencySymbol}{product.prodPrice}{currencyLastSymbol}
+              {product.quantity} x {currencyRate.currencySymbol}{product.prodPrice}{currencyRate.currencyLastSymbol}
             </p>
           </div>
         );

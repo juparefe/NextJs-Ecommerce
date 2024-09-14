@@ -17,6 +17,20 @@ export interface CategoryI {
 	categImage: string;
 }
 
+export interface CurrencyI {
+	currencyLastSymbol: string,
+	currencySymbol: string,
+	selectedCurrency: string
+}
+
+export type CurrencyCode = 'cop' | 'usd' | 'eur';
+
+export interface CurrencyRateI {
+	currencyLastSymbol: string,
+	currencyRate: number
+	currencySymbol: string,
+}
+
 export interface ExchangeRateApiI {
     result:                string;
     documentation:         string;

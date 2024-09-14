@@ -5,21 +5,42 @@ import { ProductImageForm } from '../../ProductImageForm';
 import styles from './Product.module.scss';
 import { productCtrl } from '@/api';
 import { Modal } from '@/components/Shared';
-import { Constants, ProductI } from '@/utils';
+import { useBasket } from '@/hooks';
+import { Constants, CurrencyRateI, ProductI } from '@/utils';
 import { fn } from '@/utils/functions';
 
 export function Product(props: { product: ProductI; onReload: any }) {
 	const { product, onReload } = props;
+	const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>({
+		currencyLastSymbol: '',
+		currencyRate: 1,
+		currencySymbol: ''
+	});
 	const [image, setImage] = useState(Constants.NOT_FOUND_IMAGE);
-	const [showConfirm, setShowConfirm] = useState(false);
-	const [openModal, setOpenModal] = useState(false);
 	const [modalContent, setModalContent] = useState(<p></p>);
+	const [openModal, setOpenModal] = useState(false);
+	const [showConfirm, setShowConfirm] = useState(false);
+	const { getCurrencies } = useBasket();
+
+	useEffect(() => {
+		// Obtener las tasas de cambio de las monedas al montar el componente
+		(async () => {
+		  try {
+			const currency = await getCurrencies(); // Espera a obtener las tasas de cambio
+			setCurrencyRate(currency); // Almacena las tasas en el estado
+		  } catch (error) {
+			console.error("Error obteniendo las tasas de cambio", error);
+		  }
+		})();
+	}, []);
 
 	useEffect(() => {
 		const imageUrl = fn.getUrlImage(product.prodId);
 		fn.checkIfImageExists(imageUrl, (exists: boolean) => {
 			if (exists) setImage(imageUrl);
 		});
+        const productPrice = Number(product.prodPrice) * currencyRate.currencyRate;
+        product.prodPrice = productPrice.toFixed(2);
 	}, [product]);
 
 	const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
@@ -56,7 +77,7 @@ export function Product(props: { product: ProductI; onReload: any }) {
 				<Image className={styles.image} src={image} alt={product.prodTitle} />
 			</Table.Cell>
 			<Table.Cell>{product.prodTitle}</Table.Cell>
-			<Table.Cell>{product.prodPrice}€</Table.Cell>
+			<Table.Cell>{currencyRate.currencySymbol}{product.prodPrice}{currencyRate.currencyLastSymbol}</Table.Cell>
 			<Table.Cell>{product.prodStock} Unidades</Table.Cell>
 			<Table.Cell className={styles.actions}>
 				<Icon name="pencil" link onClick={openEditProduct} />

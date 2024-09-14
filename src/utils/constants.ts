@@ -23,6 +23,11 @@ export const Constants = {
 		{ key: 2, symbol: "€", text: "Euro (EUR)", value: "EUR" },
 		{ key: 3, symbol: "$", text: "Peso Colombiano (COP)", value: "COP" }
 	],
+	DEFAULT_CURRENCY: {
+		currencyLastSymbol: '',
+		currencySymbol: '$',
+		selectedCurrency: 'COP'
+	},
 	NOT_FOUND_IMAGE: '/images/not-found.jpg',
 	STEPS: [
 		{ number: 1, title: "Cesta" },

@@ -1,19 +1,50 @@
- import { useState } from "react";
+ import { useEffect, useState } from "react";
 import { Dropdown, DropdownProps, Icon, Label } from "semantic-ui-react";
 import styles from "./Currencies.module.scss";
 import { useBasket } from "@/hooks";
-import { Constants } from "@/utils";
+import { Constants, CurrencyI } from "@/utils";
 
 export function Currencies() {
-  const [selectedCurrency, setSelectedCurrency] = useState(() => {
-    return localStorage.getItem('selectedCurrency') || 'COP';
-  });
+  const [selectedCurrency, setSelectedCurrency] = useState<CurrencyI>(Constants.DEFAULT_CURRENCY);
   const { getCurrencies } = useBasket();
+
+  useEffect(() => {
+    const currencyRatesString: string | null = localStorage.getItem('currency');
+    const currencyRates = currencyRatesString ? JSON.parse(currencyRatesString) : Constants.DEFAULT_CURRENCY;
+    setSelectedCurrency(currencyRates);
+  }, []);
 
   const handleCurrencyChange = async (_: any, data: DropdownProps) => {
     const newCurrency = String(data.value);
-    setSelectedCurrency(newCurrency);
-    localStorage.setItem('selectedCurrency', newCurrency);
+    let currencyObject: CurrencyI = {
+      currencyLastSymbol: '',
+      currencySymbol: '',
+      selectedCurrency: newCurrency
+    };
+    switch (newCurrency) {
+      case 'EUR':
+        currencyObject = {
+          ...currencyObject,
+          currencyLastSymbol: '€',
+          currencySymbol: ''
+        };
+        break;
+      case 'USD':
+        currencyObject = {
+          ...currencyObject,
+          currencyLastSymbol: '',
+          currencySymbol: 'US$'
+        };
+        break;
+      default:
+        currencyObject = {
+          ...currencyObject,
+          currencyLastSymbol: '',
+          currencySymbol: '$'
+        };
+    }
+    setSelectedCurrency(currencyObject);
+    localStorage.setItem('currency', JSON.stringify(selectedCurrency));
     getCurrencies();
   };
 
@@ -29,7 +60,7 @@ export function Currencies() {
         Tu divisa actual es:
       </span>
       <Label className={styles.currencyLabel}>
-        {Constants.CURRENCIES.find(option => option.value === selectedCurrency)?.text}
+        {Constants.CURRENCIES.find(option => option.value === selectedCurrency.selectedCurrency)?.text}
       </Label>
       <Label className={styles.changeLabel}>
         <Icon name='exchange' />Escoge otra moneda para cambiarla
@@ -41,7 +72,7 @@ export function Currencies() {
         labeled
         icon='world'
         options={currencyOptions}
-        value={selectedCurrency}
+        value={selectedCurrency.selectedCurrency}
         onChange={handleCurrencyChange}
       />
     </div>
