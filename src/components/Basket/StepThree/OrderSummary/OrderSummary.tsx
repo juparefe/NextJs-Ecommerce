@@ -4,32 +4,15 @@ import { Button } from "semantic-ui-react";
 import styles from "./OrderSummary.module.scss";
 import { orderCtrl } from "@/api";
 import { useBasket } from "@/hooks";
-import { CurrencyRateI, OrderDetailI, ProductI } from "@/utils";
+import { OrderDetailI, ProductI } from "@/utils";
 
 export function OrderSummary(props: any) {
-  const { products, address, nextDisabled = false } = props;
-  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>({
-		currencyLastSymbol: '',
-		currencyRate: 1,
-		currencySymbol: ''
-	});
+  const { products, address, nextDisabled = false, currencyRate } = props;
   const [loading, setLoading] = useState(false);
   const [orderDetails, setOrderDetails] = useState<OrderDetailI[]>([]);
   const [total, setTotal] = useState(0);
   const router = useRouter();
-  const { deleteAllItems, getCurrencies } = useBasket();
-
-  useEffect(() => {
-		// Obtener las tasas de cambio de las monedas al montar el componente
-		(async () => {
-		  try {
-			const currency = await getCurrencies(); // Espera a obtener las tasas de cambio
-			setCurrencyRate(currency); // Almacena las tasas en el estado
-		  } catch (error) {
-			console.error("Error obteniendo las tasas de cambio", error);
-		  }
-		})();
-	}, []);
+  const { deleteAllItems } = useBasket();
 
   useEffect(() => {
     let totalTemp = 0;

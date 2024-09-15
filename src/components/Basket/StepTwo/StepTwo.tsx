@@ -4,7 +4,7 @@ import { Addresses } from "./Addresses";
 import styles from "./StepTwo.module.scss";
 
 export function StepTwo(props: any) {
-  const { products, address, setAddress, nextDisabled } = props;
+  const { products, address, setAddress, nextDisabled, currencyRate } = props;
 
   return (
     <Container className={styles.container}>
@@ -17,6 +17,7 @@ export function StepTwo(props: any) {
           nextStep={3}
           btnText="Proceder con el pago"
           nextDisabled={nextDisabled}
+          currencyRate={currencyRate}
         />
       </div>
     </Container>

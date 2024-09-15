@@ -1,10 +1,31 @@
 import classNames from "classnames";
+import { useEffect, useState } from "react";
 import styles from "./GridProducts.module.scss";
 import { Product } from "./Product";
 import { Loading, NoResult, Separator } from '@/components/Shared';
+import { useBasket } from "@/hooks";
+import { CurrencyRateI } from "@/utils";
 
 export function GridProducts(props: any) {
   const { products, columns = 4, classProduct } = props;
+  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>({
+		currencyLastSymbol: '',
+		currencyRate: 1,
+		currencySymbol: ''
+	});
+  const { getCurrencies } = useBasket();
+
+  useEffect(() => {
+		// Obtener las tasas de cambio de las monedas al montar el componente
+		(async () => {
+		  try {
+			const currency = await getCurrencies(); // Espera a obtener las tasas de cambio
+			setCurrencyRate(currency); // Almacena las tasas en el estado
+		  } catch (error) {
+			console.error("Error obteniendo las tasas de cambio", error);
+		  }
+		})();
+	}, []);
 
   if (!products) {
     return (
@@ -34,7 +55,7 @@ export function GridProducts(props: any) {
               [styles.sixColumns]: columns === 6
             })}
           >
-            <Product product={product} classProduct={classProduct} />
+            <Product product={product} classProduct={classProduct} currencyRate={currencyRate} />
           </div>
         ))}
       </div>

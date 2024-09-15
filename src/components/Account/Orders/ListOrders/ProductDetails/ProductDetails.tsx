@@ -3,32 +3,13 @@ import { Image } from "semantic-ui-react";
 import styles from "./ProductDetails.module.scss";
 import { productCtrl } from "@/api";
 import { Loading } from "@/components/Shared";
-import { useBasket } from "@/hooks";
-import { CurrencyRateI, ProductI } from "@/utils";
+import { ProductI } from "@/utils";
 import { fn } from "@/utils/functions";
 
 export function ProductsDetails(props: any) {
-  const { productsOrder } = props;
+  const { productsOrder, currencyRate } = props;
   const [products, setProducts] = useState<ProductI[]>([]);
   const [loading, setLoading] = useState(false);
-  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>({
-    currencyLastSymbol: '',
-    currencyRate: 1,
-    currencySymbol: ''
-  });
-  const { getCurrencies } = useBasket();
-
-  useEffect(() => {
-    // Obtener las tasas de cambio de las monedas al montar el componente
-    (async () => {
-      try {
-        const currency = await getCurrencies(); // Espera a obtener las tasas de cambio
-        setCurrencyRate(currency); // Almacena las tasas en el estado
-      } catch (error) {
-        console.error("Error obteniendo las tasas de cambio", error);
-      }
-    })();
-  }, []);
 
   useEffect(() => {
     (async () => {
