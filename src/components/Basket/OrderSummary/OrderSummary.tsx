@@ -4,7 +4,7 @@ import { Button } from "semantic-ui-react";
 import styles from "./OrderSummary.module.scss";
 import { basketCtrl } from "@/api/basket";
 import { useAuth, useBasket } from "@/hooks";
-import { Constants, CurrencyRateI, ProductI } from "@/utils";
+import { CurrencyRateI, ProductI } from "@/utils";
 
 export function OrderSummary(props: any) {
   const { products, nextStep, btnText, nextDisabled = false } = props;
@@ -33,7 +33,7 @@ export function OrderSummary(props: any) {
   useEffect(() => {
     let totalTemp = 0;
     products.forEach((product: ProductI) => {
-      totalTemp += (Number(product.prodPrice) * currencyRate.currencyRate) * Number(product.quantity);
+      totalTemp += (Number(product.prodPrice) * Number(product.quantity));
     });
     setTotal(totalTemp);
   }, [products]);
@@ -56,7 +56,7 @@ export function OrderSummary(props: any) {
       <div className={styles.prices}>
         <div>
           <span>Total ({basketCtrl.count()} productos):</span>
-          <span>{currencyRate.currencySymbol}{total.toFixed(2)}{currencyRate.currencyLastSymbol}</span>
+          <span>{currencyRate.currencySymbol}{(Number(total) * currencyRate.currencyRate).toFixed(2)}{currencyRate.currencyLastSymbol}</span>
         </div>
       </div>
 

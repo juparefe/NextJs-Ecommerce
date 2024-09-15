@@ -1,18 +1,15 @@
- import { useEffect, useState } from "react";
+ import { useState } from "react";
 import { Dropdown, DropdownProps, Icon, Label } from "semantic-ui-react";
 import styles from "./Currencies.module.scss";
 import { useBasket } from "@/hooks";
 import { Constants, CurrencyI } from "@/utils";
 
 export function Currencies() {
-  const [selectedCurrency, setSelectedCurrency] = useState<CurrencyI>(Constants.DEFAULT_CURRENCY);
-  const { getCurrencies } = useBasket();
-
-  useEffect(() => {
+  const [selectedCurrency, setSelectedCurrency] = useState<CurrencyI>(() => {
     const currencyRatesString: string | null = localStorage.getItem('currency');
-    const currencyRates = currencyRatesString ? JSON.parse(currencyRatesString) : Constants.DEFAULT_CURRENCY;
-    setSelectedCurrency(currencyRates);
-  }, []);
+    return currencyRatesString ? JSON.parse(currencyRatesString) : Constants.DEFAULT_CURRENCY;
+  });
+  const { getCurrencies } = useBasket();
 
   const handleCurrencyChange = async (_: any, data: DropdownProps) => {
     const newCurrency = String(data.value);
@@ -44,7 +41,7 @@ export function Currencies() {
         };
     }
     setSelectedCurrency(currencyObject);
-    localStorage.setItem('currency', JSON.stringify(selectedCurrency));
+    localStorage.setItem('currency', JSON.stringify(currencyObject));
     getCurrencies();
   };
 
