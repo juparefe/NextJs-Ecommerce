@@ -5,17 +5,13 @@ import { Basket } from "@/components/Basket";
 import { Loading, NoResult } from "@/components/Shared";
 import { useBasket } from "@/hooks";
 import { BasketLayout } from "@/layouts";
-import { CurrencyRateI, ProductI } from "@/utils";
+import { Constants, CurrencyRateI, ProductI } from "@/utils";
 
 export default function BasketPage() {
   // En este basket viene un array de objetos con el id y la cantidad de cada producto
   const { basket } = useBasket();
   const [address, setAddress] = useState(null);
-  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>({
-		currencyLastSymbol: '',
-		currencyRate: 1,
-		currencySymbol: ''
-	});
+  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>(Constants.DEFAULT_CURRENCY);
   const [products, setProducts] = useState<ProductI[]>([]);
   const { getCurrencies } = useBasket();
 

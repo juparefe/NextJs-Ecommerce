@@ -4,15 +4,11 @@ import styles from "./GridProducts.module.scss";
 import { Product } from "./Product";
 import { Loading, NoResult, Separator } from '@/components/Shared';
 import { useBasket } from "@/hooks";
-import { CurrencyRateI } from "@/utils";
+import { Constants, CurrencyRateI } from "@/utils";
 
 export function GridProducts(props: any) {
   const { products, columns = 4, classProduct } = props;
-  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>({
-		currencyLastSymbol: '',
-		currencyRate: 1,
-		currencySymbol: ''
-	});
+  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>(Constants.DEFAULT_CURRENCY);
   const { getCurrencies } = useBasket();
 
   useEffect(() => {

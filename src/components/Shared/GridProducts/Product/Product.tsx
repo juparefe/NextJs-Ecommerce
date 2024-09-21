@@ -41,7 +41,7 @@ export function Product(props: any) {
 
           {lowStock && (
             <p className={styles.lowStock}>
-              {`Solo quedan ${product.prodStock} unidades`}
+              {`Solo quedan ${product.prodStock} unidad/es`}
             </p>
           )}
         </div>

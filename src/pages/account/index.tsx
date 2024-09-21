@@ -13,17 +13,20 @@ export default function AccountPage() {
   const { query } = useRouter();
   let defaultTabIndex = 0;
   switch (query.tab) {
-    case "address":
+    case "currency":
       defaultTabIndex = 1;
       break;
-    case "order":
+    case "address":
       defaultTabIndex = 2;
+      break;
+    case "order":
+      defaultTabIndex = 3;
       break;
     default:
       defaultTabIndex = 0;
       break;
   }
-  query.order === "true" ? 2 : 0;
+  query.order === "true" ? 3 : 0;
 
   const onReload = () => setReload((prevState) => !prevState);
 

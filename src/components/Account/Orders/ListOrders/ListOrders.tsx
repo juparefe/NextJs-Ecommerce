@@ -3,15 +3,10 @@ import { Order } from "./Order";
 import { orderCtrl } from "@/api";
 import { Loading, NoResult } from "@/components/Shared";
 import { useBasket } from "@/hooks";
-import { CurrencyRateI, OrderI } from "@/utils";
+import { Constants, CurrencyRateI, OrderI } from "@/utils";
 
 export function ListOrders() {
-  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>({
-		currencyLastSymbol: '',
-		currencyRate: 1,
-		currencySymbol: '',
-    selectedCurrency: 'COP'
-	});
+  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>(Constants.DEFAULT_CURRENCY);
   const [orders, setOrders] = useState([]);
   const { getCurrencies } = useBasket();
 

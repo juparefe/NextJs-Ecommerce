@@ -11,11 +11,7 @@ import { fn } from '@/utils/functions';
 
 export function Product(props: { product: ProductI; onReload: any }) {
 	const { product, onReload } = props;
-	const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>({
-		currencyLastSymbol: '',
-		currencyRate: 1,
-		currencySymbol: ''
-	});
+	const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>(Constants.DEFAULT_CURRENCY);
 	const [image, setImage] = useState(Constants.NOT_FOUND_IMAGE);
 	const [modalContent, setModalContent] = useState(<p></p>);
 	const [openModal, setOpenModal] = useState(false);

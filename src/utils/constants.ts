@@ -25,6 +25,7 @@ export const Constants = {
 	],
 	DEFAULT_CURRENCY: {
 		currencyLastSymbol: '',
+		currencyRate: 1,
 		currencySymbol: '$',
 		selectedCurrency: 'COP'
 	},
