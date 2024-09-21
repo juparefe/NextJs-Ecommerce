@@ -7,7 +7,7 @@ import styles from "./Order.module.scss";
 import { Modal } from "@/components/Shared";
 
 export function Order(props: any) {
-  const { order, currencyRate } = props;
+  const { order } = props;
   const [showModal, setShowModal] = useState(false);
 
   const createdAt = new Date(order.orderDate).toISOString();
@@ -36,13 +36,13 @@ export function Order(props: any) {
         onClose={onOpenCloseModal}
         title="Detalles del pedido"
       >
-        <ProductsDetails productsOrder={order.OrderDetails} currencyRate={currencyRate}/>
+        <ProductsDetails productsOrder={order.OrderDetails} />
         <AddressDetails addressId={order.orderAddId} />
 
         <p className={styles.totalOrder}>
-          {currencyRate.currencySymbol}
-          {(order.orderTotal * currencyRate.currencyRate).toFixed(2)}
-          {currencyRate.currencyLastSymbol}
+          {order.OrderDetails[0].odCurrencySymbol}
+          { order.orderTotal }
+          {order.OrderDetails[0].odCurrencyLastSymbol}
         </p>
       </Modal.Basic>
     </>

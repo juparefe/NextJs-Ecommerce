@@ -9,7 +9,8 @@ export function ListOrders() {
   const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>({
 		currencyLastSymbol: '',
 		currencyRate: 1,
-		currencySymbol: ''
+		currencySymbol: '',
+    selectedCurrency: 'COP'
 	});
   const [orders, setOrders] = useState([]);
   const { getCurrencies } = useBasket();

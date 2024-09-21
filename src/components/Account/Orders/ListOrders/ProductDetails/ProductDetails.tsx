@@ -7,7 +7,7 @@ import { ProductI } from "@/utils";
 import { fn } from "@/utils/functions";
 
 export function ProductsDetails(props: any) {
-  const { productsOrder, currencyRate } = props;
+  const { productsOrder } = props;
   const [products, setProducts] = useState<ProductI[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -18,7 +18,14 @@ export function ProductsDetails(props: any) {
         const productsTemp = [];
         for await (const item of productsOrder) {
           const response = await productCtrl.getById(item.odProdId);
-          productsTemp.push({ ...response, quantity: item.odQuantity });
+          productsTemp.push({
+            ...response,
+            prodCurrency: item.odCurrency,
+            prodCurrencyLastSymbol: item.odCurrencyLastSymbol,
+            prodCurrencySymbol: item.odCurrencySymbol,
+            prodPrice: item.odPrice,
+            quantity: item.odQuantity
+          });
         }
         setProducts(productsTemp);
         setLoading(false);
@@ -34,9 +41,6 @@ export function ProductsDetails(props: any) {
   return (
     <div>
       {products.map((product) => {
-        const productPrice = Number(product.prodPrice) * currencyRate.currencyRate;
-        product.prodPrice = productPrice.toFixed(2);
-
         return (
           <div key={product.prodId} className={styles.product}>
             <div>
@@ -50,7 +54,7 @@ export function ProductsDetails(props: any) {
             </div>
 
             <p className={styles.price}>
-              {product.quantity} x {currencyRate.currencySymbol}{product.prodPrice}{currencyRate.currencyLastSymbol}
+              {product.quantity} x {product.prodCurrencySymbol}{product.prodPrice}{product.prodCurrencyLastSymbol}
             </p>
           </div>
         );

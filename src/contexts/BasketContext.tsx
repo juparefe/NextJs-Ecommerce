@@ -60,7 +60,8 @@ export function BasketProvider(props: any) {
     let currency: CurrencyRateI = {
       currencyLastSymbol,
       currencyRate: 1,
-      currencySymbol
+      currencySymbol,
+      selectedCurrency
     };
     if (newCurrencyRatesString) {
       const newCurrencyRatesJson: RatesI = JSON.parse(newCurrencyRatesString);

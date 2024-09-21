@@ -46,7 +46,7 @@
   }
 
   > .header {
-    font-size: 18px;
+    font-size: 12px;
     font-weight: bold;
     margin-top: 10px;
     color: $background-primary;
@@ -86,5 +86,8 @@
   .category {
     width: 180px;
     height: 220px;
+    > .header {
+      font-size: 13px;
+    }
   }
 }

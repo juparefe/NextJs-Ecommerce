@@ -21,6 +21,9 @@ export function OrderSummary(props: any) {
     products.forEach((product: ProductI) => {
       totalTemp += (Number(product.prodPrice) * currencyRate.currencyRate) * Number(product.quantity);
       orderDetailsTemp.push({
+        odCurrency: currencyRate.selectedCurrency,
+        odCurrencyLastSymbol: currencyRate.currencyLastSymbol,
+        odCurrencySymbol: currencyRate.currencySymbol,
         odPrice: (Number(product.prodPrice) * currencyRate.currencyRate).toFixed(2),
         odProdId: product.prodId,
         odQuantity: Number(product.quantity)
@@ -34,6 +37,7 @@ export function OrderSummary(props: any) {
   const onPay = async () => {
     try {
       setLoading(true);
+      orderDetails.forEach((orderDetail: OrderDetailI) => orderDetail.odPrice = Number(orderDetail.odPrice));
       const data = {
         orderAddId: address.addId,
         orderDate: new Date(),

@@ -29,6 +29,7 @@ export interface CurrencyRateI {
 	currencyLastSymbol: string,
 	currencyRate: number
 	currencySymbol: string,
+	selectedCurrency: string
 }
 
 export interface ExchangeRateApiI {
@@ -55,12 +56,18 @@ export interface OrderI {
 }
 
 export interface OrderDetailI {
-	odPrice: string;
+	odCurrency: string,
+    odCurrencyLastSymbol: string,
+    odCurrencySymbol: string,
+	odPrice: string | number;
 	odProdId: string;
 	odQuantity: number;
 }
 
 export interface ProductI {
+	prodCurrency?: string;
+	prodCurrencyLastSymbol?: string;
+	prodCurrencySymbol?: string;
 	prodId: string;
 	prodTitle: string;
 	prodPrice: string;
