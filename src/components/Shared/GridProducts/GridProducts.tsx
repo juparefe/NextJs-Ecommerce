@@ -17,7 +17,6 @@ export function GridProducts(props: any) {
 		  try {
 			const currency = await getCurrencies(); // Espera a obtener las tasas de cambio
 			setCurrencyRate(currency); // Almacena las tasas en el estado
-      console.log("products", products);
 		  } catch (error) {
 			console.error("Error obteniendo las tasas de cambio", error);
 		  }

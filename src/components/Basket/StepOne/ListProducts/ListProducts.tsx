@@ -1,8 +1,7 @@
 import { Icon, Image, Dropdown } from "semantic-ui-react";
 import styles from "./ListProducts.module.scss";
 import { useBasket } from "@/hooks";
-import { ProductI } from "@/utils";
-import { fn } from "@/utils/functions";
+import { Constants, fn, ProductI } from "@/utils";
 
 export function ListProducts(props: any) {
   const { products, currencyRate } = props;
@@ -19,8 +18,14 @@ export function ListProducts(props: any) {
 
       {products.map((product: ProductI) => (
         <div key={product.prodId} className={styles.product}>
-          <Image src={fn.getUrlImage(product.prodId)} alt={product.prodTitle} />
-
+          <Image
+            src={fn.getUrlImage(product.prodId)}
+            alt={product.prodTitle}
+            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+              const imgElement = e.target as HTMLImageElement;
+              imgElement.src = Constants.NOT_FOUND_IMAGE;}
+            }
+          />
           <div>
             <div className={styles.info}>
               <p>{product.prodTitle}</p>

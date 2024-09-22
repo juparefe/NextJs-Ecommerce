@@ -15,7 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-En el step one del carro de compras la imagen cuando no esta guardada no se ve bien
 Cuando se hace clic en comprar producto el carrito de compra se actualiza pero no redirige a la pagina principal
 Revisar porque cuando no hay pedidos se queda en cargando pedidos
 Revisar porque esta imprimiendo un log en cloud watch cada que añade un objeto al array

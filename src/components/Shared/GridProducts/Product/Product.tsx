@@ -3,8 +3,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Image } from "semantic-ui-react";
 import styles from "./Product.module.scss";
-import { Constants } from "@/utils";
-import { fn } from "@/utils/functions";
+import { Constants, fn } from "@/utils";
 
 export function Product(props: any) {
   const { product, classProduct, currencyRate } = props;
@@ -13,9 +12,12 @@ export function Product(props: any) {
 
   useEffect(() => {
     const imageUrl = fn.getUrlImage(product.prodId);
-    console.log("id", product.prodId, "imageUrl", imageUrl);
     fn.checkIfImageExists(imageUrl, (exists: boolean) => {
-      if (exists) setImage(imageUrl);
+      if (exists) {
+        setImage(imageUrl);
+      } else {
+        setImage(Constants.NOT_FOUND_IMAGE);
+      }
     });
   }, [product]);
 
