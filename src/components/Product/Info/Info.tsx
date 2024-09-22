@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Button } from "semantic-ui-react";
 import styles from "./Info.module.scss";
@@ -10,6 +11,7 @@ export function Info(props: any) {
   const [loading, setLoading] = useState(false);
   const [available, setAvailable] = useState<boolean>(true);
   const { addBasket, basket, getCurrencies } = useBasket();
+  const router = useRouter();
 
   useEffect(() => {
 		// Obtener las tasas de cambio de las monedas al montar el componente
@@ -39,6 +41,7 @@ export function Info(props: any) {
 
     setTimeout(() => {
       setLoading(false);
+      router.push("/");
     }, 500);
   };
 

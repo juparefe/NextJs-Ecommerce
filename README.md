@@ -15,7 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-Cuando se hace clic en comprar producto el carrito de compra se actualiza pero no redirige a la pagina principal
 Revisar porque cuando no hay pedidos se queda en cargando pedidos
 Revisar porque esta imprimiendo un log en cloud watch cada que añade un objeto al array
 Revisar Porque al pasar a otra pagina las imagenes se asignan en el mismo orden a los objetos pagina 1 en la pagina 2
