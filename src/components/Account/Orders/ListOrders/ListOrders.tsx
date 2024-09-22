@@ -7,7 +7,7 @@ import { Constants, CurrencyRateI, OrderI } from "@/utils";
 
 export function ListOrders() {
   const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>(Constants.DEFAULT_CURRENCY);
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<OrderI[]>([]);
   const { getCurrencies } = useBasket();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export function ListOrders() {
         const response = await orderCtrl.getAll();
         const currency = await getCurrencies(); // Espera a obtener las tasas de cambio
 			  setCurrencyRate(currency); // Almacena las tasas en el estado
-        setOrders(response);
+        setOrders(response || []);
       } catch (error) {
         console.error(error);
       }

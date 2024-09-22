@@ -20,7 +20,7 @@ export function ListAddresses(props: any) {
     })();
   }, [reload]);
 
-  if (!addresses || addresses.length === 0) {
+  if (!addresses) {
     return <Loading text="Cargando direcciones" top={100} />;
   }
 
