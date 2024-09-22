@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useEffect, useCallback } from "react";
-import { Container, Dropdown, DropdownProps } from "semantic-ui-react";
+import { Container, Dropdown, DropdownProps, Label } from "semantic-ui-react";
 import styles from "./home.module.scss";
 import { productCtrl } from "@/api";
 import { GridCategories, GridProducts, Pagination, Separator } from "@/components/Shared";
@@ -11,8 +11,7 @@ export default function HomePage() {
   const router = useRouter();
   const { query } = router;
   const { windowSize } = useWindowSize();
-  const [page, setPage] = useState(Number(query.page) || 1);
-  const [forcePageChange, setForcePageChange] = useState(false);
+  const [page, setPage] = useState(Number(query.page || 1));
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [columns, setColumns] = useState(4);
   const [products, setProducts] = useState(null);
@@ -31,15 +30,6 @@ export default function HomePage() {
   useEffect(() => {
     updateColumns();
   }, [updateColumns]);
-
-  const getItemsPerPageOptions = () => {
-    const maxItems = columns * 5;
-    let options = [];
-    for (let i = columns; i <= maxItems; i += columns) {
-      options.push({ key: i, text: `${i}`, value: i });
-    }
-    return options;
-  };
 
   const getColumnsOptions = () => {
     if (windowSize && windowSize.width < 600) {
@@ -66,6 +56,7 @@ export default function HomePage() {
     }
   };
 
+  // Actualiza productos cada vez que cambie la página o el número de productos por página
   useEffect(() => {
     (async () => {
       try {
@@ -76,33 +67,20 @@ export default function HomePage() {
         console.error(error);
       }
     })();
-  }, [itemsPerPage, page]);
+  }, [page, itemsPerPage]);
 
-  const handleItemsPerPageChange = (_: any, data: DropdownProps) => {
-    const value = data.value as number;
-    setItemsPerPage(value);
-    setForcePageChange(true);
-    router.replace({ query: { ...query, page: 1 } }, undefined, { shallow: true });
-    setPage(1);
-  };
+  // Actualiza el estado `page` cuando cambie el query en la URL
+  useEffect(() => {
+    if (query.page) {
+      setPage(Number(query.page));
+    }
+  }, [query.page]);
 
   const handleColumnsChange = (_: any, data: DropdownProps) => {
     const value = data.value as number;
     setColumns(value);
     setItemsPerPage(value * 2);
-    const options = getItemsPerPageOptions();
-    if (!options.find(option => option.value === itemsPerPage)) {
-      setItemsPerPage(value);
-      setForcePageChange(true);
-      router.replace({ query: { ...query, page: 1 } }, undefined, { shallow: true });
-      setPage(1);
-    }
-  };
-
-  const handlePageChange = (newPage: number) => {
-    router.replace({ query: { ...query, page: newPage } }, undefined, { shallow: true });
-    setForcePageChange(false);
-    setPage(newPage);
+    setPage(1);
   };
 
   return (
@@ -119,12 +97,7 @@ export default function HomePage() {
         <Separator height={10} />
         <div className={styles.controls}>
           <span className={styles.span}>Mostrar </span>
-          <Dropdown
-            inline
-            options={getItemsPerPageOptions()}
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-          />
+          <Label size="mini">{itemsPerPage}</Label>
           <span className={styles.span}> productos por página organizados en </span>
           <Dropdown
             inline
@@ -139,7 +112,7 @@ export default function HomePage() {
           columns={columns}
           classProduct={styles.product}
         />
-        {totalPages !== null && products !== null && <Pagination currentPage={page} onPageChange={handlePageChange} forcePageChange={forcePageChange} totalPages={totalPages} />}
+        {totalPages && products && <Pagination currentPage={page} totalPages={totalPages} />}
         <Separator height={20} />
       </Container>
     </BasicLayout>

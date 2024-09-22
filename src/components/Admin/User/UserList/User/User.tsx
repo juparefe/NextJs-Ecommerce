@@ -7,7 +7,7 @@ const NOT_FOUND_IMG = "/images/not-found.jpg";
 export function User(props: { user: any; }) {
   const { user } = props;
   const [avatar, setAvatar] = useState(NOT_FOUND_IMG);
-  const isAdmin = user.userStatus === 0;
+  const isAdmin = [1,2].includes(user.userStatus);
 
   useEffect(() => {
     const imageUrl = fn.getUrlImage(user.userUUID);

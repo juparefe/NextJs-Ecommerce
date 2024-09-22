@@ -36,7 +36,7 @@ export function AuthProvider(props: any) {
 		try {
 			const response = await userCtrl.me();
 			setUser(response);
-			setIsAdmin(response.userStatus === 0);
+			setIsAdmin([1,2].includes(response.userStatus));
 			setLoading(false);
 		} catch (error) {
 			console.error(error);

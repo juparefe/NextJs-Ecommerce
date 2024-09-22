@@ -13,6 +13,7 @@ export function Product(props: any) {
 
   useEffect(() => {
     const imageUrl = fn.getUrlImage(product.prodId);
+    console.log("id", product.prodId, "imageUrl", imageUrl);
     fn.checkIfImageExists(imageUrl, (exists: boolean) => {
       if (exists) setImage(imageUrl);
     });

@@ -25,7 +25,12 @@ export function Info(props: any) {
 
   useEffect(() => {
     const prodStock = basket.find(item => product.prodId === item.id);
-    setAvailable(prodStock ? product.prodStock > prodStock.quantity : false);
+
+    if (!prodStock) {
+      setAvailable(true);
+    } else {
+      setAvailable(product.prodStock > prodStock.quantity);
+    }
   }, [addBasket]);
 
   const addBasketWrapper = () => {
@@ -40,16 +45,16 @@ export function Info(props: any) {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{product.prodTitle}</h1>
-      {(available || basket.length === 0) && <span className={styles.stock}>
+      {(available) && <span className={styles.stock}>
         {`Quedan ${product.prodStock} unidad/es`}
       </span>}
       <span className={styles.price}>{currencyRate.currencySymbol}{(Number(product.prodPrice) * currencyRate.currencyRate).toFixed(2)}{currencyRate.currencyLastSymbol}</span>
 
-      {(!available && basket.length > 0) && <span className={styles.stock}>
+      {(!available) && <span className={styles.stock}>
         {`Los sentimos, no quedan unidades disponibles`}
       </span>}
 
-      {(available || basket.length === 0) && <Button
+      {(available) && <Button
         primary
         className={styles.btnBuy}
         onClick={addBasketWrapper}
