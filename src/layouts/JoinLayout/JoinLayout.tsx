@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Container, Icon, SemanticICONS } from 'semantic-ui-react';
@@ -23,7 +24,9 @@ export function JoinLayout(props: any) {
 
 	return (
 		<Container className={styles.container}>
-			<Layout.Logo />
+			<Link href="/">
+				<Layout.Logo />
+			</Link>
 			<div>
 				{([WindowScreenE.LargeDesktop, WindowScreenE.Desktop, WindowScreenE.Tablet].includes(windowScreen)) && <div className={styles.left}>
 					{data.map((item, index) => (

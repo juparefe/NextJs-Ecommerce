@@ -15,15 +15,13 @@ bun dev
 ```
 
 # Pendientes:
+Revisar modales se crean a un lado 
+Revisar mobile design en admin ya que en mobile se desorganizan las tablas en columnas
+En admin si busco y no hay productos se queda en Cargando productos
 Añadir categorias al menu hamburguesa en mobile
 Cuando se busca algo en la barra de busqueda se debe cerrar el nav
 Añadir descuentos a los productos para el admin
-Revisar los controles del formulario de crear cuenta ya que no muestra los errores
-Añadir forma de salirse de la pagina de confirmacion, toca añadir un link al logo
 Añadir mensaje producto top
-Añadir icono cuando no hay elementos
-Revisar modales se crean a un lado
-Revisar BD  
 Crear rol superAdmin
 Crear servicio en api para que solo super admin asigne admin
 COP currency y esos servicios solo deberian llamarse una vez al hacer el login
