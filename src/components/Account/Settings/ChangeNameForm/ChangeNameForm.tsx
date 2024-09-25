@@ -40,7 +40,7 @@ export function ChangeNameForm() {
       />
 
       <Form.Button type="submit" loading={formik.isSubmitting}>
-        Enviar
+        Enviar tus datos
       </Form.Button>
     </Form>
   );

@@ -66,7 +66,7 @@ export function AvatarForm() {
         )}
       </div>
       <Button primary className={styles.btnA} loading={loading} onClick={(event) => formik.handleSubmit(event as any)}>
-        Enviar
+        Enviar tu imagen
       </Button>
     </div>
   );

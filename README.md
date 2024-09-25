@@ -15,8 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-Añadir mensajes de error a todos los forms
-El avatar form no debe mostrar el boton enviar si estoy actualizando y no he cambiado la imagen
 Añadir categorias al menu hamburguesa en mobile
 Cuando se busca algo en la barra de busqueda se debe cerrar el nav
 Añadir descuentos a los productos para el admin
