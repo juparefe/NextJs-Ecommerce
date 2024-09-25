@@ -15,9 +15,8 @@ bun dev
 ```
 
 # Pendientes:
-Revisar porque esta imprimiendo un log en cloud watch cada que añade un objeto al array
-Revisar Porque al pasar a otra pagina las imagenes se asignan en el mismo orden a los objetos pagina 1 en la pagina 2
-Revisar el Paginationb en la pagina slug categorias
+Añadir mensajes de error a todos los forms
+El avatar form no debe mostrar el boton enviar si estoy actualizando y no he cambiado la imagen
 Añadir categorias al menu hamburguesa en mobile
 Cuando se busca algo en la barra de busqueda se debe cerrar el nav
 Añadir descuentos a los productos para el admin
@@ -30,5 +29,5 @@ Revisar BD
 Crear rol superAdmin
 Crear servicio en api para que solo super admin asigne admin
 COP currency y esos servicios solo deberian llamarse una vez al hacer el login
-Revisar Pagination
+Corregir modales se pegan a la izquierda
 Integrar Stripe y Paypal para pagos

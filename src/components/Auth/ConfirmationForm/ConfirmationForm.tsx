@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Message } from 'semantic-ui-react';
 import { initialValues, validationSchema } from './ConfirmationForm.form';
 import { authCtrl } from '@/api';
 import { Separator } from '@/components/Shared';
@@ -11,6 +11,7 @@ export function ConfirmationForm() {
 	// En la variable query se almacenan los parametros de la url, en este caso tomo el correo electronico
 	const { query } = router;
 	const [loading, setLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
 
 	// useEffect se ejecuta cuando el componente se monta y se actualiza y llena el campo email con el valor del query
 	useEffect(() => {
@@ -21,11 +22,13 @@ export function ConfirmationForm() {
 	const formik = useFormik({
 		initialValues: initialValues(),
 		onSubmit: async (formValue) => {
+			setErrorMessage('');
 			try {
 				await authCtrl.confirmation(formValue.email, formValue.code);
 				router.push('/join/login');
 			} catch (error) {
 				console.error(error);
+				setErrorMessage('El codigo de confirmacion ingresado es incorrecto');
 			}
 		},
 		validateOnChange: false,
@@ -49,7 +52,7 @@ export function ConfirmationForm() {
 	// Formulario de confirmación de usuario con (email y código de confirmación), linea de separacion y un botón para reenviar el código de confirmación
 	return (
 		<>
-			<Form onSubmit={formik.handleSubmit}>
+			<Form onSubmit={formik.handleSubmit} error={!!errorMessage}>
 				<Form.Input
 					name="email"
 					placeholder="Correo electronico"
@@ -64,6 +67,13 @@ export function ConfirmationForm() {
 					onChange={formik.handleChange}
 					error={formik.errors.code}
 				/>
+				{errorMessage && (
+					<Message
+						error
+						header="Error al confirmar tu cuenta"
+						content={errorMessage}
+					/>
+				)}
 				<Form.Button type="submit" fluid loading={formik.isSubmitting}>
 					Activar usuario
 				</Form.Button>

@@ -1,7 +1,7 @@
 import { Editor } from '@tinymce/tinymce-react';
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Message } from 'semantic-ui-react';
 import { initialValues, validationSchema } from './ProductForm.form';
 import { categoryCtrl, productCtrl } from '@/api';
 import { Separator } from '@/components/Shared';
@@ -47,7 +47,7 @@ export function ProductForm(props: any) {
 	});
 
 	return (
-		<Form onSubmit={formik.handleSubmit}>
+		<Form onSubmit={formik.handleSubmit} warning>
 			<Form.Input
 				name="ProdTitle"
 				placeholder="Nombre"
@@ -57,12 +57,11 @@ export function ProductForm(props: any) {
 			/>
 			<Form.Input
 				name="ProdPath"
-				placeholder="Slug"
+				placeholder="Slug (URL amigable)"
 				value={formik.values.ProdPath}
 				onChange={formik.handleChange}
 				error={formik.errors.ProdPath}
 			/>
-
 			<Editor
 				apiKey={process.env.NEXT_PUBLIC_ApiKeyTiny}
 				init={{
@@ -97,7 +96,6 @@ export function ProductForm(props: any) {
 				initialValue={formik.values.ProdDescription}
 				onBlur={(event) => formik.setFieldValue('ProdDescription', event.target.getContent())}
 			/>
-
 			<Separator height={20} />
 			<Form.Dropdown
 				name="ProdCategId"
@@ -110,7 +108,13 @@ export function ProductForm(props: any) {
 				error={formik.errors.ProdCategId}
 				onChange={(_, data) => formik.setFieldValue('ProdCategId', data.value)}
 			/>
-
+			<Message
+				compact
+				size='mini'
+				warning
+			>
+				* Recuerda que debes ingresar el precio en pesos colombianos (COP). Pero no te preocupes, los clientes podrán ver el valor en otras monedas al momento de comprar.
+			</Message>
 			<Form.Group widths="equal">
 				<Form.Input
 					type="number"

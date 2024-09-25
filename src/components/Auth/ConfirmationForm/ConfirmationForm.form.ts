@@ -10,7 +10,7 @@ export function initialValues() {
 
 export function validationSchema() {
 	return Yup.object({
-		code: Yup.string().required(),
-		email: Yup.string().email().required()
+		code: Yup.string().required('Ingresa el codigo que llego a tu correo para continuar'),
+		email: Yup.string().required('Debes ingresar el correo con el que te registraste').email('El correo ingresado no es valido')
 	});
 }

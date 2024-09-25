@@ -61,7 +61,7 @@ export function AddressForm({ onClose, onReload, address }: AddressFormProps) {
       <Form.Group widths="equal">
         <Form.Input
           name="addState"
-          placeholder="Provincia"
+          placeholder="Departamento/Estado"
           value={formik.values.addState}
           onChange={formik.handleChange}
           error={formik.errors.addState}
