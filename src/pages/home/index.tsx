@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect, useCallback } from "react";
 import { Container, Dropdown, DropdownProps, Label } from "semantic-ui-react";
@@ -84,37 +85,44 @@ export default function HomePage() {
   };
 
   return (
-    <BasicLayout>
-      <Separator height={50} />
-
-      <Container>
-        <h2>Categorías más populares</h2>
-	  	  <GridCategories />
-
+    <>
+      <Head>
+        <title>Home | Mi Tienda</title>
+        <meta name="description" content="Bienvenido a nuestra tienda en línea" />
+      </Head>
+      <BasicLayout>
         <Separator height={50} />
 
-        <h2>Últimos productos</h2>
-        <Separator height={10} />
-        <div className={styles.controls}>
-          <span className={styles.span}>Mostrar </span>
-          <Label size="mini">{itemsPerPage}</Label>
-          <span className={styles.span}> productos por página organizados en </span>
-          <Dropdown
-            inline
-            options={getColumnsOptions()}
-            value={columns}
-            onChange={handleColumnsChange}
+        <Container>
+          <h2>Categorías más populares</h2>
+          <GridCategories />
+
+          <Separator height={50} />
+
+          <h2>Últimos productos</h2>
+          <Separator height={10} />
+          <div className={styles.controls}>
+            <span className={styles.span}>Mostrar </span>
+            <Label size="mini">{itemsPerPage}</Label>
+            <span className={styles.span}> productos por página organizados en </span>
+            <Dropdown
+              inline
+              onChange={handleColumnsChange}
+              options={getColumnsOptions()}
+              role="dropdown"
+              value={columns}
+            />
+            <span className={styles.span}> columnas</span>
+          </div>
+          <GridProducts
+            products={products}
+            columns={columns}
+            classProduct={styles.product}
           />
-          <span className={styles.span}> columnas</span>
-        </div>
-        <GridProducts
-          products={products}
-          columns={columns}
-          classProduct={styles.product}
-        />
-        {totalPages && products && <Pagination currentPage={page} totalPages={totalPages} />}
-        <Separator height={20} />
-      </Container>
-    </BasicLayout>
+          {totalPages && products && <Pagination currentPage={page} totalPages={totalPages} />}
+          <Separator height={20} />
+        </Container>
+      </BasicLayout>
+    </>
   );
 }
