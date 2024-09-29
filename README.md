@@ -15,8 +15,8 @@ bun dev
 ```
 
 # Pendientes:
-Revisar modales se crean a un lado 
 Revisar mobile design en admin ya que en mobile se desorganizan las tablas en columnas
+Revisar ucrrecnies
 En admin si busco y no hay productos se queda en Cargando productos
 Añadir categorias al menu hamburguesa en mobile
 Cuando se busca algo en la barra de busqueda se debe cerrar el nav
@@ -26,4 +26,6 @@ Crear rol superAdmin
 Crear servicio en api para que solo super admin asigne admin
 COP currency y esos servicios solo deberian llamarse una vez al hacer el login
 Corregir modales se pegan a la izquierda
+Corregir que currenciesRates se llame solo si hay alguien loggeado
+Arreglar address details se decuadra el nombre de la direccion 
 Integrar Stripe y Paypal para pagos

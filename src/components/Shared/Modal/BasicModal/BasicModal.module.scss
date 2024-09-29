@@ -1,0 +1,18 @@
+@import "~/src/scss/index.scss";
+
+.modal {
+  height: fit-content !important;
+  position: fixed; /* Fijamos la posición */
+  top: 50vh !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%); /* Centramos */
+  max-height: 95vh;
+  max-width: 100%; /* Asegura que no se salga de la pantalla */
+}
+
+@media (min-width: 600px) {
+  .modal {
+    top: 40vh;
+    max-height: 90vh;
+  }
+}
