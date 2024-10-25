@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Table } from "semantic-ui-react";
+import styles from "./../../index.module.scss";
 import { User } from "./User";
 import { userCtrl } from "@/api";
 import { Loading, Pagination } from "@/components/Shared";
@@ -34,8 +35,8 @@ export function UserList() {
   if (!users || users.length === 0) return <Loading text="Cargando usuarios" />;
 
   return (
-    <>
-      <Table striped>
+    <div className={styles.row}>
+      <Table striped unstackable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Avatar</Table.HeaderCell>
@@ -54,6 +55,6 @@ export function UserList() {
       </Table>
 
       {totalPages !== null && <Pagination currentPage={page} onPageChange={handlePageChange} totalPages={totalPages} />}
-    </>
+    </div>
   );
 }

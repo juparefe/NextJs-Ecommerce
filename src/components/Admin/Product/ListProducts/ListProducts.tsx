@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { Table } from 'semantic-ui-react';
+import styles from "./../../index.module.scss";
 import { Product } from './Product';
 import { productCtrl } from '@/api';
 import { Loading, NoResult, Pagination } from '@/components/Shared';
@@ -37,8 +38,8 @@ export function ListProducts(props: any) {
 	if (!products || products.length === 0) return <Loading text="Cargando productos" />;
 
 	return (
-		<div>
-			<Table striped>
+		<div className={styles.row}>
+			<Table striped unstackable>
 				<Table.Header>
 					<Table.Row>
 						<Table.HeaderCell>ID</Table.HeaderCell>

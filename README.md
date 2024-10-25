@@ -15,7 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-Revisar mobile design en admin ya que en mobile se desorganizan las tablas en columnas
 Revisar ucrrecnies
 En admin si busco y no hay productos se queda en Cargando productos
 Añadir categorias al menu hamburguesa en mobile
