@@ -15,7 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-En admin si busco y no hay productos se queda en Cargando productos
 Añadir categorias al menu hamburguesa en mobile
 Cuando se busca algo en la barra de busqueda se debe cerrar el nav
 Añadir descuentos a los productos para el admin
