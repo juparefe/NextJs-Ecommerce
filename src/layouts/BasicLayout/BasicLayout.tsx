@@ -49,6 +49,7 @@ export function BasicLayout(props: any) {
 											placeholder="Busca lo que necesitas..."
 										/>
 										{isAdmin && <Nav.Link href={"/admin"}><Layout.AdminButton /></Nav.Link>}
+										{!showCategories && <Layout.CategoriesMobileMenu />}
 										<Nav.Link href={urlAccount}><Layout.Account /></Nav.Link>
 										<Nav.Link href="/basket"><Layout.Basket /></Nav.Link>
 									</Nav>

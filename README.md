@@ -15,7 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-Añadir categorias al menu hamburguesa en mobile
 Cuando se busca algo en la barra de busqueda se debe cerrar el nav
 Añadir descuentos a los productos para el admin
 Añadir mensaje producto top
