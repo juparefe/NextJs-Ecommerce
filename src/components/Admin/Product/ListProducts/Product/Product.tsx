@@ -5,7 +5,6 @@ import { ProductImageForm } from '../../ProductImageForm';
 import styles from './Product.module.scss';
 import { productCtrl } from '@/api';
 import { Modal } from '@/components/Shared';
-import { useAuth } from "@/hooks";
 import { Constants, ProductI } from '@/utils';
 import { fn } from '@/utils/functions';
 
@@ -14,15 +13,15 @@ export function Product(props: { product: ProductI; onReload: any }) {
 	const [image, setImage] = useState(Constants.NOT_FOUND_IMAGE);
 	const [modalContent, setModalContent] = useState(<p></p>);
 	const [openModal, setOpenModal] = useState(false);
+	const [productPrice, setProductPrice] = useState('$ 0');
 	const [showConfirm, setShowConfirm] = useState(false);
-	const { currencyObject } = useAuth();
 
 	useEffect(() => {
 		const imageUrl = fn.getUrlImage(product.prodId);
 		fn.checkIfImageExists(imageUrl, (exists: boolean) => {
 			if (exists) setImage(imageUrl);
 		});
-        product.prodPrice = fn.formatCurrency(Number(product.prodPrice), currencyObject);
+        setProductPrice(fn.formatCurrency(Number(product.prodPrice), Constants.DEFAULT_CURRENCY));
 	}, [product]);
 
 	const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
@@ -59,7 +58,7 @@ export function Product(props: { product: ProductI; onReload: any }) {
 				<Image className={styles.image} src={image} alt={product.prodTitle} />
 			</Table.Cell>
 			<Table.Cell>{product.prodTitle}</Table.Cell>
-			<Table.Cell>{product.prodPrice}</Table.Cell>
+			<Table.Cell>{productPrice}</Table.Cell>
 			<Table.Cell>{product.prodStock} Unidades</Table.Cell>
 			<Table.Cell className={styles.actions}>
 				<Icon name="pencil" link onClick={openEditProduct} />
