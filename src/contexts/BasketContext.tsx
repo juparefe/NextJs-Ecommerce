@@ -1,7 +1,6 @@
-import { DateTime } from "luxon";
 import { useState, useEffect, createContext } from "react";
-import { basketCtrl, currencyCtrl } from "@/api";
-import { Constants, CurrencyCode, CurrencyI, CurrencyRateI, LSBasketI, RatesI } from "@/utils";
+import { basketCtrl } from "@/api";
+import { LSBasketI } from "@/utils";
 
 export const BasketContext = createContext({} as BasketContextType);
 
@@ -11,7 +10,6 @@ interface BasketContextType {
     changeQuantityItem: (productId: string, quantity: string) => void;
     deleteAllItems: () => void;
     deleteItem: (productId: string) => void;
-    getCurrencies: any;
     total: number;
 }
 
@@ -52,52 +50,12 @@ export function BasketProvider(props: any) {
     refreshBasket();
   };
 
-  const getCurrencies = async () => {
-    const newCurrencyString = localStorage.getItem('currency');
-    const newCurrencyJson: CurrencyI = newCurrencyString ? JSON.parse(newCurrencyString) : Constants.DEFAULT_CURRENCY;
-    const { currencyLastSymbol, currencySymbol, selectedCurrency } = newCurrencyJson;
-    const newCurrencyRatesString: string | null = localStorage.getItem('ratesCOP');
-    let currency: CurrencyRateI = {
-      currencyLastSymbol,
-      currencyRate: 1,
-      currencySymbol,
-      selectedCurrency
-    };
-    if (newCurrencyRatesString) {
-      const newCurrencyRatesJson: RatesI = JSON.parse(newCurrencyRatesString);
-      // Convertir timeLastUpdate a un objeto DateTime de Luxon
-      let timeLastUpdateDate = DateTime.fromRFC2822(newCurrencyRatesJson.timeLastUpdate).toUTC();
-      // Obtener la fecha actual con Luxon
-      const currentDate = DateTime.now();
-      // Verificar si timeLastUpdate es hoy y si no llamar a ExchangeRate API
-      if(timeLastUpdateDate.hasSame(currentDate, 'day')) {
-        return {
-          ...currency,
-          currencyRate: newCurrencyRatesJson[selectedCurrency.toLowerCase() as CurrencyCode]
-        };
-      } else {
-        const currenciesFromService = await currencyCtrl.getAll();
-        return {
-          ...currency,
-          currencyRate: currenciesFromService[selectedCurrency.toLowerCase() as CurrencyCode]
-        };
-      };
-    } else {
-      const currenciesFromService = await currencyCtrl.getAll();
-      return {
-        ...currency,
-        currencyRate: currenciesFromService[selectedCurrency.toLowerCase() as CurrencyCode]
-      };
-    }
-  };
-
   const data: BasketContextType = {
     addBasket,
     basket,
     changeQuantityItem,
     deleteAllItems,
     deleteItem,
-    getCurrencies,
     total
   };
 

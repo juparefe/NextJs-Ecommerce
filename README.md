@@ -15,7 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-Revisar ucrrecnies
 En admin si busco y no hay productos se queda en Cargando productos
 Añadir categorias al menu hamburguesa en mobile
 Cuando se busca algo en la barra de busqueda se debe cerrar el nav
@@ -27,4 +26,5 @@ COP currency y esos servicios solo deberian llamarse una vez al hacer el login
 Corregir modales se pegan a la izquierda
 Corregir que currenciesRates se llame solo si hay alguien loggeado
 Arreglar address details se decuadra el nombre de la direccion 
+Arreglar imagenes se descuadran si son muy altas en basket
 Integrar Stripe y Paypal para pagos

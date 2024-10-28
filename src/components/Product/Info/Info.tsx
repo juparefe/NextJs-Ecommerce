@@ -2,28 +2,16 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Button } from "semantic-ui-react";
 import styles from "./Info.module.scss";
-import { useBasket } from "@/hooks";
-import { Constants, CurrencyRateI } from "@/utils";
+import { useAuth, useBasket } from "@/hooks";
+import { fn } from "@/utils";
 
 export function Info(props: any) {
   const { product } = props;
-  const [currencyRate, setCurrencyRate] = useState<CurrencyRateI>(Constants.DEFAULT_CURRENCY);
   const [loading, setLoading] = useState(false);
   const [available, setAvailable] = useState<boolean>(true);
-  const { addBasket, basket, getCurrencies } = useBasket();
+  const { currencyObject } = useAuth();
+  const { addBasket, basket } = useBasket();
   const router = useRouter();
-
-  useEffect(() => {
-		// Obtener las tasas de cambio de las monedas al montar el componente
-		(async () => {
-		  try {
-			const currency = await getCurrencies(); // Espera a obtener las tasas de cambio
-			setCurrencyRate(currency); // Almacena las tasas en el estado
-		  } catch (error) {
-			console.error("Error obteniendo las tasas de cambio", error);
-		  }
-		})();
-	}, []);
 
   useEffect(() => {
     const prodStock = basket.find(item => product.prodId === item.id);
@@ -51,7 +39,7 @@ export function Info(props: any) {
       {(available) && <span className={styles.stock}>
         {`Quedan ${product.prodStock} unidad/es`}
       </span>}
-      <span className={styles.price}>{currencyRate.currencySymbol}{(Number(product.prodPrice) * currencyRate.currencyRate).toFixed(2)}{currencyRate.currencyLastSymbol}</span>
+      <span className={styles.price}>{fn.formatCurrency(Number(product.prodPrice), currencyObject)}</span>
 
       {(!available) && <span className={styles.stock}>
         {`Los sentimos, no quedan unidades disponibles`}

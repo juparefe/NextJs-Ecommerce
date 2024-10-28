@@ -4,10 +4,10 @@ import { Button } from "semantic-ui-react";
 import styles from "./OrderSummary.module.scss";
 import { orderCtrl } from "@/api";
 import { useBasket } from "@/hooks";
-import { OrderDetailI, ProductI } from "@/utils";
+import { fn, OrderDetailI, ProductI } from "@/utils";
 
 export function OrderSummary(props: any) {
-  const { products, address, nextDisabled = false, currencyRate } = props;
+  const { products, address, nextDisabled = false, currencyObject } = props;
   const [loading, setLoading] = useState(false);
   const [orderDetails, setOrderDetails] = useState<OrderDetailI[]>([]);
   const [total, setTotal] = useState(0);
@@ -19,12 +19,12 @@ export function OrderSummary(props: any) {
     let orderDetailsTemp: OrderDetailI[] = [];
 
     products.forEach((product: ProductI) => {
-      totalTemp += (Number(product.prodPrice) * currencyRate.currencyRate) * Number(product.quantity);
+      totalTemp += (Number(product.prodPrice) * currencyObject.currencyRate) * Number(product.quantity);
       orderDetailsTemp.push({
-        odCurrency: currencyRate.selectedCurrency,
-        odCurrencyLastSymbol: currencyRate.currencyLastSymbol,
-        odCurrencySymbol: currencyRate.currencySymbol,
-        odPrice: (Number(product.prodPrice) * currencyRate.currencyRate).toFixed(2),
+        odCurrency: currencyObject.selectedCurrency,
+        odCurrencyLastSymbol: currencyObject.currencyLastSymbol,
+        odCurrencySymbol: currencyObject.currencySymbol,
+        odPrice: fn.formatCurrency(Number(product.prodPrice), currencyObject),
         odProdId: product.prodId,
         odQuantity: Number(product.quantity)
       });
@@ -62,7 +62,7 @@ export function OrderSummary(props: any) {
       <div className={styles.prices}>
         <div>
           <span>Total</span>
-          <span>{currencyRate.currencySymbol}{total.toFixed(2)}{currencyRate.currencyLastSymbol}</span>
+          <span>{currencyObject.currencySymbol}{total.toFixed(2)}{currencyObject.currencyLastSymbol}</span>
         </div>
       </div>
 

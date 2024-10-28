@@ -4,14 +4,14 @@ import { ListProducts } from "./ListProducts";
 import styles from "./StepOne.module.scss";
 
 export function StepOne(props: any) {
-  const { products, currencyRate } = props;
+  const { products, currencyObject } = props;
 
   return (
     <Container className={styles.container}>
       <div className={styles.left}>
         <ListProducts
           products={products}
-          currencyRate={currencyRate}
+          currencyObject={currencyObject}
         />
       </div>
       <div className={styles.right}>
@@ -19,7 +19,7 @@ export function StepOne(props: any) {
           products={products}
           nextStep={2}
           btnText="Proceder con la dirección"
-          currencyRate={currencyRate}
+          currencyObject={currencyObject}
         />
       </div>
     </Container>

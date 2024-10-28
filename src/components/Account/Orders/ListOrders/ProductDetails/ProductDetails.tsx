@@ -3,6 +3,7 @@ import { Image } from "semantic-ui-react";
 import styles from "./ProductDetails.module.scss";
 import { productCtrl } from "@/api";
 import { Loading } from "@/components/Shared";
+import { useAuth } from "@/hooks";
 import { ProductI } from "@/utils";
 import { fn } from "@/utils/functions";
 
@@ -10,6 +11,7 @@ export function ProductsDetails(props: any) {
   const { productsOrder } = props;
   const [products, setProducts] = useState<ProductI[]>([]);
   const [loading, setLoading] = useState(false);
+  const { currencyObject } = useAuth();
 
   useEffect(() => {
     (async () => {
@@ -54,7 +56,7 @@ export function ProductsDetails(props: any) {
             </div>
 
             <p className={styles.price}>
-              {product.quantity} x {product.prodCurrencySymbol}{product.prodPrice}{product.prodCurrencyLastSymbol}
+              {product.quantity} x {fn.formatCurrency(Number(product.prodPrice), currencyObject)}
             </p>
           </div>
         );

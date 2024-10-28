@@ -5,7 +5,7 @@ import { Payments } from "./Payments";
 import styles from "./StepThree.module.scss";
 
 export function StepThree(props: any) {
-  const { products, address, currencyRate } = props;
+  const { products, address, currencyObject } = props;
   const [paymentSelected, setPaymentSelected] = useState(null);
 
   return (
@@ -21,7 +21,7 @@ export function StepThree(props: any) {
           products={products}
           address={address}
           nextDisabled={!paymentSelected}
-          currencyRate={currencyRate}
+          currencyObject={currencyObject}
         />
       </div>
     </Container>

@@ -4,10 +4,10 @@ import { Button } from "semantic-ui-react";
 import styles from "./OrderSummary.module.scss";
 import { basketCtrl } from "@/api/basket";
 import { useAuth } from "@/hooks";
-import { ProductI } from "@/utils";
+import { fn, ProductI } from "@/utils";
 
 export function OrderSummary(props: any) {
-  const { products, nextStep, btnText, nextDisabled = false, currencyRate } = props;
+  const { products, nextStep, btnText, nextDisabled = false, currencyObject } = props;
   const [total, setTotal] = useState(0);
   const { user } = useAuth();
   const router = useRouter();
@@ -38,7 +38,7 @@ export function OrderSummary(props: any) {
       <div className={styles.prices}>
         <div>
           <span>Total ({basketCtrl.count()} productos):</span>
-          <span>{currencyRate.currencySymbol}{(Number(total) * currencyRate.currencyRate).toFixed(2)}{currencyRate.currencyLastSymbol}</span>
+          <span>{fn.formatCurrency(Number(total), currencyObject)}</span>
         </div>
       </div>
 

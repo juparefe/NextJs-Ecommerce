@@ -6,7 +6,7 @@ import styles from "./Product.module.scss";
 import { Constants, fn } from "@/utils";
 
 export function Product(props: any) {
-  const { product, classProduct, currencyRate } = props;
+  const { product, classProduct, currencyObject } = props;
   const [image, setImage] = useState(Constants.NOT_FOUND_IMAGE);
   const lowStock = product.prodStock > 0 && product.prodStock < 10;
 
@@ -33,15 +33,10 @@ export function Product(props: any) {
           <h3 className={styles.title}>{product.prodTitle}</h3>
 
           <div className={styles.footer}>
-          {currencyRate.currencyRate > 0 && (
             <span className={styles.price}>
-              {currencyRate.currencySymbol}
-              {(Number(product.prodPrice) * currencyRate.currencyRate).toFixed(2)}
-              {currencyRate.currencyLastSymbol}
+              {fn.formatCurrency(Number(product.prodPrice), currencyObject)}
             </span>
-          )}
           </div>
-
           {lowStock && (
             <p className={styles.lowStock}>
               {`Solo quedan ${product.prodStock} unidad/es`}

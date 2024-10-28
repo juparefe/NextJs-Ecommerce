@@ -4,7 +4,7 @@ import { useBasket } from "@/hooks";
 import { Constants, fn, ProductI } from "@/utils";
 
 export function ListProducts(props: any) {
-  const { products, currencyRate } = props;
+  const { products, currencyObject } = props;
   const { changeQuantityItem, deleteItem } = useBasket();
 
   const options = Array.from({ length: 20 }, (_, index) => {
@@ -42,7 +42,7 @@ export function ListProducts(props: any) {
                   changeQuantityItem(product.prodId, String(data.value))
                 }
               />
-              <span>{currencyRate.currencySymbol}{(Number(product.prodPrice) * currencyRate.currencyRate).toFixed(2)}{currencyRate.currencyLastSymbol}</span>
+              <span>{fn.formatCurrency(Number(product.prodPrice), currencyObject)}</span>
               <Icon
                 name="trash alternate outline"
                 link
