@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import styles from "./SearchContext.module.scss";
 import { productCtrl } from "@/api";
 import { Separator, GridProducts } from "@/components/Shared";
+import { useWindowSize } from "@/hooks";
 import { ProductI } from "@/utils";
 
 // Creacion del componente proveedor del contexto para la barra de busqueda
 export function SearchProvider(props: any) {
   const { children } = props;
+  const { windowSize } = useWindowSize();
+  const [columns, setColumns] = useState(4);
   const [products, setProducts] = useState<ProductI[] | null>(null);
   const [totalItems, setTotalItems] = useState(0);
   const { query } = useRouter();
@@ -34,6 +37,16 @@ export function SearchProvider(props: any) {
     })();
   }, [query.search]);
 
+  useEffect(() => {
+    if (windowSize.width < 600) {
+      setColumns(2);
+    } else if (windowSize.width < 900) {
+      setColumns(3);
+    } else {
+      setColumns(4);
+    }
+  }, [windowSize.width]);
+
   return (
     <>
       {children}
@@ -49,7 +62,7 @@ export function SearchProvider(props: any) {
 
           <GridProducts
             products={products}
-            columns={6}
+            columns={columns}
             classProduct={styles.product}
           />
         </div>

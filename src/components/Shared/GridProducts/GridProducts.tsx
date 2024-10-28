@@ -3,6 +3,7 @@ import styles from "./GridProducts.module.scss";
 import { Product } from "./Product";
 import { Loading, NoResult, Separator } from '@/components/Shared';
 import { useAuth } from "@/hooks";
+import { ProductI } from "@/utils";
 
 export function GridProducts(props: any) {
   const { products, columns = 4, classProduct } = props;
@@ -24,9 +25,9 @@ export function GridProducts(props: any) {
   return (
     <>
       <div className={styles.container}>
-        {products.map((product: any) => (
+        {products.map((product: ProductI) => (
           <div
-            key={product.prodID}
+            key={product.prodId}
             className={classNames({
               [styles.oneColumn]: columns === 1,
               [styles.twoColumns]: columns === 2,
