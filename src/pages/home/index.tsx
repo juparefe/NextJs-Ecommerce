@@ -75,7 +75,8 @@ export default function HomePage() {
     }
   }, [query.page]);
 
-  const handleColumnsChange = (_: any, data: DropdownProps) => {
+  const handleColumnsChange = async (_: any, data: DropdownProps) => {
+    await router.replace({ query: { ...router.query, page: '1' } });
     const value = data.value as number;
     setColumns(value);
     setItemsPerPage(value * 2);

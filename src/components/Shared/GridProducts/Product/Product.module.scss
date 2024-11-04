@@ -18,6 +18,12 @@
     opacity: 0.6;
   }
 
+  .icon {
+    background-color: $warning;
+    position: absolute;
+    z-index: 1;
+  }
+
   .image {
     height: 110px;
     margin: 0 auto;

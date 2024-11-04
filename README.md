@@ -15,7 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-Añadir mensaje producto top
 Crear rol superAdmin
 Crear servicio en api para que solo super admin asigne admin
 COP currency y esos servicios solo deberian llamarse una vez al hacer el login

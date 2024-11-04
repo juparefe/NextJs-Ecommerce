@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Image, Label } from "semantic-ui-react";
+import { Icon, Image, Label } from "semantic-ui-react";
 import styles from "./Product.module.scss";
 import { Constants, fn } from "@/utils";
 
@@ -43,16 +43,21 @@ export function Product(props: any) {
     >
       <Link className={styles.link} href={`/product/${product.prodPath}`}>
         <div className={styles.content}>
-            <Image
-              alt={product.prodTitle}
-              className={styles.image}
-              label={
-                product.prodDiscount && Number(product.prodDiscount) > 0
-                  ? { color: 'teal', corner: 'right', icon: 'gift', size: 'medium' }
-                  : null
-              }
-              src={image}
-            />
+          {
+            product.prodTop && (
+              <Icon circular className={styles.icon} corner='top left' name="fire" />
+            )
+          }
+          <Image
+            alt={product.prodTitle}
+            className={styles.image}
+            label={
+              product.prodDiscount && Number(product.prodDiscount) > 0
+                ? { color: 'teal', corner: 'right', icon: 'gift', size: 'medium' }
+                : null
+            }
+            src={image}
+          />
           <h3 className={styles.title}>{product.prodTitle}</h3>
 
           <div className={styles.footer}>
