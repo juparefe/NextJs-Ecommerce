@@ -2,54 +2,74 @@
 
 .wrapper {
   position: relative;
-}
-
-.container {
-  display: flex;
-  margin: 0 -10px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  &::-webkit-scrollbar {
-    display: none;
+  .container {
+    display: flex;
+    margin: 0 -10px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
-}
 
-.link {
-  text-decoration: none;
-}
-
-.category {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 5px;
-  margin: 5px;
-  text-align: center;
-  align-items: center;
-  box-sizing: border-box;
-  width: 150px;
-  height: 180px;
-  height: 100%;
-  background: radial-gradient(circle closest-corner at bottom, #49CCC4 200%, transparent 51%) no-repeat,
-              #01858A;
-  background-size: 100% 135%, cover;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  &:hover {
-    opacity: 0.6;
+  .link {
+    text-decoration: none;
   }
-  
-  .image {
-    height: 130px;
+
+  .category {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    margin: 3px;
+    text-align: center;
+    align-items: center;
+    box-sizing: border-box;
     width: 130px;
+    height: 180px;
+    height: 100%;
+    background: radial-gradient(circle closest-corner at bottom, #49CCC4 200%, transparent 51%) no-repeat,
+                #01858A;
+    background-size: 100% 135%, cover;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &:hover {
+      opacity: 0.6;
+    }
+    
+    .image {
+      height: 130px;
+      width: 130px;
+    }
+  
+    > .header {
+      font-size: 10px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: $background-primary;
+    }
   }
+}
 
-  > .header {
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 10px;
-    color: $background-primary;
+@media (min-width: 400px) {
+  .wrapper {
+    .container {
+      .category {
+        width: 140px;
+      }
+    }
+  }
+}
+
+@media (min-width: 550px) {
+  .wrapper {
+    .container {
+      .category {
+        height: 190px;
+        width: 155px;
+      }
+    }
   }
 }
 

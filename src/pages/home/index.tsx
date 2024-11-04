@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Container, Dropdown, DropdownProps, Label } from "semantic-ui-react";
 import styles from "./home.module.scss";
 import { productCtrl } from "@/api";
@@ -13,12 +13,12 @@ export default function HomePage() {
   const { query } = router;
   const { windowSize } = useWindowSize();
   const [page, setPage] = useState(Number(query.page || 1));
-  const [itemsPerPage, setItemsPerPage] = useState(8);
   const [columns, setColumns] = useState(4);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
   const [products, setProducts] = useState(null);
   const [totalPages, setTotalPages] = useState<number | null>(null);
 
-  const updateColumns = useCallback(() => {
+  useEffect(() => {
     if (windowSize.width < 600) {
       setColumns(2);
     } else if (windowSize.width < 900) {
@@ -29,8 +29,8 @@ export default function HomePage() {
   }, [windowSize.width]);
 
   useEffect(() => {
-    updateColumns();
-  }, [updateColumns]);
+    setItemsPerPage(columns * 2);
+  }, [columns]);
 
   const getColumnsOptions = () => {
     if (windowSize && windowSize.width < 600) {
@@ -42,8 +42,7 @@ export default function HomePage() {
       return [
         { key: 1, text: '1', value: 1 },
         { key: 2, text: '2', value: 2 },
-        { key: 3, text: '3', value: 3 },
-        { key: 4, text: '4', value: 4 }
+        { key: 3, text: '3', value: 3 }
       ];
     } else {
       return [
@@ -51,8 +50,7 @@ export default function HomePage() {
         { key: 2, text: '2', value: 2 },
         { key: 3, text: '3', value: 3 },
         { key: 4, text: '4', value: 4 },
-        { key: 5, text: '5', value: 5 },
-        { key: 6, text: '6', value: 6 }
+        { key: 5, text: '5', value: 5 }
       ];
     }
   };

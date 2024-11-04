@@ -27,7 +27,7 @@ export function ListCategories(props: any) {
 		<div className={styles.row}>
 			<Table striped unstackable>
 				<Table.Header>
-					<Table.Row>
+					<Table.Row textAlign='center'>
 						<Table.HeaderCell>ID</Table.HeaderCell>
 						<Table.HeaderCell>Imagen</Table.HeaderCell>
 						<Table.HeaderCell>Titulo</Table.HeaderCell>

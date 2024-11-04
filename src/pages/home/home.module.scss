@@ -1,12 +1,14 @@
 @import "~/src/scss/index.scss";
 
 .span {
-  font-size: smaller;
+  font-size: 8px;
 }
 
-div {.ui.label {
-  padding: .1em .8em;
-}}
+div {
+  .ui.label {
+    padding: .1em .8em;
+  }
+}
 
 .product {
   height: 100%;
@@ -15,5 +17,17 @@ div {.ui.label {
     height: 100%;
     border-radius: 5px;
     background-color: $background-secondary;
+  }
+}
+
+@media (min-width: 400px) {
+  .span {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 600px) {
+  .span {
+    font-size: 11px;
   }
 }

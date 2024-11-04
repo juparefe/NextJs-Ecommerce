@@ -22,7 +22,6 @@ export function Category(props: { category: CategoryI; onReload: any }) {
 		});
 	}, [category]);
 
-  const onOpenCloseModal = () => setOpenModal((prevState) => !prevState);
   const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
 
   const onDelete = async () => {
@@ -52,13 +51,13 @@ export function Category(props: { category: CategoryI; onReload: any }) {
 
   return (
     <>
-      <Table.Cell>{category.categId}</Table.Cell>
-      <Table.Cell>
+      <Table.Cell textAlign="center">{category.categId}</Table.Cell>
+      <Table.Cell textAlign="center">
 				<Image className={styles.image} src={image} alt={category.categName} />
 			</Table.Cell>
       <Table.Cell>{category.categName}</Table.Cell>
       <Table.Cell>{category.categPath}</Table.Cell>
-      <Table.Cell className={styles.actions} textAlign="right">
+      <Table.Cell className={styles.actions} textAlign="center">
         <Icon name="pencil" link onClick={openEditCategory} />
         <Icon name="image" link onClick={openEditImageCategory} />
         <Icon name="trash" link onClick={onOpenCloseConfirm} />

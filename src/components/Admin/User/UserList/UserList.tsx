@@ -38,7 +38,7 @@ export function UserList() {
     <div className={styles.row}>
       <Table striped unstackable>
         <Table.Header>
-          <Table.Row>
+          <Table.Row textAlign="center">
             <Table.HeaderCell>Avatar</Table.HeaderCell>
             <Table.HeaderCell>Email</Table.HeaderCell>
             <Table.HeaderCell>Admin</Table.HeaderCell>

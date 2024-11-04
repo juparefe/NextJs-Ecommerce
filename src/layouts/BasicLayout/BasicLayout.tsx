@@ -13,7 +13,7 @@ export function BasicLayout(props: any) {
 	const urlAccount = (user && user.userEmail) ? '/account' : '/join/login';
 
 	const handleResize = () => {
-		setShowCategories(window.innerWidth > 768);
+		setShowCategories(window.innerWidth > 900);
 	};
 
 	useEffect(() => {

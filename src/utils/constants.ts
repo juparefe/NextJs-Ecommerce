@@ -6,9 +6,11 @@ export const ENV = {
 		ADDRESS: '/address',
 		CATEGORY: '/category',
 		CURRENCY: '/currency',
+		DISCOUNT: '/discount',
 		ORDER: '/order',
 		ORDERS: '/orders',
 		PRODUCT: '/product',
+		STOCK: '/stock',
 		TOP_CATEGORIES: '/topcategories',
 		USERS: '/users',
 		USER_ME: '/user/me'

@@ -68,10 +68,11 @@ export interface ProductI {
 	prodCurrency?: string;
 	prodCurrencyLastSymbol?: string;
 	prodCurrencySymbol?: string;
+	prodDiscount: string;
 	prodId: string;
-	prodTitle: string;
 	prodPrice: string;
 	prodStock: string;
+	prodTitle: string;
 	quantity?: number;
 }
 

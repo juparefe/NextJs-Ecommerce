@@ -12,7 +12,7 @@ async function getAllCategories() {
 
 		if (response.status !== 200) throw result;
 
-		return result;
+		return await result.sort((a: any, b: any) => a.categName.localeCompare(b.categName));
 	} catch (error) {
 		throw error;
 	}
@@ -30,7 +30,7 @@ async function getTopCategories() {
 
 		if (response.status !== 200) throw result;
 
-		return result;
+		return result.sort((a: any, b: any) => a.categName.localeCompare(b.categName));
 	} catch (error) {
 		throw error;
 	}

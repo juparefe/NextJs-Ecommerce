@@ -15,7 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-Añadir descuentos a los productos para el admin
 Añadir mensaje producto top
 Crear rol superAdmin
 Crear servicio en api para que solo super admin asigne admin
@@ -25,3 +24,4 @@ Corregir que currenciesRates se llame solo si hay alguien loggeado
 Arreglar address details se decuadra el nombre de la direccion 
 Arreglar imagenes se descuadran si son muy altas en basket
 Integrar Stripe y Paypal para pagos
+Añadir seccion en oferta trayendo los que tengan descuento 

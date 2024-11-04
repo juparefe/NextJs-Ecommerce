@@ -19,11 +19,11 @@ export function User(props: { user: any; }) {
 
   return (
     <>
-      <Table.Cell width={1}>
+      <Table.Cell width={1} textAlign="center">
         <Image src={avatar} alt={user.userEmail} avatar />
       </Table.Cell>
       <Table.Cell>{user.userEmail}</Table.Cell>
-      <Table.Cell>
+      <Table.Cell textAlign="center">
         <Icon
           name={isAdmin ? "check" : "close"}
           color={isAdmin ? "green" : "red"}

@@ -41,12 +41,13 @@ export function ListProducts(props: any) {
 		<div className={styles.row}>
 			<Table striped unstackable>
 				<Table.Header>
-					<Table.Row>
+					<Table.Row textAlign='center'>
 						<Table.HeaderCell>ID</Table.HeaderCell>
 						<Table.HeaderCell>Imagen</Table.HeaderCell>
 						<Table.HeaderCell>Nombre</Table.HeaderCell>
 						<Table.HeaderCell>Precio</Table.HeaderCell>
 						<Table.HeaderCell>Stock</Table.HeaderCell>
+						<Table.HeaderCell>Descuento</Table.HeaderCell>
 						<Table.HeaderCell>Acciones</Table.HeaderCell>
 					</Table.Row>
 				</Table.Header>

@@ -42,7 +42,7 @@ export function GridCategories() {
 	}, []);
 
   const handleResize = () => {
-		setShowButtons(window.innerWidth > 999);
+		setShowButtons(window.innerWidth > 899);
 	};
 
 	useEffect(() => {
