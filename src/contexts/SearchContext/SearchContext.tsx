@@ -27,10 +27,11 @@ export function SearchProvider(props: any) {
   useEffect(() => {
     (async () => {
         try {
-            setProducts(null);
-            const response = await productCtrl.getAll(1, 100000, query.search);
-            setProducts(response.data || []);
-            setTotalItems(response.totalItems || 0);
+            if (query.search !== '' && query.search !== undefined) {
+              const response = await productCtrl.getAll(1, 100, query.search);
+              setProducts(response.data || []);
+              setTotalItems(response.totalItems || 0);
+            }
         } catch (error) {
             console.error(error);
         }

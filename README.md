@@ -15,7 +15,6 @@ bun dev
 ```
 
 # Pendientes:
-Corregir que currenciesRates se llame solo si hay alguien loggeado
 Arreglar address details se decuadra el nombre de la direccion 
 Arreglar imagenes se descuadran si son muy altas en basket
 Integrar Stripe y Paypal para pagos

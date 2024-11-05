@@ -67,7 +67,7 @@ export function GridCategories() {
 
   return (
     <div className={styles.wrapper}>
-      {showButtons && (<Button className={styles.scrollButton} onClick={scrollLeft} basic compact icon color="teal">
+      {showButtons && (<Button aria-label="Desplazar a la izquierda" className={styles.scrollButton} onClick={scrollLeft} basic compact icon color="teal">
         <Icon name='angle left' />
       </Button>)}
       <div className={styles.container} ref={containerRef}>
@@ -81,7 +81,7 @@ export function GridCategories() {
           </Link>
         ))}
       </div>
-      {showButtons && (<Button className={styles.scrollButton} onClick={scrollRight} basic compact icon color="teal">
+      {showButtons && (<Button aria-label="Desplazar a la derecha" className={styles.scrollButton} onClick={scrollRight} basic compact icon color="teal">
         <Icon name='angle right' />
       </Button>)}
     </div>
