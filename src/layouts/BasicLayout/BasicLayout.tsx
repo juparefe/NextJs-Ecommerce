@@ -31,7 +31,11 @@ export function BasicLayout(props: any) {
 							<Navbar.Brand href="/" className={styles.logo}>
 								<Layout.Logo />
 							</Navbar.Brand>
-							<Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto" />
+							<Navbar.Toggle
+								aria-controls={`offcanvasNavbar-expand-${expand}`}
+								aria-expanded={expand === 'lg' ? 'true' : 'false'}
+								className="ms-auto"
+							/>
 							<Navbar.Offcanvas
 								id={`offcanvasNavbar-expand-${expand}`}
 								aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}

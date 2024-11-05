@@ -35,22 +35,22 @@ export default function HomePage() {
   const getColumnsOptions = () => {
     if (windowSize && windowSize.width < 600) {
       return [
-        { key: 1, text: '1', value: 1 },
-        { key: 2, text: '2', value: 2 }
+        { key: 1, role: 'option', text: '1', value: 1 },
+        { key: 2, role: 'option', text: '2', value: 2 }
       ];
     } else if (windowSize && windowSize.width < 900) {
       return [
-        { key: 1, text: '1', value: 1 },
-        { key: 2, text: '2', value: 2 },
-        { key: 3, text: '3', value: 3 }
+        { key: 1, role: 'option', text: '1', value: 1 },
+        { key: 2, role: 'option', text: '2', value: 2 },
+        { key: 3, role: 'option', text: '3', value: 3 }
       ];
     } else {
       return [
-        { key: 1, text: '1', value: 1 },
-        { key: 2, text: '2', value: 2 },
-        { key: 3, text: '3', value: 3 },
-        { key: 4, text: '4', value: 4 },
-        { key: 5, text: '5', value: 5 }
+        { key: 1, role: 'option', text: '1', value: 1 },
+        { key: 2, role: 'option', text: '2', value: 2 },
+        { key: 3, role: 'option', text: '3', value: 3 },
+        { key: 4, role: 'option', text: '4', value: 4 },
+        { key: 5, role: 'option', text: '5', value: 5 }
       ];
     }
   };
@@ -105,10 +105,11 @@ export default function HomePage() {
             <Label size="mini">{itemsPerPage}</Label>
             <span className={styles.span}> productos por página organizados en </span>
             <Dropdown
+              aria-label="Seleccionar número de columnas"
               inline
               onChange={handleColumnsChange}
               options={getColumnsOptions()}
-              role="dropdown"
+              role="listbox" // Cambiado de "dropdown" a "listbox"
               value={columns}
             />
             <span className={styles.span}> columnas</span>
