@@ -10,6 +10,7 @@ export const AuthContext = createContext({} as AuthContextType);
 interface AuthContextType {
 	currencyObject: any;
 	getCurrencies: any;
+	isSuperAdmin: boolean;
 	isAdmin: boolean;
 	login: () => Promise<void>;
 	logout: () => void;
@@ -22,6 +23,7 @@ export function AuthProvider(props: any) {
 	const { children } = props;
 	const [currencyObject, setCurrencyObject] = useState(Constants.DEFAULT_CURRENCY);
 	const [isAdmin, setIsAdmin] = useState(false);
+	const [isSuperAdmin, setIsSuperAdmin] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [user, setUser] = useState({});
 	const router = useRouter();
@@ -84,6 +86,7 @@ export function AuthProvider(props: any) {
 			setUser(response);
 			await getCurrencies();
 			setIsAdmin([1,2].includes(response.userStatus));
+			setIsSuperAdmin([1].includes(response.userStatus));
 			setLoading(false);
 		} catch (error) {
 			console.error(error);
@@ -95,6 +98,7 @@ export function AuthProvider(props: any) {
 		setUser({});
 		authCtrl.logout();
 		setIsAdmin(false);
+		setIsSuperAdmin(false);
 		router.push('/');
 	};
 
@@ -109,6 +113,7 @@ export function AuthProvider(props: any) {
 		currencyObject,
 		getCurrencies,
 		isAdmin,
+		isSuperAdmin,
 		login,
 		logout,
 		updateUser,

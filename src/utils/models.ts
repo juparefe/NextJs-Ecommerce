@@ -84,9 +84,11 @@ export interface RatesI {
 }
 
 export interface UserI {
+	userEmail: string
+	userFirstName: string
+	userLastName: string
+	userStatus: number
 	userUUID: string;
-	categPath: string;
-	categName: string;
 }
 
 export interface WindowI {

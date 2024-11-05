@@ -8,17 +8,17 @@ import { Loading, Pagination } from "@/components/Shared";
 import { UserI } from '@/utils';
 
 const ITEM_PER_PAGE = 10;
-export function UserList() {
+export function UserList(props: any) {
+  const { reload } = props;
   const router = useRouter();
   const { query } = router;
-  const [users, setUsers] = useState<UserI[]>([]);
+  const [users, setUsers] = useState<UserI[] | null>(null);
   const [totalPages, setTotalPages] = useState<number | null>(null);
   const page = Number(query.page || 1);
 
   useEffect(() => {
     (async () => {
       try {
-        setUsers([]);
         const response = await userCtrl.getAll(page);
         setUsers(response.data);
         setTotalPages(Math.ceil(response.totalItems / ITEM_PER_PAGE));
@@ -26,7 +26,7 @@ export function UserList() {
         console.error(error);
       }
     })();
-  }, [query.page]);
+  }, [query.page, reload]);
 
   const handlePageChange = (newPage: number) => {
 		router.replace({ query: { ...query, page: newPage } }, undefined, { shallow: true });
@@ -48,7 +48,7 @@ export function UserList() {
         <Table.Body>
             {users.map((user) => (
 				<Table.Row key={user.userUUID}>
-					<User user={user}/>
+					<User user={user} />
 				</Table.Row>
 			))}
         </Table.Body>

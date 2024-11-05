@@ -9,7 +9,7 @@ import { BasicLayout } from '@/layouts';
 
 export default function AdminPage() {
 	const [reload, setReload] = useState(false);
-	const { isAdmin } = useAuth();
+	const { isAdmin, isSuperAdmin } = useAuth();
 	const router = useRouter();
 
 	const onReload = () => setReload((prevState) => !prevState);
@@ -53,7 +53,13 @@ export default function AdminPage() {
 			render: () => {
 				return (
 					<Tab.Pane>
-						<User.List />
+						{ isSuperAdmin && (
+							<div className={styles.actions}>
+								<div />
+								<User.ManageUsers onReload={onReload} />
+							</div>
+						)}
+						<User.List reload={reload} onReload={onReload} />
 					</Tab.Pane>
 				);
 			}

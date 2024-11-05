@@ -1,8 +1,10 @@
 import { ENV, authFetch } from '@/utils';
 
-async function me() {
+async function getAll(page = 1) {
 	try {
-		const url = `${ENV.API_URL}${ENV.ENDPOINTS.USER_ME}`;
+		const filters = `page=${page}`;
+		const url = `${ENV.API_URL}${ENV.ENDPOINTS.USERS}?${filters}`;
+
 		const response = await authFetch(url);
 		if (!response) {
 			throw new Error('No response received');
@@ -17,11 +19,9 @@ async function me() {
 	}
 }
 
-async function getAll(page = 1) {
+async function me() {
 	try {
-		const filters = `page=${page}`;
-		const url = `${ENV.API_URL}${ENV.ENDPOINTS.USERS}?${filters}`;
-
+		const url = `${ENV.API_URL}${ENV.ENDPOINTS.USER_ME}`;
 		const response = await authFetch(url);
 		if (!response) {
 			throw new Error('No response received');
@@ -78,9 +78,31 @@ async function updateMe(data: any) {
 	}
 }
 
+async function updateUserRole(data: any) {
+	try {
+	  const url = `${ENV.API_URL}/${ENV.ENDPOINTS.USERS}`;
+	  const params = {
+		body: JSON.stringify(data),
+		headers: {
+			"Content-Type": "application/json"
+		},
+		method: "POST"
+	  };
+
+	  const response = await authFetch(url, params);
+
+	  if (response && response.status !== 200) throw response;
+
+	  return true;
+	} catch (error) {
+	  throw error;
+	}
+}
+
 export const userCtrl = {
 	getAll,
 	me,
 	updateAvatar,
-	updateMe
+	updateMe,
+	updateUserRole
 };
