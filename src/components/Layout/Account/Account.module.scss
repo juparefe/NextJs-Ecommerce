@@ -2,8 +2,19 @@
 
 .account {
     color: $text-primary;
+    font-size: 12px;
     > i {
-        font-size: 18px;
-        margin-right: 10px;
+        font-size: 15px;
+        margin-right: 5px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .account {
+        font-size: 14px;
+        > i {
+            font-size: 18px;
+            margin-right: 10px;
+        }
     }
 }

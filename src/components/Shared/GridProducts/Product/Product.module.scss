@@ -6,42 +6,14 @@
 
 .container {
   padding: 10px;
-  max-height: 350px;
 }
-
+//Se puede dejar con width 100% y aspect ratio 1 /1 y cambiar solo los padding
 .content {
   display: flex;
   flex-flow: column nowrap;
-  height: 300px;
   padding: 10px;
   &:hover {
     opacity: 0.6;
-  }
-
-  .icon {
-    background-color: $warning;
-    position: absolute;
-    z-index: 1;
-  }
-
-  .image {
-    height: 110px;
-    margin: 0 auto;
-    width: 150px;
-    overflow: hidden;
-  }
-
-  .title {
-    font-size: 14px;
-    height: 45px;
-    padding-top: 10px;
-    display: -webkit-box;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-decoration: none;
   }
 
   .footer {
@@ -78,19 +50,36 @@
     }
   }
 
+  .icon {
+    background-color: $warning;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .image {
+    aspect-ratio: 1/1;
+    width: 100%;
+    overflow: hidden;
+  }
+
   .lowStock {
     color: $warning;
     font-size: 8px;
     padding-top: 5px;
     margin-top: auto;
   }
-}
 
-@media (min-width: 340px) {
-  .content {
-    .image {
-      height: 140px;
-    }
+  .title {
+    font-size: 11px;
+    display: -webkit-box;
+    line-clamp: 2;
+    min-height: 3em;
+    overflow: hidden;
+    padding-top: 10px;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 }
 
@@ -122,28 +111,26 @@
   }
 }
 
-@media (min-width: 550px) {
+@media (min-width: 700px) {
   .content {
-    .image {
-      height: 180px;
-      width: 190px;
+    .footer {
+      .price {
+        font-size: 20px;
+      }
+    }
+  
+    .lowStock {
+      font-size: 12px;
     }
   }
 }
 
-@media (min-width: 780px) {
-  .lowStock {
-    font-size: 12px;
-  }
-
-  .footer {
-    .price {
-      font-size: 24px;
+@media (min-width: 900px) {
+  .content {
+    .footer {
+      .price {
+        font-size: 18px;
+      }
     }
-  }
-
-  .title {
-    font-size: 14px;
-    height: 55px;
   }
 }

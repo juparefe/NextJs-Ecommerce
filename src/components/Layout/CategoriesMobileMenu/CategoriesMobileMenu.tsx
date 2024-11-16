@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavDropdown } from 'react-bootstrap';
+import { Icon } from 'semantic-ui-react';
+import styles from './CategoriesMobileMenu.module.scss';
 import { categoryCtrl } from '@/api/category';
 import { CategoryI } from '@/utils/models';
 
@@ -18,11 +20,13 @@ export function CategoriesMobileMenu() {
 	}, []);
 
 	return (
-		<NavDropdown title={'Categorias'}>
-			{categories &&
-				categories.map((category: CategoryI) => (
+		<div className={styles.categoriesDropdown}>
+			<Icon name="sitemap" />
+			<NavDropdown title={'Categorias'} className={styles.categoriesDropdown}>
+				{categories && categories.map((category: CategoryI) => (
 					<NavDropdown.Item key={category.categId} href={`/categories/${category.categPath}`}>{category.categName}</NavDropdown.Item>
 				))}
-		</NavDropdown>
+			</NavDropdown>
+		</div>
 	);
 }

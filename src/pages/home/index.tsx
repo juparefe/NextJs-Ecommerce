@@ -21,7 +21,7 @@ export default function HomePage() {
   useEffect(() => {
     if (windowSize.width < 600) {
       setColumns(2);
-    } else if (windowSize.width < 900) {
+    } else if (windowSize.width < 1000) {
       setColumns(3);
     } else {
       setColumns(4);
@@ -38,7 +38,7 @@ export default function HomePage() {
         { key: 1, role: 'option', text: '1', value: 1 },
         { key: 2, role: 'option', text: '2', value: 2 }
       ];
-    } else if (windowSize && windowSize.width < 900) {
+    } else if (windowSize && windowSize.width < 1000) {
       return [
         { key: 1, role: 'option', text: '1', value: 1 },
         { key: 2, role: 'option', text: '2', value: 2 },
@@ -109,7 +109,7 @@ export default function HomePage() {
               inline
               onChange={handleColumnsChange}
               options={getColumnsOptions()}
-              role="listbox" // Cambiado de "dropdown" a "listbox"
+              role="listbox"
               value={columns}
             />
             <span className={styles.span}> columnas</span>

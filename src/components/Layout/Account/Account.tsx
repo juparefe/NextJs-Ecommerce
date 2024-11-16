@@ -8,7 +8,7 @@ export function Account() {
 	const [accountText, setAccountText] = useState('');
 
 	const handleResize = () => {
-		setAccountText((window.innerWidth > 768 && (user && user.userEmail)) ? `${user.userEmail.slice(0, 14)}...` : user.userEmail);
+		setAccountText((window.innerWidth > 991 && (user && user.userEmail)) ? `${user.userEmail.slice(0, 14)}...` : user.userEmail);
 	};
 
 	useEffect(() => {

@@ -15,6 +15,7 @@ bun dev
 ```
 
 # Pendientes:
+Las imagenes deben guardarse dimensionadas correctamente y debe arreglarse para que todo maneje relacion de aspecto 1
 Arreglar address details se decuadra el nombre de la direccion 
 Arreglar imagenes se descuadran si son muy altas en basket
 Integrar Stripe y Paypal para pagos

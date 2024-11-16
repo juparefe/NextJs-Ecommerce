@@ -12,7 +12,7 @@ const ITEMS_PER_PAGE = 10;
 export function ListProducts(props: any) {
 	const router = useRouter();
   	const { query } = router;
-	const { reload, onReload } = props;
+	const { reload, onReload, windowScreen } = props;
 	const [products, setProducts] = useState<ProductI[] | null>(null);
 	const [totalPages, setTotalPages] = useState<number | null>(null);
 	const page = Number(query.page || 1);
@@ -62,8 +62,8 @@ export function ListProducts(props: any) {
 					)}
 
 					{products.map((product) => (
-						<Table.Row key={product.prodId}>
-							<Product product={product} onReload={onReload} />
+						<Table.Row key={product.prodId}  verticalAlign='middle'>
+							<Product product={product} onReload={onReload} windowScreen={windowScreen} />
 						</Table.Row>
 					))}
 				</Table.Body>

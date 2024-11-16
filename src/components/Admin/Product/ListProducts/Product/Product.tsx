@@ -9,8 +9,8 @@ import { Modal } from '@/components/Shared';
 import { Constants, ProductI } from '@/utils';
 import { fn } from '@/utils/functions';
 
-export function Product(props: { product: ProductI; onReload: any }) {
-	const { product, onReload } = props;
+export function Product(props: { product: ProductI; onReload: any, windowScreen: any }) {
+	const { product, onReload, windowScreen } = props;
 	const [image, setImage] = useState(Constants.NOT_FOUND_IMAGE);
 	const [modalConfirmContent, setModalConfirmContent] = useState('');
 	const [modalContent, setModalContent] = useState(<p></p>);
@@ -86,7 +86,7 @@ export function Product(props: { product: ProductI; onReload: any }) {
 	};
 
 	const openEditImageProduct = () => {
-		setModalContent(<ProductImageForm onClose={closeModal} onReload={onReload} productId={product.prodId} />);
+		setModalContent(<ProductImageForm onClose={closeModal} onReload={onReload} productId={product.prodId} windowScreen={windowScreen}/>);
 		setOpenModal(true);
 	};
 
@@ -106,7 +106,7 @@ export function Product(props: { product: ProductI; onReload: any }) {
 					<Button basic color='red' onClick={openConfirmDeleteDiscount}><Icon color='red' name='user delete'/></Button>
 				</ButtonGroup>
             </Table.Cell>
-			<Table.Cell className={styles.actions} textAlign='center'>
+			<Table.Cell className={styles.actions} singleLine textAlign='center'>
 				<Icon name="pencil" link onClick={openEditProduct} />
 				<Icon name="image" link onClick={openEditImageProduct} />
 				<Icon name="trash" link onClick={openConfirmDeleteProduct} />

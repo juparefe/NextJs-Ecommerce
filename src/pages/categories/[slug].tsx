@@ -16,7 +16,7 @@ interface CategoryPageProps {
 }
 
 export default function CategoryPage(props: CategoryPageProps) {
-  const { products, pagination } = props;
+  const { products, pagination = { page: 1, totalPages: 1 } } = props;
   let { page, totalPages } = pagination;
   const { windowSize } = useWindowSize();
   const [columns, setColumns] = useState(4);
